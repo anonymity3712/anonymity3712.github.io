@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>渗透测试之信息收集整理笔记 | 墨竹星海’s Bolg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="进行渗透测试之前，最重要的一步就是信息收集，在这个阶段，我们要尽可能的收集目标组织的信息。在信息收集中，最主要的就是收集服务器的配置信息和网站敏感信息，其中包括域名及子域名、目标网站系统、CMS指纹、目标网站真实IP，开放的端口。">
+<meta name="keywords" content="信息收集">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试之信息收集整理笔记">
+<meta property="og:url" content="http://yoursite.com/2019/01/01/渗透测试之信息收集整理笔记/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="进行渗透测试之前，最重要的一步就是信息收集，在这个阶段，我们要尽可能的收集目标组织的信息。在信息收集中，最主要的就是收集服务器的配置信息和网站敏感信息，其中包括域名及子域名、目标网站系统、CMS指纹、目标网站真实IP，开放的端口。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/01/01/3e9e49794007d58080361258c5dfa89b.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/01/01/c06b03c440e32a8a80b7c213f8152128.png">
+<meta property="og:updated_time" content="2019-01-01T09:09:29.069Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="渗透测试之信息收集整理笔记">
+<meta name="twitter:description" content="进行渗透测试之前，最重要的一步就是信息收集，在这个阶段，我们要尽可能的收集目标组织的信息。在信息收集中，最主要的就是收集服务器的配置信息和网站敏感信息，其中包括域名及子域名、目标网站系统、CMS指纹、目标网站真实IP，开放的端口。">
+<meta name="twitter:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/01/01/3e9e49794007d58080361258c5dfa89b.png">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">墨竹星海</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">When you look long into an abyss,the abyss looks into you.</p>
+        
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/categories/kali/">kali</a></li>
+                        
+                            <li><a href="/categories/CTF/">CTF</a></li>
+                        
+                            <li><a href="/categories/渗透测试/">渗透测试</a></li>
+                        
+                            <li><a href="/categories/Hexo/">Hexo</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IIS/" style="font-size: 10px;">IIS</a> <a href="/tags/SQL注入/" style="font-size: 16.67px;">SQL注入</a> <a href="/tags/kali/" style="font-size: 20px;">kali</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/信息收集/" style="font-size: 10px;">信息收集</a> <a href="/tags/信息泄露/" style="font-size: 10px;">信息泄露</a> <a href="/tags/内网/" style="font-size: 10px;">内网</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/隐写/" style="font-size: 10px;">隐写</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://damit5.com">Damit5’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hl0rey.github.io">hl0rey’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://zzzzxycc.github.io">Zxc’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://blog.ruozhi.xyz">liey’s Blog</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">墨竹星海</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">墨竹星海</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">When you look long into an abyss,the abyss looks into you.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/kali/">kali</a></li>
+                
+                    <li><a href="/categories/CTF/">CTF</a></li>
+                
+                    <li><a href="/categories/渗透测试/">渗透测试</a></li>
+                
+                    <li><a href="/categories/Hexo/">Hexo</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-渗透测试之信息收集整理笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/01/01/渗透测试之信息收集整理笔记/" class="article-date">
+      <time datetime="2018-12-31T16:00:00.000Z" itemprop="datePublished">2019-01-01</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      渗透测试之信息收集整理笔记
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/渗透测试/">渗透测试</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/信息收集/">信息收集</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>进行渗透测试之前，最重要的一步就是信息收集，在这个阶段，我们要尽可能的收集目标组织的信息。在信息收集中，最主要的就是收集服务器的配置信息和网站敏感信息，其中包括域名及子域名、目标网站系统、CMS指纹、目标网站真实IP，开放的端口。<br><a id="more"></a></p>
+<h2 id="1-1收集域名信息"><a href="#1-1收集域名信息" class="headerlink" title="1.1收集域名信息"></a>1.1收集域名信息</h2><p> 知道目标的域名之后，我们要做的第一件事就是获取域名的注册信息，包括该域名的DNS服务器信息和注册人的联系信息等。</p>
+<h3 id="1-1-1Whois查询"><a href="#1-1-1Whois查询" class="headerlink" title="1.1.1Whois查询"></a>1.1.1Whois查询</h3><p>在Whois查询中，得到注册人的姓名和邮箱对测试个人站点非常有用，对中小站点而言，域名所有人往往就是管理员。我们可以通过搜索引擎和社交网络挖掘出域名所有人的很多信息，从而通过社工库反查出管理员信息，进而反推出管理员常用的账号密码去登入后台。<br>在线的whois查询网站有<br>站长之家：<a href="http://whois.chinaz.com" target="_blank" rel="noopener">http://whois.chinaz.com</a><br>爱站工具网：<a href="https://whois.aizhan.com" target="_blank" rel="noopener">https://whois.aizhan.com</a></p>
+<h3 id="1-1-2-备案信息查询"><a href="#1-1-2-备案信息查询" class="headerlink" title="1.1.2 备案信息查询"></a>1.1.2 备案信息查询</h3><p>可以收集该企业其他域名范围信息。<br>常用的网站有:<br>ICP备案查询网：<a href="http://www.beianbeian.com" target="_blank" rel="noopener">http://www.beianbeian.com</a><br>天眼查：<a href="http://www.tianyancha.com" target="_blank" rel="noopener">http://www.tianyancha.com</a></p>
+<h2 id="1-2-收集敏感信息"><a href="#1-2-收集敏感信息" class="headerlink" title="1.2 收集敏感信息"></a>1.2 收集敏感信息</h2><p>Google是世界上最强的搜索引擎之一，我们可以通过构造特殊的关键字语法来搜索互联网上的敏感信息。<br>例如，我们要搜索某企业的业务后台地址，可以构造语法 后台管理site:xxx.com，意思为搜索网页中含有“后台管理”并且域名为xxx.com的网站。还可以用它来收集数据库文件，配置信息，源代码泄露，未授权访问和robots.txt等敏感信息。<br>（ 实际案例：<a href="https://www.mzxh.xyz/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/" target="_blank" rel="noopener">https://www.mzxh.xyz/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/</a> ）<br>除此之外，也可以尝试在github上寻找相关的敏感信息，如数据库连接信息、邮箱密码，源代码等等。<br>还可以通过乌云漏洞镜像来查询历史漏洞信息。确认是否存在可以二次利用的漏洞。</p>
+<h2 id="1-3收集子域名信息。"><a href="#1-3收集子域名信息。" class="headerlink" title="1.3收集子域名信息。"></a>1.3收集子域名信息。</h2><p>子域名也就是二级域名，指顶级域名下的域名。可以借助layer子域名挖掘机和sublist3等工具。也可以利用搜索引擎枚举。如直接搜索“site:xxx.com”然后逐条整理归纳。也可以利用dnsdumpster网站（<a href="https://dnsdumpster.com" target="_blank" rel="noopener">https://dnsdumpster.com</a>) 来获取<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/01/01/3e9e49794007d58080361258c5dfa89b.png" alt="Pandao editor.md"></p>
+<h2 id="1-4-收集常用端口信息"><a href="#1-4-收集常用端口信息" class="headerlink" title="1.4 收集常用端口信息"></a>1.4 收集常用端口信息</h2><p>在渗透测试过程中，对端口的收集也是一个很重要的过程。通过扫描服务器开放的端口来判断存在的服务，从而渗透目标服务器<br>常用的端口</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">端口号</th>
+<th style="text-align:center">端口服务</th>
+<th style="text-align:center">攻击方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">ftp</td>
+<td style="text-align:center">文件传输协议</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:center">ftp</td>
+<td style="text-align:center">文件传输协议</td>
+</tr>
+<tr>
+<td style="text-align:center">2049</td>
+<td style="text-align:center">Nfs服务</td>
+<td style="text-align:center">配置不当</td>
+</tr>
+<tr>
+<td style="text-align:center">139</td>
+<td style="text-align:center">Samba服务</td>
+<td style="text-align:center">爆破，未授权访问，远程代码执行</td>
+</tr>
+<tr>
+<td style="text-align:center">389</td>
+<td style="text-align:center">Ldap目录访问协议</td>
+<td style="text-align:center">注入，匿名访问，弱口令</td>
+</tr>
+<tr>
+<td style="text-align:center">22</td>
+<td style="text-align:center">Ssh远程连接</td>
+<td style="text-align:center">爆破，ssh隧道及内网转发</td>
+</tr>
+<tr>
+<td style="text-align:center">23</td>
+<td style="text-align:center">telnet</td>
+<td style="text-align:center">爆破，弱口令</td>
+</tr>
+<tr>
+<td style="text-align:center">3389</td>
+<td style="text-align:center">远程桌面</td>
+<td style="text-align:center">爆破，弱口令</td>
+</tr>
+<tr>
+<td style="text-align:center">5900</td>
+<td style="text-align:center">VNC</td>
+<td style="text-align:center">爆破，弱口令</td>
+</tr>
+<tr>
+<td style="text-align:center">80/443/8080</td>
+<td style="text-align:center">Web服务端口</td>
+<td style="text-align:center">Web攻击，服务器版本漏洞</td>
+</tr>
+<tr>
+<td style="text-align:center">7001/7002</td>
+<td style="text-align:center">Weblogic控制台</td>
+<td style="text-align:center">Java反序列化</td>
+</tr>
+<tr>
+<td style="text-align:center">8080/8089</td>
+<td style="text-align:center">Jboss/resin</td>
+<td style="text-align:center">反序列化</td>
+</tr>
+<tr>
+<td style="text-align:center">9090</td>
+<td style="text-align:center">Websphere控制台</td>
+<td style="text-align:center">Java反序列化</td>
+</tr>
+<tr>
+<td style="text-align:center">10000</td>
+<td style="text-align:center">Webmin-web</td>
+<td style="text-align:center">弱口令</td>
+</tr>
+<tr>
+<td style="text-align:center">3306</td>
+<td style="text-align:center">Mysql</td>
+<td style="text-align:center">弱口令，注入，提权</td>
+</tr>
+<tr>
+<td style="text-align:center">1433</td>
+<td style="text-align:center">Mssql</td>
+<td style="text-align:center">Sa弱口令</td>
+</tr>
+<tr>
+<td style="text-align:center">1521</td>
+<td style="text-align:center">Oracle</td>
+<td style="text-align:center">Tns爆破，反弹shell</td>
+</tr>
+<tr>
+<td style="text-align:center">5432</td>
+<td style="text-align:center">Postgresql</td>
+<td style="text-align:center">弱口令</td>
+</tr>
+<tr>
+<td style="text-align:center">27017/27018</td>
+<td style="text-align:center">MongoDB</td>
+<td style="text-align:center">未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:center">6379</td>
+<td style="text-align:center">Redis</td>
+<td style="text-align:center">未授权访问，弱口令爆破</td>
+</tr>
+<tr>
+<td style="text-align:center">53</td>
+<td style="text-align:center">DNS域名系统</td>
+<td style="text-align:center">允许区域传送，DNS劫持，缓存投毒</td>
+</tr>
+<tr>
+<td style="text-align:center">67/68</td>
+<td style="text-align:center">DHCP服务</td>
+<td style="text-align:center">劫持，欺骗</td>
+</tr>
+<tr>
+<td style="text-align:center">161</td>
+<td style="text-align:center">SNMP协议</td>
+<td style="text-align:center">爆破，搜索目标内网信息</td>
+</tr>
+<tr>
+<td style="text-align:center">2181</td>
+<td style="text-align:center">Zookeeper服务</td>
+<td style="text-align:center">未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:center">8069</td>
+<td style="text-align:center">Zabbix服务</td>
+<td style="text-align:center">远程执行</td>
+</tr>
+<tr>
+<td style="text-align:center">9200/9300</td>
+<td style="text-align:center">ELASTICEARCH服务</td>
+<td style="text-align:center">远程执行</td>
+</tr>
+<tr>
+<td style="text-align:center">11211</td>
+<td style="text-align:center">Memcache服务</td>
+<td style="text-align:center">未授权访问</td>
+</tr>
+<tr>
+<td style="text-align:center">512/513/514</td>
+<td style="text-align:center">Linux</td>
+<td style="text-align:center">rexec服务，爆破</td>
+</tr>
+<tr>
+<td style="text-align:center">873</td>
+<td style="text-align:center">Rsync服务</td>
+<td style="text-align:center">匿名访问，文件上传</td>
+</tr>
+<tr>
+<td style="text-align:center">3690</td>
+<td style="text-align:center">Svn服务</td>
+<td style="text-align:center">SVN泄露</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-5指纹识别"><a href="#1-5指纹识别" class="headerlink" title="1.5指纹识别"></a>1.5指纹识别</h2><p>Cms又称为整站系统或者文章系统，只有识别出web容器或者cms才可以查找与其相关的漏洞<br>在线的指纹识别有 云悉指纹 <a href="http://www.yunsee.cn/finger.html" target="_blank" rel="noopener">http://www.yunsee.cn/finger.html</a></p>
+<h2 id="1-6-查找真实的IP"><a href="#1-6-查找真实的IP" class="headerlink" title="1.6 查找真实的IP"></a>1.6 查找真实的IP</h2><pre><code>nslookup 域名 //查看域名的解析情况
+</code></pre><p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/01/01/c06b03c440e32a8a80b7c213f8152128.png" alt="Pandao editor.md"><br>这种基本就是上了云waf的<br>针对这类域名查找真实IP有下面一些常规方法</p>
+<ul>
+<li>内部邮箱源（必须是自己的邮件服务器，第三方或公共的没有用处）</li>
+<li>Phpinfo等测试文件泄露。</li>
+<li>子域名IP查询（一般可能存在主站防护而子站未防护或部分防护，从而查询到网站所在的IP段）</li>
+<li>如果目标网站有自己的App可以利用抓包工具抓取APP的请求，进而获取到目标的真实IP</li>
+</ul>
+<h2 id="1-7-收集敏感的目录文件"><a href="#1-7-收集敏感的目录文件" class="headerlink" title="1.7 收集敏感的目录文件"></a>1.7 收集敏感的目录文件</h2><p>  主要收集网站的后台管理页面，文件上传界面，或者网站的源码泄露，常见的源码泄露有GIT源码泄露，SVN源码泄露，.DS_Store文件泄露，备份文件泄露和WEB-INF/web.xml泄露。攻击者可以通过源代码进一步挖掘出安全漏洞如文件上传，SQL注入等。</p>
+<h2 id="1-8-社会工程学"><a href="#1-8-社会工程学" class="headerlink" title="1.8 社会工程学"></a>1.8 社会工程学</h2><p> 通过已经收集的信息，勾画出一个虚拟的人物身份，比如某企业的新入职员工，通过添加老员工或其他部门同事进一步刺探内部敏感信息。比如内网登入方式，OA系统默认密码，账号命名规则等。</p>
+<h2 id="附带另外两篇被动信息收集笔记"><a href="#附带另外两篇被动信息收集笔记" class="headerlink" title="附带另外两篇被动信息收集笔记"></a>附带另外两篇被动信息收集笔记</h2><ul>
+<li><a href="https://www.mzxh.xyz/2018/09/09/第三节：kali的信息收集之被动扫描（一）" target="_blank" rel="noopener">https://www.mzxh.xyz/2018/09/09/第三节：kali的信息收集之被动扫描（一）</a></li>
+<li><a href="https://www.mzxh.xyz/2018/09/10/第四节：kali的信息收集之被动扫描（二）" target="_blank" rel="noopener">https://www.mzxh.xyz/2018/09/10/第四节：kali的信息收集之被动扫描（二）</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
+        <p><span>发布时间:</span>2019年01月01日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年01月01日 - 17时09分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/01/01/渗透测试之信息收集整理笔记/" title="渗透测试之信息收集整理笔记">http://yoursite.com/2019/01/01/渗透测试之信息收集整理笔记/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/01/01/渗透测试之信息收集整理笔记/　　作者: 墨竹星海" title></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/19/base64 - 副本/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">记一次base64编码解码绕过限制上传一句话木马</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1收集域名信息"><span class="toc-number">1.</span> <span class="toc-text">1.1收集域名信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1Whois查询"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1Whois查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-备案信息查询"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2 备案信息查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-收集敏感信息"><span class="toc-number">2.</span> <span class="toc-text">1.2 收集敏感信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3收集子域名信息。"><span class="toc-number">3.</span> <span class="toc-text">1.3收集子域名信息。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-收集常用端口信息"><span class="toc-number">4.</span> <span class="toc-text">1.4 收集常用端口信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5指纹识别"><span class="toc-number">5.</span> <span class="toc-text">1.5指纹识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-查找真实的IP"><span class="toc-number">6.</span> <span class="toc-text">1.6 查找真实的IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-收集敏感的目录文件"><span class="toc-number">7.</span> <span class="toc-text">1.7 收集敏感的目录文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8-社会工程学"><span class="toc-number">8.</span> <span class="toc-text">1.8 社会工程学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附带另外两篇被动信息收集笔记"><span class="toc-number">9.</span> <span class="toc-text">附带另外两篇被动信息收集笔记</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/11/19/base64 - 副本/" title="下一篇: 记一次base64编码解码绕过限制上传一句话木马">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64 - 副本/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 墨竹星海
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://www.mzxh.xyz" target="_blank">Blog</a> by 墨竹星海
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

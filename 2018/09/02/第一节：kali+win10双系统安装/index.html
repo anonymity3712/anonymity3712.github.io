@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>第一节：kali+win10双系统安装 | 墨竹星海’s Bolg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Kali Linux是基于Debian的Linux发行版， 设计用于数字取证操作系统。由Offensive Security Ltd维护和资助。最先由OffensiveSecurity的MatiAharoni和DevonKearns通过重写BackTrack来完成，BackTrack是他们之前写的用于取证的Linux发行版 。Kali Linux预装了许多渗透测试软件，包括nmap 、Wiresh">
+<meta name="keywords" content="kali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一节：kali+win10双系统安装">
+<meta property="og:url" content="http://yoursite.com/2018/09/02/第一节：kali+win10双系统安装/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="Kali Linux是基于Debian的Linux发行版， 设计用于数字取证操作系统。由Offensive Security Ltd维护和资助。最先由OffensiveSecurity的MatiAharoni和DevonKearns通过重写BackTrack来完成，BackTrack是他们之前写的用于取证的Linux发行版 。Kali Linux预装了许多渗透测试软件，包括nmap 、Wiresh">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f6b0d0df40bd4d978016424b29bd438a.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/89db11a94050714d802a417cc5b38930.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f97e6e4a408c7f4b80f7e077891f363d.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/5384847d403586f2807637564822631c.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/9be74bd6405bb2d280696d6ef1ea5999.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/d58679854010764c8097f67d528e8f23.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/cd5034ef40f0af6380bdec9ec18060d5.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/9b5e1c82403ab0c7800a1d6bb9ab0d17.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1ea574c640ae3b2580328f3f876b1895.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/e0b427c440eed3588048501d3db8133f.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/0421d899408223fb8073e3078d16dcc7.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/9966967440b41bd28025372ad1abac00.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/153e1f93407312a7806fb4566d84cf51.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/9b4bde7040049b6f809016eb0a2a0029.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/03e5ba5f408c76df80d878892a2f699e.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1d9cda064090df14806ec267c7624a72.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/e8059f7d402395e6809cc1f4ad4a9851.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4f6ddda240a571598072d27d1018e95d.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/c4d58a8940cf8b7180dba04a7b4ed58a.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4f29b2fe40c94bb280c1a2058e1e4dde.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4aa85fd940a8d781803bdecc28f7b479.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/a328efb440695dbb80a13f5ab59f32f0.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1d5de43c400ebfaa806d3b2d9c5bea8c.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7be6cc77405469db80ce76994c7879f1.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/e391f4ca40dc601780c25e98e6fff776.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/73c6ff5440bfb66e803e2888f8e02a05.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7e21e102406d146d808654f48dc6afc8.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/780733fa40d75b7080ebca5b606d303f.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/60827b16405a6f7e8050fe3dbeb01cce.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/05d50ada40b48558803dba0f82463a58.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/160b518740c7c92b8026e5113c05d377.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/fb3e4947404fac5b803436b812d7820d.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/d6b336a440b932438021334ff3d99a31.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/8c4f818540f41c9880598731cdb0289c.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/a3c2963940ff18cc805a56fcab9fb2f9.png">
+<meta property="og:updated_time" content="2018-11-14T10:50:42.788Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第一节：kali+win10双系统安装">
+<meta name="twitter:description" content="Kali Linux是基于Debian的Linux发行版， 设计用于数字取证操作系统。由Offensive Security Ltd维护和资助。最先由OffensiveSecurity的MatiAharoni和DevonKearns通过重写BackTrack来完成，BackTrack是他们之前写的用于取证的Linux发行版 。Kali Linux预装了许多渗透测试软件，包括nmap 、Wiresh">
+<meta name="twitter:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f6b0d0df40bd4d978016424b29bd438a.png">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">墨竹星海</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">When you look long into an abyss,the abyss looks into you.</p>
+        
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/categories/kali/">kali</a></li>
+                        
+                            <li><a href="/categories/CTF/">CTF</a></li>
+                        
+                            <li><a href="/categories/渗透测试/">渗透测试</a></li>
+                        
+                            <li><a href="/categories/Hexo/">Hexo</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IIS/" style="font-size: 10px;">IIS</a> <a href="/tags/SQL注入/" style="font-size: 16.67px;">SQL注入</a> <a href="/tags/kali/" style="font-size: 20px;">kali</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/信息收集/" style="font-size: 10px;">信息收集</a> <a href="/tags/信息泄露/" style="font-size: 10px;">信息泄露</a> <a href="/tags/内网/" style="font-size: 10px;">内网</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/隐写/" style="font-size: 10px;">隐写</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://damit5.com">Damit5’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hl0rey.github.io">hl0rey’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://zzzzxycc.github.io">Zxc’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://blog.ruozhi.xyz">liey’s Blog</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">墨竹星海</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">墨竹星海</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">When you look long into an abyss,the abyss looks into you.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/kali/">kali</a></li>
+                
+                    <li><a href="/categories/CTF/">CTF</a></li>
+                
+                    <li><a href="/categories/渗透测试/">渗透测试</a></li>
+                
+                    <li><a href="/categories/Hexo/">Hexo</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-第一节：kali+win10双系统安装" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/09/02/第一节：kali+win10双系统安装/" class="article-date">
+      <time datetime="2018-09-01T16:00:00.000Z" itemprop="datePublished">2018-09-02</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第一节：kali+win10双系统安装
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/kali/">kali</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/">kali</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Kali Linux是基于Debian的Linux发行版， 设计用于数字取证操作系统。由Offensive Security Ltd维护和资助。最先由OffensiveSecurity的MatiAharoni和DevonKearns通过重写BackTrack来完成，BackTrack是他们之前写的用于取证的Linux发行版 。Kali Linux预装了许多渗透测试软件，包括nmap 、Wireshark 、John the Ripper，以及Aircrack-ng.[2] 用户可通过硬盘、live CD或live USB运行Kali Linux。Kali Linux既有32位和64位的镜像。可用于x86 指令集。同时还有基于ARM架构的镜像，可用于树莓派和三星的ARM Chromebook<br><a id="more"></a></p>
+<h2 id="一-准备工作"><a href="#一-准备工作" class="headerlink" title="一.准备工作"></a>一.准备工作</h2><h3 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具:"></a>准备工具:</h3><ul>
+<li>kali3.0镜像文件 - 下载地址:<br><a href="https://www.kali.org/downloads/" target="_blank" rel="noopener">https://www.kali.org/downloads/</a></li>
+<li>Win32DiskImager - 下载地址:<br><a href="https://sourceforge.net/projects/win32diskimager/" target="_blank" rel="noopener">https://sourceforge.net/projects/win32diskimager/</a></li>
+<li>分区助手 - 这里是为了给Kali划分出一个安装的磁盘, 如果已经划分好分区可以省略这一步</li>
+<li>EasyBCD(制作引导工具) - 下载地址:<br><a href="http://mydown.yesky.com/pcsoft/416109.html" target="_blank" rel="noopener">http://mydown.yesky.com/pcsoft/416109.html</a></li>
+<li>U盘(大于4GB, 最好是8GB) - 这里是需要制作一个Kali的安装启动盘, U盘太小无法装载Kali的安装程序</li>
+</ul>
+<h3 id="制作启动盘"><a href="#制作启动盘" class="headerlink" title="制作启动盘:"></a>制作启动盘:</h3><ul>
+<li>将你的大于4G的U盘插入USB接口,U盘最好支持USB3.0,这样可以加快数据传输速度</li>
+<li>打开Win32DiskImager,在Image File处载入下载的Kali镜像文件。</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f6b0d0df40bd4d978016424b29bd438a.png" alt="markdown"></p>
+<ul>
+<li>点出Write，选择“yes”</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/89db11a94050714d802a417cc5b38930.png" alt="markdown"></p>
+<ul>
+<li>然后就是等待一段时间的写入过程，当进度条读完时，安装启动U盘就做好了。</li>
+</ul>
+<h3 id="分区"><a href="#分区" class="headerlink" title="分区:"></a>分区:</h3><p>用分区工具划分出一个新的磁盘分区,新划分出来的这个区就是Kali系统的安装区（因为个人需要我划了100G，实际大小根据个人需要更换）</p>
+<h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><ul>
+<li>将制作好的安装启动盘插入电脑之后,在BIOS设置里选择USB启动，然后等待载入Kali Linux的安装程序。</li>
+<li>这里我们选择Graphical install选项（图形化安装）</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f97e6e4a408c7f4b80f7e077891f363d.png" alt="markdown"></p>
+<ul>
+<li>选择安装语言，选中文（简体）</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/5384847d403586f2807637564822631c.png" alt="markdown"></p>
+<ul>
+<li>选“是”</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/9be74bd6405bb2d280696d6ef1ea5999.png" alt="markdown"></p>
+<ul>
+<li>区域选“中国”</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/d58679854010764c8097f67d528e8f23.png" alt="markdown"></p>
+<ul>
+<li>配置键盘选择“汉语”然后继续</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/cd5034ef40f0af6380bdec9ec18060d5.png" alt="markdown"></p>
+<p>（Ps：出现网络设备固件缺失的提示(没有提示可以跳过)<br>出现这个问题的原因是网卡驱动没有默认安装,导致网卡在安装步骤时无法使用,这里选择否,然后选择暂时不加载驱动的选项）</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/9b5e1c82403ab0c7800a1d6bb9ab0d17.png" alt="markdown"></p>
+<ul>
+<li>选择自己的无线网卡（连接无线网络不多介绍）</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1ea574c640ae3b2580328f3f876b1895.png" alt="markdown"></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/e0b427c440eed3588048501d3db8133f.png" alt="markdown"></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/0421d899408223fb8073e3078d16dcc7.png" alt="markdown"></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/9966967440b41bd28025372ad1abac00.png" alt="markdown"></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/153e1f93407312a7806fb4566d84cf51.png" alt="markdown"></p>
+<ul>
+<li>主机名随意填写，然后继续</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/9b4bde7040049b6f809016eb0a2a0029.png" alt="markdown"></p>
+<ul>
+<li>域名可以直接空着，然后继续</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/03e5ba5f408c76df80d878892a2f699e.png" alt="markdown"></p>
+<ul>
+<li>给自己的root账号设置一个密码，然后继续</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1d9cda064090df14806ec267c7624a72.png" alt="markdown"></p>
+<h3 id="磁盘分区步骤"><a href="#磁盘分区步骤" class="headerlink" title="磁盘分区步骤"></a>磁盘分区步骤</h3><ul>
+<li>在选择磁盘选项时选择手动</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/e8059f7d402395e6809cc1f4ad4a9851.png" alt="markdown"></p>
+<ul>
+<li>选择自己的空闲分区</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4f6ddda240a571598072d27d1018e95d.png" alt="markdown"></p>
+<ul>
+<li>创建新分区</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/c4d58a8940cf8b7180dba04a7b4ed58a.png" alt="markdown"></p>
+<ul>
+<li>默认全部大小</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4f29b2fe40c94bb280c1a2058e1e4dde.png" alt="markdown"></p>
+<ul>
+<li>类型选逻辑分区</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4aa85fd940a8d781803bdecc28f7b479.png" alt="markdown"></p>
+<ul>
+<li>分区设定结束</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/a328efb440695dbb80a13f5ab59f32f0.png" alt="markdown"></p>
+<ul>
+<li>选择结束分区设定并将修改写入磁盘</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1d5de43c400ebfaa806d3b2d9c5bea8c.png" alt="markdown"></p>
+<ul>
+<li>选择否</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7be6cc77405469db80ce76994c7879f1.png" alt="markdown"></p>
+<ul>
+<li>记住分区的编号,选择“是”之后点击继续</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/e391f4ca40dc601780c25e98e6fff776.png" alt="markdown"></p>
+<ul>
+<li>然后开始安装系统</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/73c6ff5440bfb66e803e2888f8e02a05.png" alt="markdown"></p>
+<ul>
+<li>网络镜像选择”是”（这个会给你默认增加一个官方源）</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7e21e102406d146d808654f48dc6afc8.png" alt="markdown"></p>
+<ul>
+<li>选“是”写入引导</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/780733fa40d75b7080ebca5b606d303f.png" alt="markdown"></p>
+<ul>
+<li>选择“手动输入”。</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/60827b16405a6f7e8050fe3dbeb01cce.png" alt="markdown"></p>
+<ul>
+<li>输入/dev/sda6（后面a6就上前面提到过的你选定磁盘和分区的编号。如果你笔记本里有两块磁盘，你就发现你的磁盘是sda和sdb两块，此处不懂可以百度看linux基础知识）</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/05d50ada40b48558803dba0f82463a58.png" alt="markdown"></p>
+<ul>
+<li>点击继续后重启（记得一定拔出U盘，否则可能会回到安装界面）</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/160b518740c7c92b8026e5113c05d377.png" alt="markdown"></p>
+<h2 id="添加开启kali的引导"><a href="#添加开启kali的引导" class="headerlink" title="添加开启kali的引导"></a>添加开启kali的引导</h2><ul>
+<li>重启后进入的还是Windows系统，因为我们还没有添加kali的引导。<ul>
+<li>打开EasyBCD，在:新添加条目”里选择”Linux/BSD”项，类型不变，名称改为KALI，驱动器选择安装kali的分区（这里分区的编号，跟安装系统时的编号并不相同，可以根据分区大小判断），然后点击添加条目。</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/fb3e4947404fac5b803436b812d7820d.png" alt="markdown"></p>
+<ul>
+<li>到“高级设置”里选择刚才创建的驱动器，将”驱动器”选择BOOT然后保存。</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/d6b336a440b932438021334ff3d99a31.png" alt="markdown"></p>
+<ul>
+<li>然后可以重启电脑</li>
+</ul>
+<h2 id="进入第二系统"><a href="#进入第二系统" class="headerlink" title="进入第二系统"></a>进入第二系统</h2><ul>
+<li>这里不需要进入Bios设置,直接重启就行,等待Windows的引导界面出现，就会发现有两个选项了</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/8c4f818540f41c9880598731cdb0289c.png" alt="markdown"></p>
+<ul>
+<li>选择Kali Linux系统，然后就可以进入我们安装好的第二系统了</li>
+</ul>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/a3c2963940ff18cc805a56fcab9fb2f9.png" alt="markdown"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
+        <p><span>发布时间:</span>2018年09月02日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年11月14日 - 18时50分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/02/第一节：kali+win10双系统安装/" title="第一节：kali+win10双系统安装">http://yoursite.com/2018/09/02/第一节：kali+win10双系统安装/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/09/02/第一节：kali+win10双系统安装/　　作者: 墨竹星海" title></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/09/04/第二节：kali的配置及常用软件安装/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          第二节：kali的配置及常用软件安装
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用 Github Pages + Hexo 搭建自己的博客</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-准备工作"><span class="toc-number">1.</span> <span class="toc-text">一.准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工具"><span class="toc-number">1.1.</span> <span class="toc-text">准备工具:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#制作启动盘"><span class="toc-number">1.2.</span> <span class="toc-text">制作启动盘:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分区"><span class="toc-number">1.3.</span> <span class="toc-text">分区:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装系统"><span class="toc-number">2.</span> <span class="toc-text">安装系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#磁盘分区步骤"><span class="toc-number">2.1.</span> <span class="toc-text">磁盘分区步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加开启kali的引导"><span class="toc-number">3.</span> <span class="toc-text">添加开启kali的引导</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进入第二系统"><span class="toc-number">4.</span> <span class="toc-text">进入第二系统</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/09/04/第二节：kali的配置及常用软件安装/" title="上一篇: 第二节：kali的配置及常用软件安装">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/" title="下一篇: 使用 Github Pages + Hexo 搭建自己的博客">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64 - 副本/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 墨竹星海
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://www.mzxh.xyz" target="_blank">Blog</a> by 墨竹星海
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

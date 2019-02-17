@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>第二节：kali的配置及常用软件安装 | 墨竹星海’s Bolg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="虽然在kali中已经预装了超过300种的应用程序，但是有时我们仍需要会安装一些程序来保证平时的基础使用，本篇主要写了kali开机后黑屏处理方法;更新源文件并更新内核头至最新（2018.8.21）;安装Deepin Scrot截图工具;安装wps office;安装搜狗输入法;安装NVIDIA;安装Shadowsocks-qt5;安装Google浏览器;安装 Teamviewer13;安装Virtu">
+<meta name="keywords" content="kali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二节：kali的配置及常用软件安装">
+<meta property="og:url" content="http://yoursite.com/2018/09/04/第二节：kali的配置及常用软件安装/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="虽然在kali中已经预装了超过300种的应用程序，但是有时我们仍需要会安装一些程序来保证平时的基础使用，本篇主要写了kali开机后黑屏处理方法;更新源文件并更新内核头至最新（2018.8.21）;安装Deepin Scrot截图工具;安装wps office;安装搜狗输入法;安装NVIDIA;安装Shadowsocks-qt5;安装Google浏览器;安装 Teamviewer13;安装Virtu">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/eeffb84440844d6580d5b98e5f95a155.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7ff263e4407a90bb802b69ef6b89b5d6.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/ff961e0940a9ce02809d2f279c2ecc52.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/c95241be40626dcb804e421b9d18680b.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/fa475ea4402adc6680852d6584e4dab4.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/07296d1440d505a580c18af0fc2a1ea2.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/722199d040b38a8180b03fa94aded3bf.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1813df4240c9c17480b02b2aef0e8c07.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1043e89740e8ef19801046e04520202a.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7d44bbd640c368f380b9cc66fcb48db6.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/e36cbfbe40e34f92801d5ff30e5d630a.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/21b644e9409092a880f9cd6698e96e71.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/be4e1a694014bd3a80b8ec2d34c23eb2.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/2c2d709e403e709b80e5affd29181164.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/df708a7840dbf6b98035b58f8aaa5759.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/ee8eb13840716da580ed6da5c6c5aaf3.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/873767a34069431480cf8936ccb14757.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1a89d7bb40f1a4e0800b9168384b003c.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/98f9df4e40cc1f5d8060d43390eead4b.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/98023cd040ddbc56801396d674d35f4e.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/d659d0cf40065069804db790a33ae277.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/3ab44e7640f85a99808e50aeadfac371.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/db8a2de24021ac7d80c1bb6559f036bd.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/21484f6d40e1c45e80e4aba800df7482.jpg">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/c14e7dd240d3b4ea80f92e7e4b875600.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/64e2a3684009a1d8800b727ed1315116.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4928e083404ce1e980c0a93217e10ef9.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/02/462762c74093f0ad8032421395e6ebb9.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7766569440c5c967807e9936482ee950.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/bec37a7f40503dd180c90bc3357f9cdc.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/3d6805f740da1eb98082ad8b8374938a.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/752f2f1a40ddc6388010b7973303b66d.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f086d00a408cdbd68071b365c7de40d3.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/61081051408aedb980e3d9708c892783.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/51e112d540b549e38088d043b34e4f8b.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4799e62c402991798018b4b4b291f3ff.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f0e4ef9940c5c9a280e730416b8d839e.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f0effb9340900221807fc720f9d2593d.png">
+<meta property="og:updated_time" content="2018-11-14T10:50:54.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第二节：kali的配置及常用软件安装">
+<meta name="twitter:description" content="虽然在kali中已经预装了超过300种的应用程序，但是有时我们仍需要会安装一些程序来保证平时的基础使用，本篇主要写了kali开机后黑屏处理方法;更新源文件并更新内核头至最新（2018.8.21）;安装Deepin Scrot截图工具;安装wps office;安装搜狗输入法;安装NVIDIA;安装Shadowsocks-qt5;安装Google浏览器;安装 Teamviewer13;安装Virtu">
+<meta name="twitter:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/eeffb84440844d6580d5b98e5f95a155.png">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">墨竹星海</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">When you look long into an abyss,the abyss looks into you.</p>
+        
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/categories/kali/">kali</a></li>
+                        
+                            <li><a href="/categories/CTF/">CTF</a></li>
+                        
+                            <li><a href="/categories/渗透测试/">渗透测试</a></li>
+                        
+                            <li><a href="/categories/Hexo/">Hexo</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IIS/" style="font-size: 10px;">IIS</a> <a href="/tags/SQL注入/" style="font-size: 16.67px;">SQL注入</a> <a href="/tags/kali/" style="font-size: 20px;">kali</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/信息收集/" style="font-size: 10px;">信息收集</a> <a href="/tags/信息泄露/" style="font-size: 10px;">信息泄露</a> <a href="/tags/内网/" style="font-size: 10px;">内网</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/隐写/" style="font-size: 10px;">隐写</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://damit5.com">Damit5’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hl0rey.github.io">hl0rey’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://zzzzxycc.github.io">Zxc’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://blog.ruozhi.xyz">liey’s Blog</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">墨竹星海</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">墨竹星海</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">When you look long into an abyss,the abyss looks into you.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/kali/">kali</a></li>
+                
+                    <li><a href="/categories/CTF/">CTF</a></li>
+                
+                    <li><a href="/categories/渗透测试/">渗透测试</a></li>
+                
+                    <li><a href="/categories/Hexo/">Hexo</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-第二节：kali的配置及常用软件安装" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/09/04/第二节：kali的配置及常用软件安装/" class="article-date">
+      <time datetime="2018-09-03T16:00:00.000Z" itemprop="datePublished">2018-09-04</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第二节：kali的配置及常用软件安装
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/kali/">kali</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/">kali</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>虽然在kali中已经预装了超过300种的应用程序，但是有时我们仍需要会安装一些程序来保证平时的基础使用，本篇主要写了kali开机后黑屏处理方法;更新源文件并更新内核头至最新（2018.8.21）;安装Deepin Scrot截图工具;安装wps office;安装搜狗输入法;安装NVIDIA;安装Shadowsocks-qt5;安装Google浏览器;安装 Teamviewer13;安装Virtualbox。。。。。。<br><a id="more"></a></p>
+<h2 id="kali开机后黑屏处理方法"><a href="#kali开机后黑屏处理方法" class="headerlink" title="kali开机后黑屏处理方法"></a>kali开机后黑屏处理方法</h2><p>部分双显卡电脑初次开机后可能会出现输入完账号密码后黑屏无法进入系统的问题，这是因为Kali预装的开源显卡驱动nouveau，启动出现了问题，我们只需要禁用nouveau即可，并添加其到启动的黑名单里即可。<br>在进入如下引导界面时按下按下e键，进行编辑grub命令。<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/eeffb84440844d6580d5b98e5f95a155.png" alt="markdown"></p>
+<p>在倒数第三行加入了 <code>nouveau.modeset=0</code> （也就是字符quite的后面）</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7ff263e4407a90bb802b69ef6b89b5d6.png" alt="markdown"></p>
+<p>然后按下ctrl键+X键，进行启动即可，然后输入登录账户密码，成功进入系统</p>
+<h4 id="更新源文件并更新内核头"><a href="#更新源文件并更新内核头" class="headerlink" title="更新源文件并更新内核头"></a>更新源文件并更新内核头</h4><p>进入系统后进行对系统更新</p>
+<p>编辑:sources.list文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">leafpad /etc/apt/sources.list</span><br></pre></td></tr></table></figure></p>
+<p>使用官方的更新源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb http://http.kali.org/kali kali-rolling main non-free contrib</span><br></pre></td></tr></table></figure></p>
+<p>然后输入以下命令</p>
+<p><code>apt-get clean</code> //清除缓存索引</p>
+<p><code>apt-get update</code> //更新索引文件</p>
+<p><code>apt-get upgrade</code> //更新实际的软件包文件</p>
+<p><code>apt-get dist-upgrade</code> //根据依赖关系更新</p>
+<h4 id="把grub命令添加到黑名单"><a href="#把grub命令添加到黑名单" class="headerlink" title="把grub命令添加到黑名单"></a>把grub命令添加到黑名单</h4><p>为了避免每次开机后都要修改grub命令，我们将nouveau添加到黑名单，防止它启动</p>
+<p>进入/etc/modprobe.d文件夹<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/modprobe.d</span><br></pre></td></tr></table></figure></p>
+<p>创建一个nvidia-graphics-drivers.conf文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/modprobe.d/nvidia-graphics-drivers.conf</span><br></pre></td></tr></table></figure></p>
+<p>写入： <code>blacklist nouveau</code></p>
+<p>保存并退出:  <code>wq!</code></p>
+<p>然后修改/etc/default/grub文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/default/grub</span><br></pre></td></tr></table></figure></p>
+<p>末尾写入：<code>rdblacklist=nouveau nouveau.modeset=0</code></p>
+<p>保存并退出: <code>wq!</code></p>
+<p>然后再输入 <code>init 6</code> 重启电脑</p>
+<p>重启后可以通过 <code>uname -a</code> 来查看当前版本</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/ff961e0940a9ce02809d2f279c2ecc52.png" alt="markdown"></p>
+<h2 id="安装Deepin-Scrot截图工具"><a href="#安装Deepin-Scrot截图工具" class="headerlink" title="安装Deepin Scrot截图工具"></a>安装Deepin Scrot截图工具</h2><p>1.下载Deepin Scrot<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://packages.linuxdeepin.com/deepin/pool/main/d/deepin-scrot/deepin-scrot_2.0-0deepin_all.deb</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/c95241be40626dcb804e421b9d18680b.png" alt="markdown"></p>
+<p>下载最新版本的Deepin Scrot软件</p>
+<p>2.更换源文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">leafpad /etc/apt/sources.list</span><br></pre></td></tr></table></figure></p>
+<p>注释掉官方源，新增下面中科大源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.ustc.edu.cn/kali kali-rolling main contrib non-free</span><br></pre></td></tr></table></figure>
+<p>3.安装Deepin Scrot<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i deepin-scrot_2.0-0deepin_all.deb</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/fa475ea4402adc6680852d6584e4dab4.png" alt="markdown"></p>
+<p>会提示缺少依赖的问题</p>
+<p>用<code>apt --fix-broken install</code> 强制安装依赖关系</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/07296d1440d505a580c18af0fc2a1ea2.png" alt="markdown"></p>
+<p>再重新 dpkg -i deepin-scrot_2.0-0deepin_all.deb</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/722199d040b38a8180b03fa94aded3bf.png" alt="markdown"></p>
+<p>没有报错，安装成功</p>
+<p>4.设置快捷键</p>
+<p>给截图设置一个快捷键</p>
+<p>打开—设置—&gt;设备—&gt;keyboard—&gt;点一下“+”号—-&gt;自定义快捷键 添加一个快捷键;<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1813df4240c9c17480b02b2aef0e8c07.png" alt="markdown"></p>
+<p>名称：截图</p>
+<p>命令: <code>deepin-scrot</code></p>
+<p>设置快捷键</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1043e89740e8ef19801046e04520202a.png" alt="markdown"></p>
+<p>点击蓝字添加；就完成了</p>
+<h2 id="安装wps-office"><a href="#安装wps-office" class="headerlink" title="安装wps office"></a>安装wps office</h2><p><a href="http://community.wps.cn/download/" target="_blank" rel="noopener">点击此处</a>，下载安装包，32位电脑下载32位，64位电脑下载64位，下载以.deb结尾的那一个。</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7d44bbd640c368f380b9cc66fcb48db6.png" alt="markdown"></p>
+<p>在终端输入安装命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i wps-office_10.1.0.6634_amd64.deb</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/e36cbfbe40e34f92801d5ff30e5d630a.png" alt="markdown"></p>
+<p>就成功了，这个时候运行wps会出现报错问题，是因为linux下缺失wps运行时需要的字体</p>
+<p>下载文字 <a href="https://pan.baidu.com/s/1eSoLzjk" target="_blank" rel="noopener">https://pan.baidu.com/s/1eSoLzjk</a> 下载后，把 <code>wps-office</code>提取到 <code>/usr/share/fonts</code>文件夹中，再次运行就不会报错了。</p>
+<h2 id="安装搜狗输入法"><a href="#安装搜狗输入法" class="headerlink" title="安装搜狗输入法"></a>安装搜狗输入法</h2><p>更换源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deb http://cn.archive.ubuntu.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb http://cn.archive.ubuntu.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb http://cn.archive.ubuntu.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb http://cn.archive.ubuntu.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+<p> <img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/21b644e9409092a880f9cd6698e96e71.png" alt="markdown"></p>
+<p>添加公钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/be4e1a694014bd3a80b8ec2d34c23eb2.png" alt="markdown"></p>
+<p>然后在更新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure></p>
+<p>安装fcitx小企鹅以及相关依赖包的命令如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install fcitx-libs fcitx-libs-qt fcitx-bin fcitx-data fcitx-modules fcitx-module-dbus fcitx-module-kimpanel fcitx-module-lua fcitx-module-x11 fcitx fcitx-tools fcitx-ui-classic fcitx-config-gtk2 libopencc1</span><br></pre></td></tr></table></figure></p>
+<p>然后再去<a href="https://pinyin.sogou.com/linux/" target="_blank" rel="noopener">https://pinyin.sogou.com/linux/</a> 这个网站下载deb的安装包</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/2c2d709e403e709b80e5affd29181164.png" alt="markdown"></p>
+<p>下载后，使用<code>dpkg -i sogoupinyin_2.2.0.0108_amd64.deb</code>命令安装就行了，</p>
+<p>安装好后重新启动<code>init 6</code>，会看到一只小企鹅</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/df708a7840dbf6b98035b58f8aaa5759.png" alt="markdown"></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/ee8eb13840716da580ed6da5c6c5aaf3.png" alt="markdown"></p>
+<p>输入法安装成功</p>
+<h2 id="安装NVIDIA"><a href="#安装NVIDIA" class="headerlink" title="安装NVIDIA"></a>安装NVIDIA</h2><p>更换kali的源，用中科大源。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.ustc.edu.cn/kali kali-rolling main contrib non-free</span><br></pre></td></tr></table></figure>
+<p>下载安装N卡驱动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install nvidia-driver nvidia-xconfig</span><br></pre></td></tr></table></figure>
+<p>查看电脑中 N 卡的总线 ID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvidia-xconfig --query-gpu-info | grep &apos;BusID : &apos; | cut -d &apos; &apos; -f6</span><br></pre></td></tr></table></figure>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/873767a34069431480cf8936ccb14757.png" alt="markdown"></p>
+<p>记录如下查询结果 PCI:1:0:0</p>
+<p>在/etc/X11中创建一个xorg.conf文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/X11/xorg.conf</span><br></pre></td></tr></table></figure>
+<p>填入如下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">Section &quot;ServerLayout&quot;</span><br><span class="line"> Identifier &quot;layout&quot;</span><br><span class="line"> Screen 0 &quot;nvidia&quot;</span><br><span class="line"> Inactive &quot;intel&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;Device&quot;</span><br><span class="line"> Identifier &quot;nvidia&quot;</span><br><span class="line"> Driver &quot;nvidia&quot;</span><br><span class="line"> BusID &quot;PCI:1:0:0&quot;</span><br><span class="line">EndSection </span><br><span class="line"></span><br><span class="line">Section &quot;Screen&quot;</span><br><span class="line"> Identifier &quot;nvidia&quot;</span><br><span class="line"> Device &quot;nvidia&quot;</span><br><span class="line"> Option &quot;AllowEmptyInitialConfiguration&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;Device&quot;</span><br><span class="line"> Identifier &quot;intel&quot;</span><br><span class="line"> Driver &quot;modesetting&quot;</span><br><span class="line">EndSection</span><br><span class="line"></span><br><span class="line">Section &quot;Screen&quot;</span><br><span class="line"> Identifier &quot;intel&quot;</span><br><span class="line"> Device &quot;intel&quot;</span><br><span class="line">EndSection</span><br></pre></td></tr></table></figure>
+<p>然后创建/usr/share/gdm/greeter/autostart/optimus.desktop 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/share/gdm/greeter/autostart/optimus.desktop</span><br></pre></td></tr></table></figure>
+<p>填入如下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Name=Optimus</span><br><span class="line">Exec=sh -c &quot;xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto&quot;</span><br><span class="line">NoDisplay=true</span><br><span class="line">X-GNOME-Autostart-Phase=DisplayServer</span><br></pre></td></tr></table></figure>
+<p>创建 /etc/xdg/autostart/optimus.desktop 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/xdg/autostart/optimus.desktop</span><br></pre></td></tr></table></figure>
+<p>填入如下信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Type=Application</span><br><span class="line">Name=Optimus</span><br><span class="line">Exec=sh -c &quot;xrandr --setprovideroutputsource modesetting NVIDIA-0; xrandr --auto&quot;</span><br><span class="line">NoDisplay=true</span><br><span class="line">X-GNOME-Autostart-Phase=DisplayServer</span><br></pre></td></tr></table></figure>
+<p>重启reboot</p>
+<p>可以看到已经更新成N卡</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/1a89d7bb40f1a4e0800b9168384b003c.png" alt="markdown"></p>
+<h2 id="安装Shadowsocks-qt5"><a href="#安装Shadowsocks-qt5" class="headerlink" title="安装Shadowsocks-qt5"></a>安装Shadowsocks-qt5</h2><p>1.添加源，其他源可以注释，添加这一条源，注意：官方源不能注释，不然会提示缺少依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http://ppa.launchpad.net/hzwhuang/ss-qt5/ubuntu devel main</span><br><span class="line">deb http://http.kali.org/kali kali-rolling main non-free contrib</span><br></pre></td></tr></table></figure>
+<p>2.使用apt-get update更新一下源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/98f9df4e40cc1f5d8060d43390eead4b.png" alt="markdown"><br>会出现密匙过期的问题，这时候我们添加一个密匙就好了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6DA746A05F00FA99</span><br><span class="line">///6DA746A05F00FA99【这个是对应上面报错的NO_PUBKEY后面的字符】或许你的会不一样，记得变通下</span><br></pre></td></tr></table></figure>
+<p>再次执行更新命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/98023cd040ddbc56801396d674d35f4e.png" alt="markdown"></p>
+<p>3.下载会需要的依赖包 <a href="https://pan.lanzou.com/i0t76jg" target="_blank" rel="noopener">https://pan.lanzou.com/i0t76jg</a> </p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/d659d0cf40065069804db790a33ae277.png" alt="markdown"></p>
+<p>下载后解压安装deb包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i libqtshadowsocks_1.10.0-1_amd64.deb libbotan-1.10-0_1.10.8-2+deb8u1_amd64.deb libssl1.0.0_1.0.1t-1+deb8u7_amd64.deb</span><br></pre></td></tr></table></figure>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/3ab44e7640f85a99808e50aeadfac371.png" alt="markdown"><br>4.安装shadowsocks-qt5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install shadowsocks-qt5</span><br></pre></td></tr></table></figure>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/db8a2de24021ac7d80c1bb6559f036bd.png" alt="markdown"></p>
+<p>5.修改文件vi /etc/proxychains.conf</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/proxychains.conf</span><br></pre></td></tr></table></figure>
+<p>打开后，修改下规则，去掉dynamic_chain前面的#号，把socks4改成socks5即可，端口选择你喜欢的就好，建议选8000之后，待会配置shadowsock-qt5需要对应的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dynamic_chain</span><br><span class="line">socks5 127.0.0.1 8089</span><br></pre></td></tr></table></figure>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/21484f6d40e1c45e80e4aba800df7482.jpg" alt="markdown"></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/c14e7dd240d3b4ea80f92e7e4b875600.png" alt="markdown"></p>
+<p>记得保存退出:wq</p>
+<p>6.安装完成，可以添加节点测试</p>
+<p>点击连接-添加-手动</p>
+<p>服务器地址和端口填写为你的SS服务器的连接IP地址和端口</p>
+<p>本地端口改成和你在proxychains中的socks5对应的端口即可</p>
+<p>填写完毕后，选择节点名字【蓝色标示】然后点击那个黄色的五角星，如果出现延迟【我的是48ms】</p>
+<p> <img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/64e2a3684009a1d8800b727ed1315116.png" alt="markdown"><br>就说明你的SS梯子配置没有问题了，不正常的话要去检查一下输入的ss账号信息是否有误。</p>
+<p>7.开启科学上网模式，使用google搜索你想要的答案</p>
+<p>安装 proxyresolv</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/lib/proxychains3/proxyresolv /usr/bin/</span><br></pre></td></tr></table></figure>
+<p>然后再测试下google</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">proxyresolv www.google.com</span><br></pre></td></tr></table></figure>
+<p> <img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4928e083404ce1e980c0a93217e10ef9.png" alt="markdown"></p>
+<p>返回ok，说明配置正确，可以愉快的跨栏了。</p>
+<p>4).使用Proxychains命令启动你想启动应用程序</p>
+<p>打开一个终端，输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxychains firefox</span><br><span class="line">##使用这个proxychains命令的记得先关掉原来开的火狐浏览器</span><br><span class="line">##其他nmap和sqlmap也是如此，这样才会代理成功</span><br></pre></td></tr></table></figure>
+<p>就会打开Kali自带的火狐浏览器了，然后浏览器地址栏输入：<a href="https://www.google.com.hk" target="_blank" rel="noopener">https://www.google.com.hk</a> 即可（此时一定不要关闭终端窗口，关掉后firefox也会停止运行）</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/02/462762c74093f0ad8032421395e6ebb9.png" alt="markdown"></p>
+<p>使用ProxyChains代理其他程序和启动Firefox同理</p>
+<p>proxychains msfconsole //启动msf</p>
+<p>proxychains sqlmap //通过代理启动sqlmap</p>
+<p>还有很多用法，都可以用proxychains这个命令+Shadowsocks-qr5实现代理哦</p>
+<h2 id="安装Google浏览器"><a href="#安装Google浏览器" class="headerlink" title="安装Google浏览器"></a>安装Google浏览器</h2><p>下载dbe包，对于谷歌Chrome32位版本，使用如下链接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb</span><br></pre></td></tr></table></figure>
+<p>对于64位版本可以使用如下链接下载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span><br></pre></td></tr></table></figure>
+<p>下载完后，运行如下命令安装。会看到报错。</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/7766569440c5c967807e9936482ee950.png" alt="markdown"></p>
+<p>强制安装依赖关系</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/bec37a7f40503dd180c90bc3357f9cdc.png" alt="markdown"></p>
+<p>再次安装成功</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/3d6805f740da1eb98082ad8b8374938a.png" alt="markdown"></p>
+<p>这时候如果是root账号，运行软件可能会出现双击没反应的情况，进入/usr/share/applications 找到浏览器图标  在命令后加 <code>--no-sandbox</code></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/752f2f1a40ddc6388010b7973303b66d.png" alt="markdown"></p>
+<p>再次双击图标就可以正常运行了</p>
+<h2 id="安装-Teamviewer13"><a href="#安装-Teamviewer13" class="headerlink" title="安装 Teamviewer13"></a>安装 Teamviewer13</h2><p><a href="https://www.teamviewer.com/en/download/linux/" target="_blank" rel="noopener">点击此处</a>下载Teamviewer13安装包。</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f086d00a408cdbd68071b365c7de40d3.png" alt="markdown"></p>
+<p>用dpkg命令安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -i teamviewer_13.1.8286_amd64.deb</span><br></pre></td></tr></table></figure>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/61081051408aedb980e3d9708c892783.png" alt="markdown"></p>
+<p>提示报错，缺少依赖环境。用 <code>apt --fix-broken install</code> 命令强制安装依赖包</p>
+<p>再次运行 安装成功</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/51e112d540b549e38088d043b34e4f8b.png" alt="markdown"></p>
+<h2 id="安装Virtualbox"><a href="#安装Virtualbox" class="headerlink" title="安装Virtualbox"></a>安装Virtualbox</h2><p>先执行下面命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">leafpad /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<p> 将软件源替换为官方源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb http://http.kali.org/kali kali-rolling main non-free contrib</span><br></pre></td></tr></table></figure>
+<p>更新一下更新索引文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<p>然后安装virtualbox</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install virtualbox -y</span><br></pre></td></tr></table></figure>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/4799e62c402991798018b4b4b291f3ff.png" alt="markdown"></p>
+<p>若最后出现DKMS: install completed.表示安装完成</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f0e4ef9940c5c9a280e730416b8d839e.png" alt="markdown"></p>
+<p>在终端输入 <code>virtualbox</code> 即可开启虚拟机。（在软件列表中，点击virtualbox的图标也可以运行）</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/01/f0effb9340900221807fc720f9d2593d.png" alt="markdown"></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
+        <p><span>发布时间:</span>2018年09月04日 - 00时00分</p>
+        <p><span>最后更新:</span>2018年11月14日 - 18时50分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/04/第二节：kali的配置及常用软件安装/" title="第二节：kali的配置及常用软件安装">http://yoursite.com/2018/09/04/第二节：kali的配置及常用软件安装/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/09/04/第二节：kali的配置及常用软件安装/　　作者: 墨竹星海" title></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          第三节：kali的信息收集之被动扫描（一）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/02/第一节：kali+win10双系统安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第一节：kali+win10双系统安装</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#kali开机后黑屏处理方法"><span class="toc-number">1.</span> <span class="toc-text">kali开机后黑屏处理方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#更新源文件并更新内核头"><span class="toc-number">1.0.1.</span> <span class="toc-text">更新源文件并更新内核头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#把grub命令添加到黑名单"><span class="toc-number">1.0.2.</span> <span class="toc-text">把grub命令添加到黑名单</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Deepin-Scrot截图工具"><span class="toc-number">2.</span> <span class="toc-text">安装Deepin Scrot截图工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装wps-office"><span class="toc-number">3.</span> <span class="toc-text">安装wps office</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装搜狗输入法"><span class="toc-number">4.</span> <span class="toc-text">安装搜狗输入法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装NVIDIA"><span class="toc-number">5.</span> <span class="toc-text">安装NVIDIA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Shadowsocks-qt5"><span class="toc-number">6.</span> <span class="toc-text">安装Shadowsocks-qt5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Google浏览器"><span class="toc-number">7.</span> <span class="toc-text">安装Google浏览器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Teamviewer13"><span class="toc-number">8.</span> <span class="toc-text">安装 Teamviewer13</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Virtualbox"><span class="toc-number">9.</span> <span class="toc-text">安装Virtualbox</span></a></li>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/" title="上一篇: 第三节：kali的信息收集之被动扫描（一）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/09/02/第一节：kali+win10双系统安装/" title="下一篇: 第一节：kali+win10双系统安装">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64 - 副本/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 墨竹星海
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://www.mzxh.xyz" target="_blank">Blog</a> by 墨竹星海
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

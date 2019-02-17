@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta name="baidu-site-verification" content="L6Lm9d5Crl">
+  
+  
+  
+  
+  <title>第三节：kali的信息收集之被动扫描（一） | 墨竹星海’s Bolg</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="被动扫描主要指的是在目标无法察觉的情况下进行的信息收集，比如我们想了解一个远在天边的人，你会怎么做呢？显然我们可以选择在搜索引擎去搜索这个名字。其实这就是一次对目标的被动扫描。最经典的被动扫描技术其实要输“google hack”技术，这种技术在我们所处的大陆地区，需要翻墙使用，在这一节，我们来介绍一下被动扫描。">
+<meta name="keywords" content="kali">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三节：kali的信息收集之被动扫描（一）">
+<meta property="og:url" content="http://yoursite.com/2018/09/09/第三节：kali的信息收集之被动扫描（一）/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="被动扫描主要指的是在目标无法察觉的情况下进行的信息收集，比如我们想了解一个远在天边的人，你会怎么做呢？显然我们可以选择在搜索引擎去搜索这个名字。其实这就是一次对目标的被动扫描。最经典的被动扫描技术其实要输“google hack”技术，这种技术在我们所处的大陆地区，需要翻墙使用，在这一节，我们来介绍一下被动扫描。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/09/75657c33404750db80836c8fe7aef5d3.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/09/32cd0e14409c31e2800c0ec23ceea73d.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/09/0db75bf5409b67d880189456e526f4e3.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/09/a55b3c1440d99e9b80622e9c5205f44d.png">
+<meta property="og:updated_time" content="2018-09-09T13:36:43.762Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第三节：kali的信息收集之被动扫描（一）">
+<meta name="twitter:description" content="被动扫描主要指的是在目标无法察觉的情况下进行的信息收集，比如我们想了解一个远在天边的人，你会怎么做呢？显然我们可以选择在搜索引擎去搜索这个名字。其实这就是一次对目标的被动扫描。最经典的被动扫描技术其实要输“google hack”技术，这种技术在我们所处的大陆地区，需要翻墙使用，在这一节，我们来介绍一下被动扫描。">
+<meta name="twitter:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/09/75657c33404750db80836c8fe7aef5d3.png">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: true
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/avatar.png" class="js-avatar">
+            
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">墨竹星海</a></h1>
+        </hgroup>
+        
+        <p class="header-subtitle">When you look long into an abyss,the abyss looks into you.</p>
+        
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/categories/kali/">kali</a></li>
+                        
+                            <li><a href="/categories/CTF/">CTF</a></li>
+                        
+                            <li><a href="/categories/渗透测试/">渗透测试</a></li>
+                        
+                            <li><a href="/categories/Hexo/">Hexo</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a> <a href="/tags/IIS/" style="font-size: 10px;">IIS</a> <a href="/tags/SQL注入/" style="font-size: 16.67px;">SQL注入</a> <a href="/tags/kali/" style="font-size: 20px;">kali</a> <a href="/tags/web/" style="font-size: 13.33px;">web</a> <a href="/tags/信息收集/" style="font-size: 10px;">信息收集</a> <a href="/tags/信息泄露/" style="font-size: 10px;">信息泄露</a> <a href="/tags/内网/" style="font-size: 10px;">内网</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/隐写/" style="font-size: 10px;">隐写</a>
+                    </div>
+                </section>
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://damit5.com">Damit5’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hl0rey.github.io">hl0rey’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://zzzzxycc.github.io">Zxc’s Blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://blog.ruozhi.xyz">liey’s Blog</a>
+                    
+                    </div>
+                </section>
+                
+                
+            </div>
+        </div>
+    </header>
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">墨竹星海</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/avatar.png" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">墨竹星海</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">When you look long into an abyss,the abyss looks into you.</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/categories/kali/">kali</a></li>
+                
+                    <li><a href="/categories/CTF/">CTF</a></li>
+                
+                    <li><a href="/categories/渗透测试/">渗透测试</a></li>
+                
+                    <li><a href="/categories/Hexo/">Hexo</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                </div>
+            </nav>
+        </header>
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-第三节：kali的信息收集之被动扫描（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/" class="article-date">
+      <time datetime="2018-09-09T13:33:54.000Z" itemprop="datePublished">2018-09-09</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第三节：kali的信息收集之被动扫描（一）
+    </h1>
+  
+
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/kali/">kali</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/">kali</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>被动扫描主要指的是在目标无法察觉的情况下进行的信息收集，比如我们想了解一个远在天边的人，你会怎么做呢？显然我们可以选择在搜索引擎去搜索这个名字。其实这就是一次对目标的被动扫描。最经典的被动扫描技术其实要输“google hack”技术，这种技术在我们所处的大陆地区，需要翻墙使用，在这一节，我们来介绍一下被动扫描。<br><a id="more"></a></p>
+<h2 id="被动信息收集"><a href="#被动信息收集" class="headerlink" title="被动信息收集"></a>被动信息收集</h2><h3 id="关于OSINT"><a href="#关于OSINT" class="headerlink" title="关于OSINT"></a>关于OSINT</h3><p>OSINT：公开资源情报计划（开源智能）是美国中央情报局（CIA）的一种情报搜集手段，从各种公开的信息资源中寻找和获取有价值的情报。关于开源智能信息收集可以参看一下两篇文章：<br>美国军方：<a href="http://www.fas.org/irp/dodair/army/atp2-22-2.pdf" target="_blank" rel="noopener">http://www.fas.org/irp/dodair/army/atp2-22-2.pdf</a><br>北大西洋公约组织：<a href="http://information-retireval.info/docs/NATO-OSINT.html" target="_blank" rel="noopener">http://information-retireval.info/docs/NATO-OSINT.html</a><br><img src alt></p>
+<h3 id="信息收集的过程"><a href="#信息收集的过程" class="headerlink" title="信息收集的过程"></a>信息收集的过程</h3><p>Passive reconnaissance(no direct interaction) -&gt; Normal interaction -&gt; Active reconnaissance -&gt; More information greater chance of detection<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/09/75657c33404750db80836c8fe7aef5d3.png" alt><br>Passive reconnaissance(no direct interaction)  被动信息收集阶段，是不与目标发生交互的。<br>Normal interaction 正常交互<br>Active reconnaissance  主动信息收集<br>More information greater chance of detection 更多信息，发现机会更大</p>
+<h3 id="信息收集的内容"><a href="#信息收集的内容" class="headerlink" title="信息收集的内容"></a>信息收集的内容</h3><p>ip地址段，域名信息，邮件地址( <strong> 判断是个人搭建的邮件信息服务器还是使用的企业级邮件服务器粗体</strong> )，文档图片数据（<strong>图片中泄露一些敏感信息，如产品的型号，或被扫描引擎爬网导致内部信息泄露</strong>），公司地址（<strong>后续渗透阶段，在目标公司附近连接进wifi，或进入到公司内部进行渗透</strong>），公司组织架构（<strong>根据不同的部门进行社会工程学</strong>），联系电话/传真号码，人员姓名/职务，目标系统使用的技术架构，公开的商业信息</p>
+<h3 id="信息用途"><a href="#信息用途" class="headerlink" title="信息用途"></a>信息用途</h3><p>用收集到的信息来勾画出目标的框架结构，发现目标的物理系统，为社会工程学攻击奠定基础，以及发现一些可能的物理缺口</p>
+<h2 id="信息收集-DNS"><a href="#信息收集-DNS" class="headerlink" title="信息收集 - DNS"></a>信息收集 - DNS</h2><p>DNS：（Domain Name System，域名系统）</p>
+<p>FQDN：(Fully Qualified Domain Name) 全限定域名</p>
+<p>A (Address)： 记录是用来指定主机名（或域名）对应的IP地址记录</p>
+<p>CNAME（别名记录）：把一个域名指向到另一个域名上。</p>
+<p>NS（Name Server）记录是域名服务器记录，用来指定该域名由哪个DNS服务器来进行解析。</p>
+<p>MX（Mail Exchanger）：是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。</p>
+<p>PTR (Pointer Record)：指针记录，是电子邮件系统中的一种数据类型。</p>
+<p>比如 baidu.com 这是一个域名，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 则是完全限定域名。www是baidu.com下的一条主机记录。主机记录可以是一个A记录（直接指向到服务器IP地址） 也可以是一个cname记录（指向到另一个域名上，由另一个域名做A记录）每个域名都一个或者多个域名服务器，用来负责对该域名的解析，而域名服务器地址又是通过DNS里面的NS记录进行定义和注册的。此外每个域名或者也有自己的邮件服务器(MX记录)。而前面所有的解析记录都是将主机名解析成另外一个主机名或者IP地址，但是PTR则是一个反向解析记录的过程，即是将IP地址解析成主机名。</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/09/32cd0e14409c31e2800c0ec23ceea73d.png" alt></p>
+<p>如用户访问 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 会先通过当地的缓存DNS服务器进行查询，当地DNS服务器不储存记录，只有缓存记录，当第一次查询时，DNS服务器会先询问 .根域名服务器，根域名会返回.com服务器信息.然后DNS服务器再去询问.com服务器..com服务器返给DNS服务器一个sina.com的服务器信息.再去询问sina服务器，返回得到IP地址 ，当地服务器会缓存一个该域名的IP地址，当再有其他人访问时，不在通过迭代查询，直接回复一个缓存的IP地址。</p>
+<h3 id="DNS信息收集工具-NSLOOKUP"><a href="#DNS信息收集工具-NSLOOKUP" class="headerlink" title="DNS信息收集工具-NSLOOKUP"></a>DNS信息收集工具-NSLOOKUP</h3><h4 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h4><p>在终端输入 <code>nslookup</code></p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/09/0db75bf5409b67d880189456e526f4e3.png" alt></p>
+<p>然后直接输入要查询的域名,如 <a href="http://www.sina.com" target="_blank" rel="noopener">www.sina.com</a><br>解析结果:</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/09/a55b3c1440d99e9b80622e9c5205f44d.png" alt></p>
+<p>可以看到 <a href="http://www.sina.com" target="_blank" rel="noopener">www.sina.com</a> 并没有被直接解析为一个特定的IP地址，而是先解析为一个cname地址 us.sina.com.cn. 再有 us.sina.com.cn. 解析为 wwwus.sina.com. 最后再由wwwus.sina.com, 解析为一个IP地址。</p>
+<h4 id="查找新浪邮件服务器的IP"><a href="#查找新浪邮件服务器的IP" class="headerlink" title="查找新浪邮件服务器的IP"></a>查找新浪邮件服务器的IP</h4><p>先指定查询类型 <code>set type=mx</code><br>然后输入新浪的域名 <code>sina.com</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# nslookup</span><br><span class="line">&gt; set type=mx </span><br><span class="line">&gt; sina.com</span><br><span class="line">Server:		211.140.13.188</span><br><span class="line">Address:	211.140.13.188#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">sina.com	mail exchanger = 5 freemx1.sinamail.sina.com.cn.</span><br><span class="line">sina.com	mail exchanger = 10 freemx2.sinamail.sina.com.cn.</span><br><span class="line">sina.com	mail exchanger = 10 freemx3.sinamail.sina.com.cn.</span><br><span class="line"></span><br><span class="line">Authoritative answers can be found from:</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+<p>再查询其A记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; set type=a</span><br><span class="line">&gt; freemx1.sinamail.sina.com.cn.</span><br><span class="line">Server:		211.140.13.188</span><br><span class="line">Address:	211.140.13.188#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">Name:	freemx1.sinamail.sina.com.cn</span><br><span class="line">Address: 39.156.6.104</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; freemx2.sinamail.sina.com.cn.</span><br><span class="line">Server:		211.140.13.188</span><br><span class="line">Address:	211.140.13.188#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">Name:	freemx2.sinamail.sina.com.cn</span><br><span class="line">Address: 113.108.216.47</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; freemx3.sinamail.sina.com.cn.</span><br><span class="line">Server:		211.140.13.188</span><br><span class="line">Address:	211.140.13.188#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">Name:	freemx3.sinamail.sina.com.cn</span><br><span class="line">Address: 39.156.6.104</span><br></pre></td></tr></table></figure>
+<h4 id="查询新浪的所有域名服务器"><a href="#查询新浪的所有域名服务器" class="headerlink" title="查询新浪的所有域名服务器"></a>查询新浪的所有域名服务器</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; set type=ns</span><br><span class="line">&gt; sina.com</span><br><span class="line">Server:		211.140.13.188</span><br><span class="line">Address:	211.140.13.188#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">sina.com	nameserver = ns4.sina.com.</span><br><span class="line">sina.com	nameserver = ns2.sina.com.cn.</span><br><span class="line">sina.com	nameserver = ns3.sina.com.cn.</span><br><span class="line">sina.com	nameserver = ns2.sina.com.</span><br><span class="line">sina.com	nameserver = ns1.sina.com.</span><br><span class="line">sina.com	nameserver = ns3.sina.com.</span><br><span class="line">sina.com	nameserver = ns4.sina.com.cn.</span><br><span class="line">sina.com	nameserver = ns1.sina.com.cn.</span><br><span class="line"></span><br><span class="line">Authoritative answers can be found from:</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>解析sina.com nameserver = ns4.sina.com.对应的ip地址:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; set type=a </span><br><span class="line">&gt; ns4.sina.com.</span><br><span class="line">Server:		211.140.13.188</span><br><span class="line">Address:	211.140.13.188#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">Name:	ns4.sina.com</span><br><span class="line">Address: 123.125.29.99</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+<p>以此类推我们可以将sina的所有ip地址全部解析出来!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&gt; 163.com</span><br><span class="line">Server:		211.140.13.188</span><br><span class="line">Address:	211.140.13.188#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">163.com	mail exchanger = 10 163mx02.mxmail.netease.com.</span><br><span class="line">163.com	mail exchanger = 10 163mx03.mxmail.netease.com.</span><br><span class="line">163.com	mail exchanger = 10 163mx01.mxmail.netease.com.</span><br><span class="line">163.com	mail exchanger = 50 163mx00.mxmail.netease.com.</span><br><span class="line">163.com	text = &quot;v=spf1 include:spf.163.com -all&quot;</span><br><span class="line">163.com	nameserver = ns1.nease.net.</span><br><span class="line">163.com	nameserver = ns4.nease.net.</span><br><span class="line">163.com	nameserver = ns3.nease.net.</span><br><span class="line">163.com	nameserver = ns2.166.com.</span><br><span class="line">163.com	nameserver = ns8.166.com.</span><br><span class="line">163.com	nameserver = ns6.nease.net.</span><br><span class="line">163.com	nameserver = ns5.nease.net.</span><br><span class="line"></span><br><span class="line">Authoritative answers can be found from:</span><br><span class="line">163.com	nameserver = ns5.nease.net.</span><br><span class="line">163.com	nameserver = ns1.nease.net.</span><br><span class="line">163.com	nameserver = ns2.166.com.</span><br><span class="line">163.com	nameserver = ns3.nease.net.</span><br><span class="line">163.com	nameserver = ns6.nease.net.</span><br><span class="line">163.com	nameserver = ns8.166.com.</span><br><span class="line">163.com	nameserver = ns4.nease.net.</span><br><span class="line">163mx01.mxmail.netease.com	internet address = 220.181.14.136</span><br><span class="line">163mx01.mxmail.netease.com	internet address = 220.181.14.137</span><br><span class="line">163mx01.mxmail.netease.com	internet address = 220.181.14.138</span><br><span class="line">163mx01.mxmail.netease.com	internet address = 220.181.14.139</span><br><span class="line">163mx01.mxmail.netease.com	internet address = 220.181.14.140</span><br><span class="line">163mx01.mxmail.netease.com	internet address = 220.181.14.141</span><br><span class="line">163mx01.mxmail.netease.com	internet address = 220.181.14.142</span><br><span class="line">163mx01.mxmail.netease.com	internet address = 220.181.14.143</span><br><span class="line">163mx01.mxmail.netease.com	internet address = 220.181.14.135</span><br><span class="line">163mx02.mxmail.netease.com	internet address = 220.181.14.147</span><br><span class="line">163mx02.mxmail.netease.com	internet address = 220.181.14.148</span><br><span class="line">163mx02.mxmail.netease.com	internet address = 220.181.14.149</span><br><span class="line">163mx02.mxmail.netease.com	internet address = 220.181.14.150</span><br><span class="line">163mx02.mxmail.netease.com	internet address = 220.181.14.154</span><br><span class="line">163mx02.mxmail.netease.com	internet address = 220.181.14.155</span><br><span class="line">163mx02.mxmail.netease.com	internet address = 220.181.14.144</span><br><span class="line">163mx02.mxmail.netease.com	internet address = 220.181.14.145</span><br><span class="line">163mx02.mxmail.netease.com	internet address = 220.181.14.146</span><br><span class="line">163mx00.mxmail.netease.com	internet address = 123.125.50.140</span><br><span class="line">163mx00.mxmail.netease.com	internet address = 123.125.50.139</span><br><span class="line">ns1.nease.net	internet address = 123.58.173.177</span><br><span class="line">ns2.166.com	internet address = 123.58.173.178</span><br><span class="line">ns3.nease.net	internet address = 220.181.36.234</span><br><span class="line">ns4.nease.net	internet address = 123.125.48.245</span><br><span class="line">ns5.nease.net	internet address = 121.195.179.18</span><br><span class="line">ns6.nease.net	internet address = 52.215.24.44</span><br><span class="line">ns8.166.com	internet address = 52.69.168.90</span><br><span class="line">ns8.166.com	internet address = 52.27.107.218</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我们可以看到 any 查询出了 163.com 域名的所有记录，ns 记录，mail 邮件交换记录。除此以为我们可以看到有一条特殊的记录即” text” , SPF 记录，其作用就是反垃圾邮件的，在垃圾邮件的伎俩中，伪造发件人地址，使其看起来象一个合法的地址，是常见的一种方法。而 SPF，它用于登记某个域名拥有的用来外发邮件的所有IP地址。接收邮件方会根据你的SPF记录来确定连接过来的IP地址是否被包含在  SPF 记录里面，如果在，则认为是一封正确的邮件，否则则认为是一封伪造的邮件。<br>以上命令可以合并为一条命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup -q=any 163.com</span><br></pre></td></tr></table></figure></p>
+<p>nslookup 一般默认使用自带的DNS服务器，我们也可以指定一个dns服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup -q=any 163.com 114.114.114.114</span><br></pre></td></tr></table></figure></p>
+<h3 id="DNS信息收集-DIG"><a href="#DNS信息收集-DIG" class="headerlink" title="DNS信息收集-DIG"></a>DNS信息收集-DIG</h3><h4 id="DIG简单使用"><a href="#DIG简单使用" class="headerlink" title="DIG简单使用"></a>DIG简单使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig www.163.com</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-4-Debian &lt;&lt;&gt;&gt; www.163.com</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 64668</span><br><span class="line">;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0</span><br><span class="line"></span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;www.163.com.			IN	A</span><br><span class="line"></span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">www.163.com.		600	IN	CNAME	www.163.com.lxdns.com.</span><br><span class="line">www.163.com.lxdns.com.	600	IN	A	112.17.29.134</span><br><span class="line">www.163.com.lxdns.com.	600	IN	A	218.205.75.19</span><br><span class="line"></span><br><span class="line">;; Query time: 10 msec</span><br><span class="line">;; SERVER: 211.140.13.188#53(211.140.13.188)</span><br><span class="line">;; WHEN: 日 9月 09 20:41:02 CST 2018</span><br><span class="line">;; MSG SIZE  rcvd: 93</span><br></pre></td></tr></table></figure>
+<h5 id="参数-any"><a href="#参数-any" class="headerlink" title="参数 any"></a>参数 any</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig 163.com any</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-4-Debian &lt;&lt;&gt;&gt; 163.com any</span><br><span class="line">;; global options: +cmd</span><br><span class="line">;; Got answer:</span><br><span class="line">;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 2594</span><br><span class="line">;; flags: qr rd ra; QUERY: 1, ANSWER: 13, AUTHORITY: 7, ADDITIONAL: 36</span><br><span class="line"></span><br><span class="line">;; OPT PSEUDOSECTION:</span><br><span class="line">; EDNS: version: 0, flags:; udp: 4096</span><br><span class="line">;; QUESTION SECTION:</span><br><span class="line">;163.com.			IN	ANY</span><br><span class="line"></span><br><span class="line">;; ANSWER SECTION:</span><br><span class="line">163.com.		330	IN	A	123.58.180.7</span><br><span class="line">163.com.		330	IN	A	123.58.180.8</span><br><span class="line">163.com.		4351	IN	MX	10 163mx01.mxmail.netease.com.</span><br><span class="line">163.com.		4351	IN	MX	10 163mx02.mxmail.netease.com.</span><br><span class="line">163.com.		4351	IN	MX	50 163mx00.mxmail.netease.com.</span><br><span class="line">163.com.		4351	IN	MX	10 163mx03.mxmail.netease.com.</span><br><span class="line">163.com.		85999	IN	NS	ns8.166.com.</span><br><span class="line">163.com.		85999	IN	NS	ns4.nease.net.</span><br><span class="line">163.com.		85999	IN	NS	ns5.nease.net.</span><br><span class="line">163.com.		85999	IN	NS	ns6.nease.net.</span><br><span class="line">163.com.		85999	IN	NS	ns1.nease.net.</span><br><span class="line">163.com.		85999	IN	NS	ns2.166.com.</span><br><span class="line">163.com.		85999	IN	NS	ns3.nease.net.</span><br><span class="line"></span><br><span class="line">;; AUTHORITY SECTION:</span><br><span class="line">163.com.		85999	IN	NS	ns4.nease.net.</span><br><span class="line">163.com.		85999	IN	NS	ns8.166.com.</span><br><span class="line">163.com.		85999	IN	NS	ns5.nease.net.</span><br><span class="line">163.com.		85999	IN	NS	ns1.nease.net.</span><br><span class="line">163.com.		85999	IN	NS	ns3.nease.net.</span><br><span class="line">163.com.		85999	IN	NS	ns6.nease.net.</span><br><span class="line">163.com.		85999	IN	NS	ns2.166.com.</span><br><span class="line"></span><br><span class="line">;; ADDITIONAL SECTION:</span><br><span class="line">163mx01.mxmail.netease.com. 151	IN	A	220.181.14.142</span><br><span class="line">163mx01.mxmail.netease.com. 151	IN	A	220.181.14.143</span><br><span class="line">163mx01.mxmail.netease.com. 151	IN	A	220.181.14.135</span><br><span class="line">163mx01.mxmail.netease.com. 151	IN	A	220.181.14.136</span><br><span class="line">163mx01.mxmail.netease.com. 151	IN	A	220.181.14.137</span><br><span class="line">163mx01.mxmail.netease.com. 151	IN	A	220.181.14.138</span><br><span class="line">163mx01.mxmail.netease.com. 151	IN	A	220.181.14.139</span><br><span class="line">163mx01.mxmail.netease.com. 151	IN	A	220.181.14.140</span><br><span class="line">163mx01.mxmail.netease.com. 151	IN	A	220.181.14.141</span><br><span class="line">163mx02.mxmail.netease.com. 271	IN	A	220.181.14.148</span><br><span class="line">163mx02.mxmail.netease.com. 271	IN	A	220.181.14.149</span><br><span class="line">163mx02.mxmail.netease.com. 271	IN	A	220.181.14.150</span><br><span class="line">163mx02.mxmail.netease.com. 271	IN	A	220.181.14.154</span><br><span class="line">163mx02.mxmail.netease.com. 271	IN	A	220.181.14.155</span><br><span class="line">163mx02.mxmail.netease.com. 271	IN	A	220.181.14.144</span><br><span class="line">163mx02.mxmail.netease.com. 271	IN	A	220.181.14.145</span><br><span class="line">163mx02.mxmail.netease.com. 271	IN	A	220.181.14.146</span><br><span class="line">163mx02.mxmail.netease.com. 271	IN	A	220.181.14.147</span><br><span class="line">163mx03.mxmail.netease.com. 519	IN	A	220.181.14.159</span><br><span class="line">163mx03.mxmail.netease.com. 519	IN	A	220.181.14.160</span><br><span class="line">163mx03.mxmail.netease.com. 519	IN	A	220.181.14.161</span><br><span class="line">163mx03.mxmail.netease.com. 519	IN	A	220.181.14.162</span><br><span class="line">163mx03.mxmail.netease.com. 519	IN	A	220.181.14.163</span><br><span class="line">163mx03.mxmail.netease.com. 519	IN	A	220.181.14.164</span><br><span class="line">163mx03.mxmail.netease.com. 519	IN	A	220.181.14.156</span><br><span class="line">163mx03.mxmail.netease.com. 519	IN	A	220.181.14.157</span><br><span class="line">163mx03.mxmail.netease.com. 519	IN	A	220.181.14.158</span><br><span class="line">ns1.nease.net.		86000	IN	A	123.58.173.177</span><br><span class="line">ns2.166.com.		86000	IN	A	123.58.173.178</span><br><span class="line">ns3.nease.net.		85999	IN	A	220.181.36.234</span><br><span class="line">ns4.nease.net.		86000	IN	A	123.125.48.245</span><br><span class="line">ns5.nease.net.		86000	IN	A	121.195.179.18</span><br><span class="line">ns6.nease.net.		86000	IN	A	52.215.24.44</span><br><span class="line">ns8.166.com.		86000	IN	A	52.69.168.90</span><br><span class="line">ns8.166.com.		86000	IN	A	52.27.107.218</span><br><span class="line"></span><br><span class="line">;; Query time: 11 msec</span><br><span class="line">;; SERVER: 211.140.13.188#53(211.140.13.188)</span><br><span class="line">;; WHEN: 日 9月 09 20:55:12 CST 2018</span><br><span class="line">;; MSG SIZE  rcvd: 976</span><br></pre></td></tr></table></figure>
+<h5 id="参数noall-answer"><a href="#参数noall-answer" class="headerlink" title="参数noall + answer"></a>参数noall + answer</h5><p>noall代表不输出任何内容  answer 代表只输出 answer的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig +noall +answer www.163.com</span><br><span class="line">www.163.com.		600	IN	CNAME	www.163.com.lxdns.com.</span><br><span class="line">www.163.com.lxdns.com.	600	IN	A	112.17.29.134</span><br><span class="line">www.163.com.lxdns.com.	600	IN	A	218.205.75.19</span><br></pre></td></tr></table></figure></p>
+<h4 id="反向域名解析-PTR记录"><a href="#反向域名解析-PTR记录" class="headerlink" title="反向域名解析(PTR记录)"></a>反向域名解析(PTR记录)</h4><p>[dig参数-x的使用]：<br>首先dig 163的mx记录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig +noall +answer 163.com mx</span><br><span class="line">163.com.		1792	IN	MX	10 163mx02.mxmail.netease.com.</span><br><span class="line">163.com.		1792	IN	MX	10 163mx01.mxmail.netease.com.</span><br><span class="line">163.com.		1792	IN	MX	50 163mx00.mxmail.netease.com.</span><br><span class="line">163.com.		1792	IN	MX	10 163mx03.mxmail.netease.com.</span><br></pre></td></tr></table></figure></p>
+<p>查找CNAME对应IP<br>选择第一个CNAME记录查询其对应的IP地址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig +noall +answer 163mx02.mxmail.netease.com.</span><br><span class="line">163mx02.mxmail.netease.com. 600	IN	A	220.181.14.147</span><br><span class="line">163mx02.mxmail.netease.com. 600	IN	A	220.181.14.149</span><br><span class="line">163mx02.mxmail.netease.com. 600	IN	A	220.181.14.154</span><br><span class="line">163mx02.mxmail.netease.com. 600	IN	A	220.181.14.145</span><br><span class="line">163mx02.mxmail.netease.com. 600	IN	A	220.181.14.148</span><br><span class="line">163mx02.mxmail.netease.com. 600	IN	A	220.181.14.144</span><br><span class="line">163mx02.mxmail.netease.com. 600	IN	A	220.181.14.150</span><br><span class="line">163mx02.mxmail.netease.com. 600	IN	A	220.181.14.155</span><br><span class="line">163mx02.mxmail.netease.com. 600	IN	A	220.181.14.146</span><br></pre></td></tr></table></figure>
+<p>对IP进行反向解析<br>对第一个ip进行反向解析：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig +noall +answer -x 220.181.14.147</span><br><span class="line">147.14.181.220.in-addr.arpa. 3600 IN	PTR	mr14147.mail.163.com.</span><br></pre></td></tr></table></figure>
+<p>从最后的返回结果我们会发现，ptr解析记录和最初所查询的域名并不一致，这是很正常的，因为ip和域名之间通常的都是一对多的。</p>
+<h4 id="dig网站NS记录"><a href="#dig网站NS记录" class="headerlink" title="dig网站NS记录"></a>dig网站NS记录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig +noall +answer sina.com ns</span><br><span class="line">sina.com.		2297	IN	NS	ns2.sina.com.cn.</span><br><span class="line">sina.com.		2297	IN	NS	ns3.sina.com.cn.</span><br><span class="line">sina.com.		2297	IN	NS	ns2.sina.com.</span><br><span class="line">sina.com.		2297	IN	NS	ns1.sina.com.cn.</span><br><span class="line">sina.com.		2297	IN	NS	ns4.sina.com.cn.</span><br><span class="line">sina.com.		2297	IN	NS	ns1.sina.com.</span><br><span class="line">sina.com.		2297	IN	NS	ns4.sina.com.</span><br><span class="line">sina.com.		2297	IN	NS	ns3.sina.com.</span><br></pre></td></tr></table></figure>
+<h4 id="查询dns的bind版本"><a href="#查询dns的bind版本" class="headerlink" title="查询dns的bind版本"></a>查询dns的bind版本</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig +noall +answer txt chaos VERSION.BIND @ns2.sina.com.cn.</span><br><span class="line">VERSION.BIND.		0	CH	TXT	&quot;  &quot;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到返回的结果为空，这是因为sina DNS服务器设置了保护模式，我们不能通过此方式查询！bind信息对于黑客是很感兴趣的，所有现在绝大多数的互联网公司都会隐藏的的bind信息！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig +noall +answer txt chaos VERSION.BIND @ns2.cernet.com.</span><br><span class="line">VERSION.BIND.		0	CH	TXT	&quot;9.9.4&quot;</span><br></pre></td></tr></table></figure></p>
+<p>通过DNS服务器的bind版本，通过利用已知漏洞，进而通过拿下该DNS服务器，然后获得全部信息。</p>
+<h4 id="dig网站NS记录-1"><a href="#dig网站NS记录-1" class="headerlink" title="dig网站NS记录"></a>dig网站NS记录</h4><p>直接运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# dig +trace www.sina.com</span><br><span class="line"></span><br><span class="line">; &lt;&lt;&gt;&gt; DiG 9.11.4-4-Debian &lt;&lt;&gt;&gt; +trace www.sina.com</span><br><span class="line">;; global options: +cmd</span><br><span class="line">.			497654	IN	NS	a.root-servers.net.</span><br><span class="line">.			497654	IN	NS	l.root-servers.net.</span><br><span class="line">.			497654	IN	NS	h.root-servers.net.</span><br><span class="line">.			497654	IN	NS	c.root-servers.net.</span><br><span class="line">.			497654	IN	NS	e.root-servers.net.</span><br><span class="line">.			497654	IN	NS	f.root-servers.net.</span><br><span class="line">.			497654	IN	NS	g.root-servers.net.</span><br><span class="line">.			497654	IN	NS	m.root-servers.net.</span><br><span class="line">.			497654	IN	NS	k.root-servers.net.</span><br><span class="line">.			497654	IN	NS	j.root-servers.net.</span><br><span class="line">.			497654	IN	NS	b.root-servers.net.</span><br><span class="line">.			497654	IN	NS	i.root-servers.net.</span><br><span class="line">.			497654	IN	NS	d.root-servers.net.</span><br><span class="line">;; Received 811 bytes from 211.140.13.188#53(211.140.13.188) in 10 ms</span><br><span class="line"></span><br><span class="line">&gt;首先trace通过本机访问13个根（.）服务器,随机挑选一个查询.com域的NS记录</span><br><span class="line"></span><br><span class="line">com.			172800	IN	NS	l.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	m.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	g.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	d.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	i.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	k.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	f.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	c.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	h.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	j.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	a.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	e.gtld-servers.net.</span><br><span class="line">com.			172800	IN	NS	b.gtld-servers.net.</span><br><span class="line">com.			86400	IN	DS	30909 8 2 E2D3C916F6DEEAC73294E8268FB5885044A833FC5459588F4A9184CF C41A5766</span><br><span class="line">com.			86400	IN	RRSIG	DS 8 1 86400 20180922050000 20180909040000 41656 . W12TPZL6F0/aHDsLl0K628YbHkbrcaewY0g+Zky0m0yGAeHDFQPk8G7J A0vHQnlxY3LYHDEd8Yr9Wu6W8kfHIsOicI/Fypc/eV5Va/4YO59vNkrg gytjCzBC8Ctl7IsPN4DujVIqAKYom4TjWi+llBPxkuUqeeTs9n8bn0r3 SHVRJ+rBwdGaJwZJQpe+V6+jcuW39zvcVTXK3YtKPEKX+ObG/MUQ2AuN ckQ3kFUFp1oi+guHTXZPsa4SCcjqGzvlkMktglJPFFOX/l8E0atPR2RU vO/J5u/7iXSHbMadD+4Nrum23lKLqzeEMf9yskC2JAp1E5KWBGvr6M89 p3aGWg==</span><br><span class="line">;; Received 1172 bytes from 192.36.148.17#53(i.root-servers.net) in 96 ms</span><br><span class="line"></span><br><span class="line">&gt;再从获得的从com域名中随机挑选一个查询sina.com的NS记录</span><br><span class="line"></span><br><span class="line">sina.com.		172800	IN	NS	ns1.sina.com.cn.</span><br><span class="line">sina.com.		172800	IN	NS	ns2.sina.com.cn.</span><br><span class="line">sina.com.		172800	IN	NS	ns3.sina.com.cn.</span><br><span class="line">sina.com.		172800	IN	NS	ns1.sina.com.</span><br><span class="line">sina.com.		172800	IN	NS	ns2.sina.com.</span><br><span class="line">sina.com.		172800	IN	NS	ns4.sina.com.</span><br><span class="line">sina.com.		172800	IN	NS	ns3.sina.com.</span><br><span class="line">CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN NSEC3 1 1 0 - CK0Q1GIN43N1ARRC9OSM6QPQR81H5M9A NS SOA RRSIG DNSKEY NSEC3PARAM</span><br><span class="line">CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN RRSIG NSEC3 8 2 86400 20180913044412 20180906033412 46475 com. fIYO7slc/eSvGWcnDI+y2TLrKdtw9gh6YqU9wiZJGTJ9Dn/5Iiv1MgUo NUgphonp2p6LPEKLs6S1GokL3N/qMv66VqDi02jINntemVeSG4Gmd0Ni 62aJA8p2Ch5eGkBq3yPjg92pHhdhNbKOfDZhENiU/Bdu25jCkVNOWtzA zS4=</span><br><span class="line">TGAFVRK18C1EQNPDR7K209HSQCEKG568.com. 86400 IN NSEC3 1 1 0 - TGAIRTCVTGTP7ROGE19TF24AOUKSPT4J NS DS RRSIG</span><br><span class="line">TGAFVRK18C1EQNPDR7K209HSQCEKG568.com. 86400 IN RRSIG NSEC3 8 2 86400 20180915044249 20180908033249 46475 com. RHsv+9LupvVqcqiLvevUEW74FBLHWcbygeZWIZ9i3XgbMeUIbHobBSkd fNrAvdMNZs5JlPz7hRx5ZuVRbJ0cIBXwvkadCPhc2sIQ1gmozOnqJMCB 7un3sPEAg9u9As+DN4rzQFVE0Z+xQHXCkT4BWrHcFdJjJzDhR0iRMf74 NfU=</span><br><span class="line">;; Received 727 bytes from 192.48.79.30#53(j.gtld-servers.net) in 310 ms</span><br><span class="line"></span><br><span class="line">&gt;再从获得的sina.com域名中随机挑选一个查询www.sina.com的NS记录，此后将会一次逐级解析下去，知道全部记录解析完毕！</span><br><span class="line"></span><br><span class="line">www.sina.com.		60	IN	CNAME	us.sina.com.cn.</span><br><span class="line">us.sina.com.cn.		60	IN	CNAME	wwwus.sina.com.</span><br><span class="line">wwwus.sina.com.		60	IN	A	66.102.251.33</span><br><span class="line">sina.com.		86400	IN	NS	ns4.sina.com.</span><br><span class="line">sina.com.		86400	IN	NS	ns3.sina.com.cn.</span><br><span class="line">sina.com.		86400	IN	NS	ns2.sina.com.cn.</span><br><span class="line">sina.com.		86400	IN	NS	ns2.sina.com.</span><br><span class="line">sina.com.		86400	IN	NS	ns4.sina.com.cn.</span><br><span class="line">sina.com.		86400	IN	NS	ns1.sina.com.cn.</span><br><span class="line">sina.com.		86400	IN	NS	ns1.sina.com.</span><br><span class="line">sina.com.		86400	IN	NS	ns3.sina.com.</span><br><span class="line">;; Received 377 bytes from 123.125.29.99#53(ns4.sina.com) in 33 ms</span><br></pre></td></tr></table></figure></p>
+<p>从上的追踪过程其实就是所谓的迭代查询过程！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
+        <p><span>发布时间:</span>2018年09月09日 - 21时33分</p>
+        <p><span>最后更新:</span>2018年09月09日 - 21时36分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/" title="第三节：kali的信息收集之被动扫描（一）">http://yoursite.com/2018/09/09/第三节：kali的信息收集之被动扫描（一）/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/09/09/第三节：kali的信息收集之被动扫描（一）/　　作者: 墨竹星海" title></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          一元购买云主机 （ 星外虚拟主机提权 ）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/04/第二节：kali的配置及常用软件安装/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第二节：kali的配置及常用软件安装</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#被动信息收集"><span class="toc-number">1.</span> <span class="toc-text">被动信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于OSINT"><span class="toc-number">1.1.</span> <span class="toc-text">关于OSINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信息收集的过程"><span class="toc-number">1.2.</span> <span class="toc-text">信息收集的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信息收集的内容"><span class="toc-number">1.3.</span> <span class="toc-text">信息收集的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信息用途"><span class="toc-number">1.4.</span> <span class="toc-text">信息用途</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信息收集-DNS"><span class="toc-number">2.</span> <span class="toc-text">信息收集 - DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS信息收集工具-NSLOOKUP"><span class="toc-number">2.1.</span> <span class="toc-text">DNS信息收集工具-NSLOOKUP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基础查询"><span class="toc-number">2.1.1.</span> <span class="toc-text">基础查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查找新浪邮件服务器的IP"><span class="toc-number">2.1.2.</span> <span class="toc-text">查找新浪邮件服务器的IP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询新浪的所有域名服务器"><span class="toc-number">2.1.3.</span> <span class="toc-text">查询新浪的所有域名服务器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS信息收集-DIG"><span class="toc-number">2.2.</span> <span class="toc-text">DNS信息收集-DIG</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DIG简单使用"><span class="toc-number">2.2.1.</span> <span class="toc-text">DIG简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#参数-any"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">参数 any</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#参数noall-answer"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">参数noall + answer</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反向域名解析-PTR记录"><span class="toc-number">2.2.2.</span> <span class="toc-text">反向域名解析(PTR记录)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dig网站NS记录"><span class="toc-number">2.2.3.</span> <span class="toc-text">dig网站NS记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询dns的bind版本"><span class="toc-number">2.2.4.</span> <span class="toc-text">查询dns的bind版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dig网站NS记录-1"><span class="toc-number">2.2.5.</span> <span class="toc-text">dig网站NS记录</span></a></li></ol></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/" title="上一篇: 一元购买云主机 （ 星外虚拟主机提权 ）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2018/09/04/第二节：kali的配置及常用软件安装/" title="下一篇: 第二节：kali的配置及常用软件安装">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64 - 副本/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+
+    <script>
+        
+    </script>
+
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 墨竹星海
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo &nbsp;&nbsp;</a><a href="https://www.mzxh.xyz" target="_blank">Blog</a> by 墨竹星海
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style="display:none">
+                        <span id="site-visit">极客到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style="display:none">
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 1;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'xxxxx', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+	<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?xxxxxx";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
