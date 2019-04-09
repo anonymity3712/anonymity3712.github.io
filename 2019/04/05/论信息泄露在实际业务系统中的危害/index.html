@@ -7,34 +7,37 @@
   
   
   
-  <title>Boolean注入攻击 | 墨竹星海’s Bolg</title>
+  <title>墨竹星海’s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在Boolean注入页面中，程序先获取GET参数ID，通过preg_match判断其中是否存在/union|sleep|benchmark/等危险字符。然后将参数ID拼接到SQL语句。从数据库中查询，如果有结果，则返回yes，佛则返回no。当访问该页面时，代码根据数据库查询结果返回yes或no，而不返回数据库中的任何数据，所以页面上只会显示yes或no">
-<meta name="keywords" content="SQL注入">
+  <meta name="description" content="�ϸ�������һ����Ŀ����ĳϵͳ�Ĳ��ԣ�����һ�β����ܽ� �����õ���Ŀ���Ĳ��Է�Χ�����������򿪷��ֶ�����Ҫ�����ϵͳ����ҳֻ��һ�������  ��һ�ۡ�ûɶ˼·������֤��burp����·�����в�ͨ�ˡ�����Ҳ������ɨ����������������������һ�����ϵͳ������ĳһ��ҳ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Boolean注入攻击">
-<meta property="og:url" content="http://yoursite.com/2018/09/27/Boolean注入攻击/index.html">
+<meta property="og:title" content="墨竹星海’s Bolg">
+<meta property="og:url" content="http://yoursite.com/2019/04/05/论信息泄露在实际业务系统中的危害/index.html">
 <meta property="og:site_name" content="墨竹星海’s Bolg">
-<meta property="og:description" content="在Boolean注入页面中，程序先获取GET参数ID，通过preg_match判断其中是否存在/union|sleep|benchmark/等危险字符。然后将参数ID拼接到SQL语句。从数据库中查询，如果有结果，则返回yes，佛则返回no。当访问该页面时，代码根据数据库查询结果返回yes或no，而不返回数据库中的任何数据，所以页面上只会显示yes或no">
+<meta property="og:description" content="�ϸ�������һ����Ŀ����ĳϵͳ�Ĳ��ԣ�����һ�β����ܽ� �����õ���Ŀ���Ĳ��Է�Χ�����������򿪷��ֶ�����Ҫ�����ϵͳ����ҳֻ��һ�������  ��һ�ۡ�ûɶ˼·������֤��burp����·�����в�ͨ�ˡ�����Ҳ������ɨ����������������������һ�����ϵͳ������ĳһ��ҳ">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/0cc3ff32405ebba580a78ceaef5b027b.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/2d374aee40e3211380befbd918d5c39b.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/8cb4053d403916e58034bab4c8c48d2f.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/d910b0384003db208052f062cb356895.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/1f08367d4052cecb80421edb50f1e7bb.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/3cec721d40f5b4f58021ed8b8a9cd06b.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/82914f5b408094158055d646d58523be.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/34bcc4514016cd6380672817f1cb4060.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/72c21460400d7a0780421410766490fa.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/82e9294c4045b0b880e3e8eddc622439.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/17b9b79e40191b53802db21a2f620faf.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/ef69857d40c8ed6d80463bf431557958.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/5f7591c4407fd238804a0929d9333a08.png">
-<meta property="og:updated_time" content="2018-09-27T15:59:18.043Z">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/9e1f21a340f848fa80b16008fb05d836.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/55b1ada040bfde2b80a184eba405d11a.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/c956a08240457c9480b2c83176e6c5d7.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/c9ad9dda404fabf180f36c8b0541704c.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/8342468d405d39f7801c8d4d4a69bd31.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/844fc9e9400f1c7880e6b6fcb1f9f752.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/9324f4e24068f4b8805f5095c6be8db8.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/10be1bb9408cd8bd8097f31450f5f5ea.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/112db17d40dce8bf807d2b2f0fdba36b.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/996cbffd40f56379806b85e2e0b4bb91.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/88e7b3324013ec19803f2664f3cf7c58.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/0a1bdfb640e81b34800cc22e3773b5d1.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/198f758940cdaa1880f84dd8790cd184.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/a4c27cef4063da4980c6519e5d64c256.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/638b43e74030c30c8079bc3bdc285fd0.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/e7165f38405c35b2809f42640dc60d27.png">
+<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/e3b85eda40dfd95d802ac678d5b9c6df.png">
+<meta property="og:updated_time" content="2019-04-05T13:59:27.828Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Boolean注入攻击">
-<meta name="twitter:description" content="在Boolean注入页面中，程序先获取GET参数ID，通过preg_match判断其中是否存在/union|sleep|benchmark/等危险字符。然后将参数ID拼接到SQL语句。从数据库中查询，如果有结果，则返回yes，佛则返回no。当访问该页面时，代码根据数据库查询结果返回yes或no，而不返回数据库中的任何数据，所以页面上只会显示yes或no">
-<meta name="twitter:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/0cc3ff32405ebba580a78ceaef5b027b.png">
+<meta name="twitter:title" content="墨竹星海’s Bolg">
+<meta name="twitter:description" content="�ϸ�������һ����Ŀ����ĳϵͳ�Ĳ��ԣ�����һ�β����ܽ� �����õ���Ŀ���Ĳ��Է�Χ�����������򿪷��ֶ�����Ҫ�����ϵͳ����ҳֻ��һ�������  ��һ�ۡ�ûɶ˼·������֤��burp����·�����в�ͨ�ˡ�����Ҳ������ɨ����������������������һ�����ϵͳ������ĳһ��ҳ">
+<meta name="twitter:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/9e1f21a340f848fa80b16008fb05d836.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -216,11 +219,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Boolean注入攻击" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-论信息泄露在实际业务系统中的危害" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/09/27/Boolean注入攻击/" class="article-date">
-      <time datetime="2018-09-26T16:00:00.000Z" itemprop="datePublished">2018-09-27</time>
+      <a href="/2019/04/05/论信息泄露在实际业务系统中的危害/" class="article-date">
+      <time datetime="2019-04-05T13:59:23.112Z" itemprop="datePublished">2019-04-05</time>
 </a>
 
     </div>
@@ -230,94 +233,48 @@
       <input type="hidden" class="isFancy">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Boolean注入攻击
-    </h1>
-  
-
-
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/渗透测试/">渗透测试</a>
-    </div>
-
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL注入/">SQL注入</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>在Boolean注入页面中，程序先获取GET参数ID，通过preg_match判断其中是否存在/union|sleep|benchmark/等危险字符。然后将参数ID拼接到SQL语句。从数据库中查询，如果有结果，则返回yes，佛则返回no。当访问该页面时，代码根据数据库查询结果返回yes或no，而不返回数据库中的任何数据，所以页面上只会显示yes或no<br><a id="more"></a><br>Boolean注入攻击的测试地址: <a href="http://192.168.95.130/sqltest/4.1.7/boolean.php?id=1" target="_blank" rel="noopener">http://192.168.95.130/sqltest/4.1.7/boolean.php?id=1</a></p>
-<p>访问该网址时，页面返回yes<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/0cc3ff32405ebba580a78ceaef5b027b.png" alt></p>
-<p>在url后添加一个单引号，再次访问，发现返回结果由yes变成no<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/2d374aee40e3211380befbd918d5c39b.png" alt></p>
-<p>访问id=1’ and 1=1%23和id=1’ and 1=2%23发现返回的结果分别是yes和no，更改ID的值，发现返回的仍然是yes或no，</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/8cb4053d403916e58034bab4c8c48d2f.png" alt></p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/d910b0384003db208052f062cb356895.png" alt></p>
-<p>由此可以判断，页面只返回yes或no，而没有返回数据库中的数据，所以此处不可使用union注入，测试可以利用boolean注入，boolean注入是指构造sql判断语句，通过查看页面的返回结果开推测那些sql判断条件是城里的，以此获取数据库中的数据。我们先判断数据库名的长度，利用这条语句</p>
-<pre><code>id=1&apos;and length(database())&gt;=4--+
-</code></pre><p>有单引号，所以需要注释符来注释。1的位置可以是任意数字，如<code>&#39;and length(database())&gt;=4--+</code>和<code>&#39;and length(database())&gt;=5--+</code>，我们可以构造这样的语句，然后观察页面返回的结果</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/1f08367d4052cecb80421edb50f1e7bb.png" alt></p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/3cec721d40f5b4f58021ed8b8a9cd06b.png" alt></p>
-<p>然后可以发现当数值为4时，返回的结果是yes；而当数值为5时，返回的结果是no 。整个语句的意思是，数据库库名的长度大于等于3，结果为yes；大于等于5结果为no，由此判断数据库库名的长度为4</p>
-<p>接着使用逐字符判断的方式获取数据库库名。数据库库名的范围一般在a~z、0~9之内，可能还有一些特殊字符，这里的字母不区分大小写。逐字符判断sql语句为</p>
-<pre><code>id=1&apos;and substr(database(),1,1)=&apos;a&apos;--+
-</code></pre><p>substr是截取的意思，其意思是截取database()的值，从第一个字符开始，每次只返回一个。substr的用法跟limit的有区别，需要注意。Limit是从0开始排序，而这里是从1开始排序。可以使用burp的爆破功能，爆破其中的a值，</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/82914f5b408094158055d646d58523be.png" alt></p>
-<p>发现当值是t时，页面返回yes 其他值均返回no，因此判断数据库库名的第一位为t</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/34bcc4514016cd6380672817f1cb4060.png" alt></p>
-<p>判断第二个字符</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/72c21460400d7a0780421410766490fa.png" alt></p>
-<p>判断第三个字符</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/82e9294c4045b0b880e3e8eddc622439.png" alt></p>
-<p>判断第四个字符</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/17b9b79e40191b53802db21a2f620faf.png" alt></p>
-<p>可以看出该数据库库名为: test</p>
-<p>查询表名的语句也粘贴在database()的位置，从union注入中已经知道数据库test的第一个表达名是kuanzifu，第一个字母应当是k</p>
-<p>判断语句如下</p>
-<pre><code>id=1&apos;and substr((select table_name from information_schema.tables where table_schema=&apos;test&apos; limit 0,1),1,1)=&apos;k&apos;--+
-</code></pre><p>以此类推可以查询出所有的表名</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/ef69857d40c8ed6d80463bf431557958.png" alt></p>
-<p>查询字段名的判断语句</p>
-<pre><code>id=1&apos;and substr((select column_name from information_schema.columns where table_schema=&apos;test&apos; and table_name=&apos;users&apos; limit 0,1),1,1)=&apos;i&apos;--+
-</code></pre><p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/27/5f7591c4407fd238804a0929d9333a08.png" alt></p>
-<p>如果想要查询第二个数据库或者第二个字段 更改select语句里的第一个limit值，如:</p>
-<pre><code>id=1&apos;and substr((select column_name from information_schema.columns where table_schema=&apos;test&apos; and table_name=&apos;users&apos; limit 1,1),1,1)=&apos;i&apos;--+
-
-id=1&apos;and substr((select column_name from information_schema.columns where table_schema=&apos;test&apos; and table_name=&apos;users&apos; limit 2,1),1,1)=&apos;i&apos;--+
-</code></pre><p>在Boolean注入页面中，程序先获取GET参数ID，通过preg_match判断其中是否存在/union|sleep|benchmark/等危险字符。然后将参数ID拼接到SQL语句。从数据库中查询，如果有结果，则返回yes，佛则返回no。当访问该页面时，代码根据数据库查询结果返回yes或no，而不返回数据库中的任何数据，所以页面上只会显示yes或no，代码如下所示</p>
-<pre><code>&lt;?php
-$con=mysqli_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;test&quot;);
-// 检测连接
-if (mysqli_connect_errno())
-{
-         echo &quot;连接失败: &quot; . mysqli_connect_error();
-}
-$id = $_GET[&apos;id&apos;];
-if (preg_match(&quot;/union|sleep|benchmark/i&quot;, $id)) {
-         exit(&quot;no&quot;);
-}
-$result = mysqli_query($con,&quot;select * from users where `id`=&apos;&quot;.$id.&quot;&apos;&quot;);
-$row = mysqli_fetch_array($result);
-if ($row) {
-         exit(&quot;yes&quot;);
-}else{
-         exit(&quot;no&quot;);
-}
-?&gt;
-</code></pre><p>当访问<code>id=1&#39;or 1=1#</code>,数据库执行的语句为 <code>select * from users where&#39;id&#39;=&#39; 1&#39; or 1=1#</code>,由于or 1=1是永真条件，所以此时页面肯定会返回yes，当访问id=1’ and 1=2# 时，数据库执行的语句为 select * from users where ‘id’=’ 1’ and 1=2# ，由于and ‘1’=’2是永假条件，所以此时页面肯定会返回no</p>
+        <p>�ϸ�������һ����Ŀ����ĳϵͳ�Ĳ��ԣ�����һ�β����ܽ�</p>
+<p>�����õ���Ŀ���Ĳ��Է�Χ�����������򿪷��ֶ�����Ҫ�����ϵͳ����ҳֻ��һ�������</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/9e1f21a340f848fa80b16008fb05d836.png" alt></p>
+<p>��һ�ۡ�ûɶ˼·������֤��burp����·�����в�ͨ�ˡ�����Ҳ������ɨ����������������������һ�����ϵͳ������ĳһ��ҳ���и�ϵͳ�Ľ��ܺ͸������أ����½��ܾ��Ǵ��Ҫ����ʹ�����ϵͳ��</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/55b1ada040bfde2b80a184eba405d11a.png" alt></p>
+<p>�������һ���������������ӣ����ػ����򿪿�����������ϵͳʹ�õ�˵���顣</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/c956a08240457c9480b2c83176e6c5d7.png" alt></p>
+<p>���������ܺã����˵����ı�д�ߣ��ڱ�д˵�����ʱ���ͼ�˲���ϵͳ��ʹ�ý��棬�������иպþͰ�����һ����ר�ҵ��˺š�</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/c9ad9dda404fabf180f36c8b0541704c.png" alt></p>
+<p>ͬʱ˵������Ҳд���������˺���ʹ�õĳ�ʼ���롣</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/8342468d405d39f7801c8d4d4a69bd31.png" alt></p>
+<p>�۲���һ��й¶���˺ţ�fuzzһ���˺ŵ��������򣬽�ϳ�ʼ���롣��Ϊ����֤��Ĺ�ϵ�����ȥ�ֶ�������һ�¡����˴���������������һ��û�ĳ�ʼ������˺š�</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/844fc9e9400f1c7880e6b6fcb1f9f752.png" alt></p>
+<p>�ɹ�����</p>
+<p>����ϵͳ�� ���ָ�ϵͳ��ר�ҵ�����ϵͳ��ÿ���˺�ֻ���Կ���10����Ϣ����������</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/9324f4e24068f4b8805f5095c6be8db8.png" alt></p>
+<p>ֱ��F12һ�²鿴ҳ��Ԫ�ء�����ÿһ����������һ��ID�š�</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/10be1bb9408cd8bd8097f31450f5f5ea.png" alt></p>
+<p>�²�Ӧ����ͨ��ID��������ʾ���ܴ���ID������������burp����ץ��</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/112db17d40dce8bf807d2b2f0fdba36b.png" alt></p>
+<p>���Կ���ID�����������а��������� ��� �ֻ��� ���֤�� ��Ƭ·�� ��λ ����ϸ��Ϣ���û���Ϣ</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/996cbffd40f56379806b85e2e0b4bb91.png" alt></p>
+<p>Ȼ����Ƭ��������һ�������URL</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/88e7b3324013ec19803f2664f3cf7c58.png" alt></p>
+<p>��Ƭ��·��ΪURL=/ͼƬ·��/<br>���԰�URL�����·����Ϊ/etc/passwd</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/0a1bdfb640e81b34800cc22e3773b5d1.png" alt></p>
+<p>�ɹ����ص�passwd�ļ���һ�������ļ���ȡ��©�������ˡ�</p>
+<p>��������ϵͳ����һ��û��֤��ĵ���ҳ�棬�������һ�£����ֲ�û����ʾ����ɹ�����ʧ�ܣ�Ҳû�з����κ���Ϣ</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/198f758940cdaa1880f84dd8790cd184.png" alt></p>
+<p>ץ������һ�£������˺�������ȷ�򷵻�ture����֮�򷵻�flase</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/a4c27cef4063da4980c6519e5d64c256.png" alt></p>
+<p>�����øո�ID������ȡ�����֤��Ϣ���ֵ� �û���Ϊ���֤ ����Ϊ���֤���λ��Ϊɶ���λ��֮ǰй¶��˵��������˵����</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/638b43e74030c30c8079bc3bdc285fd0.png" alt></p>
+<p>�Կ��Գɹ�������˺ź������������ȥ���Խ�������ϵͳ��ײ�⡣�պ���һ������ϵͳ���˺ž������֤��</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/e7165f38405c35b2809f42640dc60d27.png" alt></p>
+<p>����ײ�����ϵͳ</p>
+<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2019/04/01/e3b85eda40dfd95d802ac678d5b9c6df.png" alt></p>
+<p>�ɹ�������һ��ϵͳ��</p>
+<p><strong>�ܽ�һ�£�<br>���©������Ҫ������ǿͻ�ϰ���Ե��ù������ʽ��ͬʱ�û�ȥ����һ�����Ʋ����۵�ʹ��˵���飬��˵����ı�д��û�ж�ϵͳ��ͼ�е���н�ͼ��λ���д��봦�������˲����û������˺���Ϣй¶��ȥ���������⼸��΢С�Ĳ����۵�ϸ�ڸ�������һ���ɳ�֮�����Ӷ������˺���һ������©�������û����������������ϵͳ��ͻ�ƿڣ���ô����Ҳ�޷�����ϵͳ���Ӷ��޷�����ID�����������ļ����أ�����Ҳ�޷�������֤��ĵ���ҳ�洦�����ֵ�ײ������ϵͳ��</strong></p>
 
       
     </div>
@@ -326,13 +283,13 @@ if ($row) {
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></p>
+        <p><span>本文标题:</span><a href="/2019/04/05/论信息泄露在实际业务系统中的危害/"></a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
-        <p><span>发布时间:</span>2018年09月27日 - 00时00分</p>
-        <p><span>最后更新:</span>2018年09月27日 - 23时59分</p>
+        <p><span>发布时间:</span>2019年04月05日 - 21时59分</p>
+        <p><span>最后更新:</span>2019年04月05日 - 21时59分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/09/27/Boolean注入攻击/" title="Boolean注入攻击">http://yoursite.com/2018/09/27/Boolean注入攻击/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/09/27/Boolean注入攻击/　　作者: 墨竹星海" title></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/04/05/论信息泄露在实际业务系统中的危害/" title>http://yoursite.com/2019/04/05/论信息泄露在实际业务系统中的危害/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2019/04/05/论信息泄露在实际业务系统中的危害/　　作者: 墨竹星海" title></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target="_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -343,18 +300,9 @@ if ($row) {
 
 <nav id="article-nav">
   
-    <a href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/09/26/union注入攻击/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">union注入攻击</div>
+    <a href="/2019/01/01/渗透测试之信息收集整理笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">渗透测试之信息收集整理笔记</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -415,13 +363,11 @@ if ($row) {
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/" title="上一篇: 记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/09/26/union注入攻击/" title="下一篇: union注入攻击">
+            <a href="/2019/01/01/渗透测试之信息收集整理笔记/" title="下一篇: 渗透测试之信息收集整理笔记">
                 <i class="fa fa-angle-right"></i>
             </a>
         
