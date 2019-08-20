@@ -17,19 +17,19 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="IIS 6.0 PUT上传漏洞+iis解析漏洞getshell。环境为本地靶场环境。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/12/3d10ff3b403387d980c6bae33043dba0.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/d8f9e3384095474880a5bfc226271f14.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/6debeaad403cefa5806587d4c62871bf.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/55cff6da404c5d758051ce8306496120.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/68f928474050a01080c86e56fdf7f35a.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/8a2bdc014047876e805f6898dc517e9d.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/e22d3d1440252bd9809013674a2909fb.png">
-<meta property="og:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/0acea81e403c8185806f8e006d15f62f.png">
-<meta property="og:updated_time" content="2018-11-14T10:50:13.679Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204207.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204230.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204245.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204308.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204320.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204338.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204358.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204411.png">
+<meta property="og:updated_time" content="2019-08-20T12:44:21.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IIS 6.0 PUT上传漏洞+iis解析漏洞getshell">
 <meta name="twitter:description" content="IIS 6.0 PUT上传漏洞+iis解析漏洞getshell。环境为本地靶场环境。">
-<meta name="twitter:image" content="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/12/3d10ff3b403387d980c6bae33043dba0.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204207.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -142,7 +142,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/IIS/" style="font-size: 10px;">IIS</a> <a href="/tags/SQL注入/" style="font-size: 15px;">SQL注入</a> <a href="/tags/kali/" style="font-size: 20px;">kali</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/信息收集/" style="font-size: 10px;">信息收集</a> <a href="/tags/信息泄露/" style="font-size: 10px;">信息泄露</a> <a href="/tags/内网/" style="font-size: 10px;">内网</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/隐写/" style="font-size: 10px;">隐写</a>
+                        <a href="/tags/Hexo/" style="font-size: 16.67px;">Hexo</a> <a href="/tags/IIS/" style="font-size: 10px;">IIS</a> <a href="/tags/SQL注入/" style="font-size: 16.67px;">SQL注入</a> <a href="/tags/kali/" style="font-size: 20px;">kali</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/信息收集/" style="font-size: 10px;">信息收集</a> <a href="/tags/信息泄露/" style="font-size: 13.33px;">信息泄露</a> <a href="/tags/内网/" style="font-size: 10px;">内网</a> <a href="/tags/提权/" style="font-size: 10px;">提权</a> <a href="/tags/隐写/" style="font-size: 10px;">隐写</a>
                     </div>
                 </section>
                 
@@ -256,7 +256,7 @@
       
           
         <p>IIS 6.0 PUT上传漏洞+iis解析漏洞getshell。环境为本地靶场环境。<br><a id="more"></a></p>
-<p>IIS 6.0 PUT上传漏洞。产生原因是IIS Server在Web服务扩展中开启了WebDAV。并且管理员在配置权限时，没有遵循最小原则。给IIS配置了可以写入的权限，包括网站根目录。<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/12/3d10ff3b403387d980c6bae33043dba0.png" alt></p>
+<p>IIS 6.0 PUT上传漏洞。产生原因是IIS Server在Web服务扩展中开启了WebDAV。并且管理员在配置权限时，没有遵循最小原则。给IIS配置了可以写入的权限，包括网站根目录。<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204207.png" alt></p>
 <ul>
 <li><p>靶场环境 </p>
 <ul>
@@ -271,15 +271,15 @@
 <li><p>复现步骤</p>
 </li>
 </ul>
-<p>用iisputscaner查看一下目标网的IP，PUT显示为YES及代表目网站开启了WebDAV。<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/d8f9e3384095474880a5bfc226271f14.png" alt></p>
-<p>然后运行桂林老兵的iiswrite工具，选中OPTTONS,然后提交数据包。有如下返回内容代表存在put上传漏洞<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/6debeaad403cefa5806587d4c62871bf.png" alt></p>
-<p>选到PUT选项卡，请求文件名为你上传到服务器上的文件名（只能是TXT文件）把小马也改成TXT文件，然后提交数据包上传。<br>返回201代表上传成功<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/55cff6da404c5d758051ce8306496120.png" alt></p>
+<p>用iisputscaner查看一下目标网的IP，PUT显示为YES及代表目网站开启了WebDAV。<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204230.png" alt></p>
+<p>然后运行桂林老兵的iiswrite工具，选中OPTTONS,然后提交数据包。有如下返回内容代表存在put上传漏洞<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204245.png" alt></p>
+<p>选到PUT选项卡，请求文件名为你上传到服务器上的文件名（只能是TXT文件）把小马也改成TXT文件，然后提交数据包上传。<br>返回201代表上传成功<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204308.png" alt></p>
 <p>但是这个TXT文件是无法被iis解析的，所以要利用到的是copy，主要目的是为了将txt的文件修改为asp的，从而可以将文件变成可执行的脚本文件。</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/68f928474050a01080c86e56fdf7f35a.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204320.png" alt></p>
 <p>然后发现直接改成asp文件，提交数据不成功，一直没有回显，想到IIS还有一个解析漏洞。于是把文件名改成 shell.asp;.jpg</p>
-<p><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/8a2bdc014047876e805f6898dc517e9d.png" alt></p>
+<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204338.png" alt></p>
 <p>可以看到返回值201，上传成功了</p>
-<p>再次访问 <a href="http://192.168.1.102/shell.asp;.jpg" target="_blank" rel="noopener">http://192.168.1.102/shell.asp;.jpg</a><br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/e22d3d1440252bd9809013674a2909fb.png" alt><br>可以看到文件上传成功了<br>尝试用菜刀连接<br><img src="http://bmob-cdn-21339.b0.upaiyun.com/2018/09/13/0acea81e403c8185806f8e006d15f62f.png" alt></p>
+<p>再次访问 <a href="http://192.168.1.102/shell.asp;.jpg" target="_blank" rel="noopener">http://192.168.1.102/shell.asp;.jpg</a><br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204358.png" alt><br>可以看到文件上传成功了<br>尝试用菜刀连接<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204411.png" alt></p>
 
       
     </div>
@@ -291,7 +291,7 @@
         <p><span>本文标题:</span><a href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2018年09月13日 - 00时00分</p>
-        <p><span>最后更新:</span>2018年11月14日 - 18时50分</p>
+        <p><span>最后更新:</span>2019年08月20日 - 20时44分</p>
         <p>
         </p>
         <p>
@@ -386,7 +386,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/08/19/GitHub图床搭建与PicGo图片上传工具/">GitHub图床搭建与PicGo图片上传工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/08/19/GitHub图床搭建与PicGo图片上传工具/">GitHub图床搭建与PicGo图片上传工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/04/01/论信息泄露在实际业务系统中的危害/">论信息泄露在实际业务系统中的危害</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
