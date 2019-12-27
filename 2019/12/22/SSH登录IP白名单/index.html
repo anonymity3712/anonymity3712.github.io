@@ -7,30 +7,20 @@
   
   
   
-  <title>浅谈信息泄露在网络安全中的危害 | 墨竹星海’s Bolg</title>
+  <title>SSH登录IP白名单 | 墨竹星海’s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="泄露的系统信息或者调试信息可以帮助攻击者了解系统和制定攻击计划。信息泄露一般发生在程序使用输出或者日志功能的时候。我把信息泄露漏洞大体分为以下几类1.个人信息类 2.编辑器类 3.web服务信息 4.敏感信息泄露 5.其他">
-<meta name="keywords" content="信息收集">
+  <meta name="description" content="通过设置/etc/hosts.allow和/etc/hosts.deny这个两个文件，hosts.allow的规则优先级大于hosts.deny可以限制或者允许某个或者某段IP地址远程 SSH 登录服务器，方法比较简单，且设置后立即生效，不需要重启SSHD服务">
+<meta name="keywords" content="安全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浅谈信息泄露在网络安全中的危害">
-<meta property="og:url" content="http://yoursite.com/2019/08/27/浅谈信息泄露在网络安全中的危害/index.html">
+<meta property="og:title" content="SSH登录IP白名单">
+<meta property="og:url" content="http://yoursite.com/2019/12/22/SSH登录IP白名单/index.html">
 <meta property="og:site_name" content="墨竹星海’s Bolg">
-<meta property="og:description" content="泄露的系统信息或者调试信息可以帮助攻击者了解系统和制定攻击计划。信息泄露一般发生在程序使用输出或者日志功能的时候。我把信息泄露漏洞大体分为以下几类1.个人信息类 2.编辑器类 3.web服务信息 4.敏感信息泄露 5.其他">
+<meta property="og:description" content="通过设置/etc/hosts.allow和/etc/hosts.deny这个两个文件，hosts.allow的规则优先级大于hosts.deny可以限制或者允许某个或者某段IP地址远程 SSH 登录服务器，方法比较简单，且设置后立即生效，不需要重启SSHD服务">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827120347.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827130723.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827131558.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827132351.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827132746.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827132255.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827133110.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827133754.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827134844.png">
-<meta property="og:updated_time" content="2019-08-28T12:17:03.327Z">
+<meta property="og:updated_time" content="2019-12-27T02:35:26.713Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="浅谈信息泄露在网络安全中的危害">
-<meta name="twitter:description" content="泄露的系统信息或者调试信息可以帮助攻击者了解系统和制定攻击计划。信息泄露一般发生在程序使用输出或者日志功能的时候。我把信息泄露漏洞大体分为以下几类1.个人信息类 2.编辑器类 3.web服务信息 4.敏感信息泄露 5.其他">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827120347.png">
+<meta name="twitter:title" content="SSH登录IP白名单">
+<meta name="twitter:description" content="通过设置/etc/hosts.allow和/etc/hosts.deny这个两个文件，hosts.allow的规则优先级大于hosts.deny可以限制或者允许某个或者某段IP地址远程 SSH 登录服务器，方法比较简单，且设置后立即生效，不需要重启SSHD服务">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -212,11 +202,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-浅谈信息泄露在网络安全中的危害" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-SSH登录IP白名单" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/08/27/浅谈信息泄露在网络安全中的危害/" class="article-date">
-      <time datetime="2019-08-26T16:00:00.000Z" itemprop="datePublished">2019-08-27</time>
+      <a href="/2019/12/22/SSH登录IP白名单/" class="article-date">
+      <time datetime="2019-12-21T16:00:00.000Z" itemprop="datePublished">2019-12-22</time>
 </a>
 
     </div>
@@ -230,7 +220,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      浅谈信息泄露在网络安全中的危害
+      SSH登录IP白名单
     </h1>
   
 
@@ -240,13 +230,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/渗透测试/">渗透测试</a>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/信息收集/">信息收集</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -256,34 +246,12 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>泄露的系统信息或者调试信息可以帮助攻击者了解系统和制定攻击计划。信息泄露一般发生在程序使用输出或者日志功能的时候。<br>我把信息泄露漏洞大体分为以下几类1.个人信息类 2.编辑器类 3.web服务信息 4.敏感信息泄露 5.其他<a id="more"></a></p>
-<h2 id="个人信息类"><a href="#个人信息类" class="headerlink" title="个人信息类"></a>个人信息类</h2><p>包含但不限于web页面中泄露出来的手机号，邮箱地址，个人信息等（当然小网站及学校更好利用一些，大型网站企业平时的安全培训也会讲社工的危害，多少也会有防范意识了）</p>
-<h4 id="常见攻击手法：攻击者往往会利用搜集到的信息进行整理字典，然后对密码进行尝试登入，或者利用所获取到的信息对目标进行描绘，然后构造出一个可以让目标相信的身份例如冒充客服，同事，上属下属，亲朋好友等。结合社会工程学和钓鱼等手段很大几率可以获取到管理密码或管理权限。"><a href="#常见攻击手法：攻击者往往会利用搜集到的信息进行整理字典，然后对密码进行尝试登入，或者利用所获取到的信息对目标进行描绘，然后构造出一个可以让目标相信的身份例如冒充客服，同事，上属下属，亲朋好友等。结合社会工程学和钓鱼等手段很大几率可以获取到管理密码或管理权限。" class="headerlink" title="常见攻击手法：攻击者往往会利用搜集到的信息进行整理字典，然后对密码进行尝试登入，或者利用所获取到的信息对目标进行描绘，然后构造出一个可以让目标相信的身份例如冒充客服，同事，上属下属，亲朋好友等。结合社会工程学和钓鱼等手段很大几率可以获取到管理密码或管理权限。"></a>常见攻击手法：攻击者往往会利用搜集到的信息进行整理字典，然后对密码进行尝试登入，或者利用所获取到的信息对目标进行描绘，然后构造出一个可以让目标相信的身份例如冒充客服，同事，上属下属，亲朋好友等。结合社会工程学和钓鱼等手段很大几率可以获取到管理密码或管理权限。</h4><p>某云案例：</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827120347.png" alt></p>
-<blockquote>
-<p>防范方式：如果有人冒充xx客服或你的领导下属，一定要确认合适身份。陌生号码来电尽量不要透露个人资料信息。培养良好的安全意识。</p>
-</blockquote>
-<h2 id="编辑器类信息泄露"><a href="#编辑器类信息泄露" class="headerlink" title="编辑器类信息泄露"></a>编辑器类信息泄露</h2><p>web应用程序为了节约开发成本，可能会直接使用网络上优秀的编辑器，例如常见的CutEditor编辑器，CKeditor编辑器，FCKeditor编辑器WebHtmlEditor编辑器，eWebEditor编辑器，KindEditor编辑器等等，而一些页面文件往往会泄露出该网站所运用的编辑器类型或者编辑器版本。</p>
-<h4 id="常见攻击手法：攻击者会通过获取到的编辑器信息及编辑器版本，对比网上流传的已知的编辑器版本漏洞进行上传webshell文件，进而获取到服务器管理权限。"><a href="#常见攻击手法：攻击者会通过获取到的编辑器信息及编辑器版本，对比网上流传的已知的编辑器版本漏洞进行上传webshell文件，进而获取到服务器管理权限。" class="headerlink" title="常见攻击手法：攻击者会通过获取到的编辑器信息及编辑器版本，对比网上流传的已知的编辑器版本漏洞进行上传webshell文件，进而获取到服务器管理权限。"></a>常见攻击手法：攻击者会通过获取到的编辑器信息及编辑器版本，对比网上流传的已知的编辑器版本漏洞进行上传webshell文件，进而获取到服务器管理权限。</h4><p>某云案例：<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827130723.png" alt></p>
-<blockquote>
-<p>防范方式：一、更新编辑器版本。二、设置合理的权限，上传目录不赋予可执行权限、web服务继承权限与web目录拥有者权限分离。三、删除编辑器目录下的版本号文件。</p>
-</blockquote>
-<h2 id="web服务类信息泄露"><a href="#web服务类信息泄露" class="headerlink" title="web服务类信息泄露"></a>web服务类信息泄露</h2><p>常见的框架版本信息包含默认欢迎页面，报错页面等例如以下几种：</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827131558.png" alt><br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827132351.png" alt><br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827132746.png" alt><br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827132255.png" alt></p>
-<h4 id="常见攻击手法：攻击者可以通过寻找相对应的版本漏洞进行发起攻击，常见的上传绕过解析漏洞基本都需要知道服务器类型"><a href="#常见攻击手法：攻击者可以通过寻找相对应的版本漏洞进行发起攻击，常见的上传绕过解析漏洞基本都需要知道服务器类型" class="headerlink" title="常见攻击手法：攻击者可以通过寻找相对应的版本漏洞进行发起攻击，常见的上传绕过解析漏洞基本都需要知道服务器类型"></a>常见攻击手法：攻击者可以通过寻找相对应的版本漏洞进行发起攻击，常见的上传绕过解析漏洞基本都需要知道服务器类型</h4><p>某云案例：<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827133110.png" alt></p>
-<blockquote>
-<p>防范方式：尽量避免报错页面上出现服务器类型及版本号，补丁及更新要做好。</p>
-</blockquote>
-<h2 id="敏感文件信息泄露"><a href="#敏感文件信息泄露" class="headerlink" title="敏感文件信息泄露"></a>敏感文件信息泄露</h2><p>敏感文件这个基本就比较常见了。例如网站备份文件，log日志文件，敏感的HTML信息，PHPINFO信息泄露等等，</p>
-<h4 id="常见攻击手法：此类并不需要太复杂的操作，只需要把文件下载回本地，查看配置文件或日志文件中的信息即可获取到很多有用的信息，例如数据库密码，登入日志，服务器环境信息等等，也可以进行代码审计判断系统存在的漏洞点进行利用。"><a href="#常见攻击手法：此类并不需要太复杂的操作，只需要把文件下载回本地，查看配置文件或日志文件中的信息即可获取到很多有用的信息，例如数据库密码，登入日志，服务器环境信息等等，也可以进行代码审计判断系统存在的漏洞点进行利用。" class="headerlink" title="常见攻击手法：此类并不需要太复杂的操作，只需要把文件下载回本地，查看配置文件或日志文件中的信息即可获取到很多有用的信息，例如数据库密码，登入日志，服务器环境信息等等，也可以进行代码审计判断系统存在的漏洞点进行利用。"></a>常见攻击手法：此类并不需要太复杂的操作，只需要把文件下载回本地，查看配置文件或日志文件中的信息即可获取到很多有用的信息，例如数据库密码，登入日志，服务器环境信息等等，也可以进行代码审计判断系统存在的漏洞点进行利用。</h4><p>某云案例：<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827133754.png" alt></p>
-<blockquote>
-<p>防范建议:敏感文件尽量不要放置在web目录下，做好访问权限，html代码中不要包含敏感信息</p>
-</blockquote>
-<h2 id="后台类信息泄露"><a href="#后台类信息泄露" class="headerlink" title="后台类信息泄露"></a>后台类信息泄露</h2><p>站点信息或者其他服务的维护很可能需要一个登入后台来进行维护，例如phpmyadmin维护数据库，网站管理后台维护网站信息，Weblogic后台管理域，Tomcat后台管理web应用等等</p>
-<h4 id="常见攻击手法：攻击者可能会利用默认管理员账号密码，爆破，撞库等手段来进行尝试登入。"><a href="#常见攻击手法：攻击者可能会利用默认管理员账号密码，爆破，撞库等手段来进行尝试登入。" class="headerlink" title="常见攻击手法：攻击者可能会利用默认管理员账号密码，爆破，撞库等手段来进行尝试登入。"></a>常见攻击手法：攻击者可能会利用默认管理员账号密码，爆破，撞库等手段来进行尝试登入。</h4><p>某云案例：<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190827134844.png" alt></p>
-<blockquote>
-<p>防范建议：使用非常规的后台管理地址名称。限制用户的IP访问范围，网站前端程序和后台管理程序分离，比如为后台管理地址设置一个二级域名。增设验证码机制及登入次数限制。</p>
-</blockquote>
+        <p>通过设置/etc/hosts.allow和/etc/hosts.deny这个两个文件，hosts.allow的规则优先级大于hosts.deny可以限制或者允许某个或者某段IP地址远程 SSH 登录服务器，方法比较简单，且设置后立即生效，不需要重启SSHD服务<br><a id="more"></a></p>
+<p>/etc/hosts.allow添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sshd:192.168.1.1:allow  #允许 192.168.1.1 这个IP地址SSH登录</span><br><span class="line">sshd:192.168.1.:allow #允许192.168.1.1/24这段IP地址的用户登录，多个网段可以以逗号隔开，比如192.168.1.,192.168.2.:allow</span><br></pre></td></tr></table></figure>
+<p>/etc/hosts.deny添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sshd:ALL #拒绝全部IP</span><br></pre></td></tr></table></figure>
+<p>hosts.allow和hosts.deny两个文件同时设置规则的时候，hosts.allow文件中的规则优先级高，按照此方法设置后服务器只允许hosts.allow中的IP地址的SSH登录，其它的IP都会拒绝。</p>
 
       
     </div>
@@ -292,10 +260,10 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/08/27/浅谈信息泄露在网络安全中的危害/">浅谈信息泄露在网络安全中的危害</a></p>
+        <p><span>本文标题:</span><a href="/2019/12/22/SSH登录IP白名单/">SSH登录IP白名单</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
-        <p><span>发布时间:</span>2019年08月27日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年08月28日 - 20时17分</p>
+        <p><span>发布时间:</span>2019年12月22日 - 00时00分</p>
+        <p><span>最后更新:</span>2019年12月27日 - 10时35分</p>
         <p>
         </p>
         <p>
@@ -307,18 +275,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/11/27/解决kali2019.4 中文安装字体变为方块的方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          解决kali2019.4 中文安装字体变为方块的方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/19/GitHub图床搭建与PicGo图片上传工具/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">GitHub图床搭建与PicGo图片上传工具</div>
+    <a href="/2019/12/22/修改ssh端口/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">添加或修改ssh服务的端口</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -330,7 +289,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#个人信息类"><span class="toc-number">1.</span> <span class="toc-text">个人信息类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见攻击手法：攻击者往往会利用搜集到的信息进行整理字典，然后对密码进行尝试登入，或者利用所获取到的信息对目标进行描绘，然后构造出一个可以让目标相信的身份例如冒充客服，同事，上属下属，亲朋好友等。结合社会工程学和钓鱼等手段很大几率可以获取到管理密码或管理权限。"><span class="toc-number">1.0.1.</span> <span class="toc-text">常见攻击手法：攻击者往往会利用搜集到的信息进行整理字典，然后对密码进行尝试登入，或者利用所获取到的信息对目标进行描绘，然后构造出一个可以让目标相信的身份例如冒充客服，同事，上属下属，亲朋好友等。结合社会工程学和钓鱼等手段很大几率可以获取到管理密码或管理权限。</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#编辑器类信息泄露"><span class="toc-number">2.</span> <span class="toc-text">编辑器类信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见攻击手法：攻击者会通过获取到的编辑器信息及编辑器版本，对比网上流传的已知的编辑器版本漏洞进行上传webshell文件，进而获取到服务器管理权限。"><span class="toc-number">2.0.1.</span> <span class="toc-text">常见攻击手法：攻击者会通过获取到的编辑器信息及编辑器版本，对比网上流传的已知的编辑器版本漏洞进行上传webshell文件，进而获取到服务器管理权限。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web服务类信息泄露"><span class="toc-number">3.</span> <span class="toc-text">web服务类信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见攻击手法：攻击者可以通过寻找相对应的版本漏洞进行发起攻击，常见的上传绕过解析漏洞基本都需要知道服务器类型"><span class="toc-number">3.0.1.</span> <span class="toc-text">常见攻击手法：攻击者可以通过寻找相对应的版本漏洞进行发起攻击，常见的上传绕过解析漏洞基本都需要知道服务器类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#敏感文件信息泄露"><span class="toc-number">4.</span> <span class="toc-text">敏感文件信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见攻击手法：此类并不需要太复杂的操作，只需要把文件下载回本地，查看配置文件或日志文件中的信息即可获取到很多有用的信息，例如数据库密码，登入日志，服务器环境信息等等，也可以进行代码审计判断系统存在的漏洞点进行利用。"><span class="toc-number">4.0.1.</span> <span class="toc-text">常见攻击手法：此类并不需要太复杂的操作，只需要把文件下载回本地，查看配置文件或日志文件中的信息即可获取到很多有用的信息，例如数据库密码，登入日志，服务器环境信息等等，也可以进行代码审计判断系统存在的漏洞点进行利用。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后台类信息泄露"><span class="toc-number">5.</span> <span class="toc-text">后台类信息泄露</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见攻击手法：攻击者可能会利用默认管理员账号密码，爆破，撞库等手段来进行尝试登入。"><span class="toc-number">5.0.1.</span> <span class="toc-text">常见攻击手法：攻击者可能会利用默认管理员账号密码，爆破，撞库等手段来进行尝试登入。</span></a></li></ol></li>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -379,13 +338,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/11/27/解决kali2019.4 中文安装字体变为方块的方法/" title="上一篇: 解决kali2019.4 中文安装字体变为方块的方法">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/08/19/GitHub图床搭建与PicGo图片上传工具/" title="下一篇: GitHub图床搭建与PicGo图片上传工具">
+            <a href="/2019/12/22/修改ssh端口/" title="下一篇: 添加或修改ssh服务的端口">
                 <i class="fa fa-angle-right"></i>
             </a>
         
