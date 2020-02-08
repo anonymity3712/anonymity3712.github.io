@@ -17,24 +17,24 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="在Boolean注入页面中，程序先获取GET参数ID，通过preg_match判断其中是否存在/union|sleep|benchmark/等危险字符。然后将参数ID拼接到SQL语句。从数据库中查询，如果有结果，则返回yes，佛则返回no。当访问该页面时，代码根据数据库查询结果返回yes或no，而不返回数据库中的任何数据，所以页面上只会显示yes或no">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203722.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203732.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203749.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203800.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203816.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203826.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203837.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203856.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203916.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204017.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204039.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204052.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204116.png">
-<meta property="og:updated_time" content="2019-08-20T12:41:52.003Z">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820203722.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820203732.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820203749.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820203800.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820203816.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820203826.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820203837.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820203856.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820203916.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820204017.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820204039.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820204052.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820204116.png">
+<meta property="og:updated_time" content="2020-02-08T03:24:20.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Boolean注入攻击">
 <meta name="twitter:description" content="在Boolean注入页面中，程序先获取GET参数ID，通过preg_match判断其中是否存在/union|sleep|benchmark/等危险字符。然后将参数ID拼接到SQL语句。从数据库中查询，如果有结果，则返回yes，佛则返回no。当访问该页面时，代码根据数据库查询结果返回yes或no，而不返回数据库中的任何数据，所以页面上只会显示yes或no">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203722.png">
+<meta name="twitter:image" content="http://picture.mzxh.xyz/picture/20190820203722.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -261,38 +261,38 @@
       
           
         <p>在Boolean注入页面中，程序先获取GET参数ID，通过preg_match判断其中是否存在/union|sleep|benchmark/等危险字符。然后将参数ID拼接到SQL语句。从数据库中查询，如果有结果，则返回yes，佛则返回no。当访问该页面时，代码根据数据库查询结果返回yes或no，而不返回数据库中的任何数据，所以页面上只会显示yes或no<br><a id="more"></a><br>Boolean注入攻击的测试地址: <a href="http://192.168.95.130/sqltest/4.1.7/boolean.php?id=1" target="_blank" rel="noopener">http://192.168.95.130/sqltest/4.1.7/boolean.php?id=1</a></p>
-<p>访问该网址时，页面返回yes<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203722.png" alt></p>
-<p>在url后添加一个单引号，再次访问，发现返回结果由yes变成no<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203732.png" alt></p>
+<p>访问该网址时，页面返回yes<br><img src="http://picture.mzxh.xyz/picture/20190820203722.png" alt></p>
+<p>在url后添加一个单引号，再次访问，发现返回结果由yes变成no<br><img src="http://picture.mzxh.xyz/picture/20190820203732.png" alt></p>
 <p>访问id=1’ and 1=1%23和id=1’ and 1=2%23发现返回的结果分别是yes和no，更改ID的值，发现返回的仍然是yes或no，</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203749.png" alt></p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203800.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820203749.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820203800.png" alt></p>
 <p>由此可以判断，页面只返回yes或no，而没有返回数据库中的数据，所以此处不可使用union注入，测试可以利用boolean注入，boolean注入是指构造sql判断语句，通过查看页面的返回结果开推测那些sql判断条件是城里的，以此获取数据库中的数据。我们先判断数据库名的长度，利用这条语句</p>
 <pre><code>id=1&apos;and length(database())&gt;=4--+
 </code></pre><p>有单引号，所以需要注释符来注释。1的位置可以是任意数字，如<code>&#39;and length(database())&gt;=4--+</code>和<code>&#39;and length(database())&gt;=5--+</code>，我们可以构造这样的语句，然后观察页面返回的结果</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203816.png" alt></p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203826.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820203816.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820203826.png" alt></p>
 <p>然后可以发现当数值为4时，返回的结果是yes；而当数值为5时，返回的结果是no 。整个语句的意思是，数据库库名的长度大于等于3，结果为yes；大于等于5结果为no，由此判断数据库库名的长度为4</p>
 <p>接着使用逐字符判断的方式获取数据库库名。数据库库名的范围一般在a~z、0~9之内，可能还有一些特殊字符，这里的字母不区分大小写。逐字符判断sql语句为</p>
 <pre><code>id=1&apos;and substr(database(),1,1)=&apos;a&apos;--+
 </code></pre><p>substr是截取的意思，其意思是截取database()的值，从第一个字符开始，每次只返回一个。substr的用法跟limit的有区别，需要注意。Limit是从0开始排序，而这里是从1开始排序。可以使用burp的爆破功能，爆破其中的a值，</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203837.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820203837.png" alt></p>
 <p>发现当值是t时，页面返回yes 其他值均返回no，因此判断数据库库名的第一位为t</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203856.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820203856.png" alt></p>
 <p>判断第二个字符</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820203916.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820203916.png" alt></p>
 <p>判断第三个字符</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204017.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820204017.png" alt></p>
 <p>判断第四个字符</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204039.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820204039.png" alt></p>
 <p>可以看出该数据库库名为: test</p>
 <p>查询表名的语句也粘贴在database()的位置，从union注入中已经知道数据库test的第一个表达名是kuanzifu，第一个字母应当是k</p>
 <p>判断语句如下</p>
 <pre><code>id=1&apos;and substr((select table_name from information_schema.tables where table_schema=&apos;test&apos; limit 0,1),1,1)=&apos;k&apos;--+
 </code></pre><p>以此类推可以查询出所有的表名</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204052.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820204052.png" alt></p>
 <p>查询字段名的判断语句</p>
 <pre><code>id=1&apos;and substr((select column_name from information_schema.columns where table_schema=&apos;test&apos; and table_name=&apos;users&apos; limit 0,1),1,1)=&apos;i&apos;--+
-</code></pre><p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820204116.png" alt></p>
+</code></pre><p><img src="http://picture.mzxh.xyz/picture/20190820204116.png" alt></p>
 <p>如果想要查询第二个数据库或者第二个字段 更改select语句里的第一个limit值，如:</p>
 <pre><code>id=1&apos;and substr((select column_name from information_schema.columns where table_schema=&apos;test&apos; and table_name=&apos;users&apos; limit 1,1),1,1)=&apos;i&apos;--+
 
@@ -329,7 +329,7 @@ if ($row) {
         <p><span>本文标题:</span><a href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2018年09月27日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年08月20日 - 20时41分</p>
+        <p><span>最后更新:</span>2020年02月08日 - 11时24分</p>
         <p>
         </p>
         <p>

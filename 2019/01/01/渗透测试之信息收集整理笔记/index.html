@@ -17,13 +17,13 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="进行渗透测试之前，最重要的一步就是信息收集，在这个阶段，我们要尽可能的收集目标组织的信息。在信息收集中，最主要的就是收集服务器的配置信息和网站敏感信息，其中包括域名及子域名、目标网站系统、CMS指纹、目标网站真实IP，开放的端口。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820213611.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820213629.png">
-<meta property="og:updated_time" content="2019-08-20T13:36:45.436Z">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213611.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213629.png">
+<meta property="og:updated_time" content="2020-02-08T03:24:21.203Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="渗透测试之信息收集整理笔记">
 <meta name="twitter:description" content="进行渗透测试之前，最重要的一步就是信息收集，在这个阶段，我们要尽可能的收集目标组织的信息。在信息收集中，最主要的就是收集服务器的配置信息和网站敏感信息，其中包括域名及子域名、目标网站系统、CMS指纹、目标网站真实IP，开放的端口。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820213611.png">
+<meta name="twitter:image" content="http://picture.mzxh.xyz/picture/20190820213611.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -254,7 +254,7 @@
 <h3 id="1-1-1Whois查询"><a href="#1-1-1Whois查询" class="headerlink" title="1.1.1Whois查询"></a>1.1.1Whois查询</h3><p>在Whois查询中，得到注册人的姓名和邮箱对测试个人站点非常有用，对中小站点而言，域名所有人往往就是管理员。我们可以通过搜索引擎和社交网络挖掘出域名所有人的很多信息，从而通过社工库反查出管理员信息，进而反推出管理员常用的账号密码去登入后台。<br>在线的whois查询网站有<br>站长之家：<a href="http://whois.chinaz.com" target="_blank" rel="noopener">http://whois.chinaz.com</a><br>爱站工具网：<a href="https://whois.aizhan.com" target="_blank" rel="noopener">https://whois.aizhan.com</a></p>
 <h3 id="1-1-2-备案信息查询"><a href="#1-1-2-备案信息查询" class="headerlink" title="1.1.2 备案信息查询"></a>1.1.2 备案信息查询</h3><p>可以收集该企业其他域名范围信息。<br>常用的网站有:<br>ICP备案查询网：<a href="http://www.beianbeian.com" target="_blank" rel="noopener">http://www.beianbeian.com</a><br>天眼查：<a href="http://www.tianyancha.com" target="_blank" rel="noopener">http://www.tianyancha.com</a></p>
 <h2 id="1-2-收集敏感信息"><a href="#1-2-收集敏感信息" class="headerlink" title="1.2 收集敏感信息"></a>1.2 收集敏感信息</h2><p>Google是世界上最强的搜索引擎之一，我们可以通过构造特殊的关键字语法来搜索互联网上的敏感信息。<br>例如，我们要搜索某企业的业务后台地址，可以构造语法 后台管理site:xxx.com，意思为搜索网页中含有“后台管理”并且域名为xxx.com的网站。还可以用它来收集数据库文件，配置信息，源代码泄露，未授权访问和robots.txt等敏感信息。<br>（ 实际案例：<a href="https://www.anony.xyz/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/" target="_blank" rel="noopener">https://www.anony.xyz/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/</a> ）<br>除此之外，也可以尝试在github上寻找相关的敏感信息，如数据库连接信息、邮箱密码，源代码等等。<br>还可以通过乌云漏洞镜像来查询历史漏洞信息。确认是否存在可以二次利用的漏洞。</p>
-<h2 id="1-3收集子域名信息。"><a href="#1-3收集子域名信息。" class="headerlink" title="1.3收集子域名信息。"></a>1.3收集子域名信息。</h2><p>子域名也就是二级域名，指顶级域名下的域名。可以借助layer子域名挖掘机和sublist3等工具。也可以利用搜索引擎枚举。如直接搜索“site:xxx.com”然后逐条整理归纳。也可以利用dnsdumpster网站（<a href="https://dnsdumpster.com" target="_blank" rel="noopener">https://dnsdumpster.com</a>) 来获取<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820213611.png" alt></p>
+<h2 id="1-3收集子域名信息。"><a href="#1-3收集子域名信息。" class="headerlink" title="1.3收集子域名信息。"></a>1.3收集子域名信息。</h2><p>子域名也就是二级域名，指顶级域名下的域名。可以借助layer子域名挖掘机和sublist3等工具。也可以利用搜索引擎枚举。如直接搜索“site:xxx.com”然后逐条整理归纳。也可以利用dnsdumpster网站（<a href="https://dnsdumpster.com" target="_blank" rel="noopener">https://dnsdumpster.com</a>) 来获取<br><img src="http://picture.mzxh.xyz/picture/20190820213611.png" alt></p>
 <h2 id="1-4-收集常用端口信息"><a href="#1-4-收集常用端口信息" class="headerlink" title="1.4 收集常用端口信息"></a>1.4 收集常用端口信息</h2><p>在渗透测试过程中，对端口的收集也是一个很重要的过程。通过扫描服务器开放的端口来判断存在的服务，从而渗透目标服务器<br>常用的端口</p>
 <table>
 <thead>
@@ -419,7 +419,7 @@
 </table>
 <h2 id="1-5指纹识别"><a href="#1-5指纹识别" class="headerlink" title="1.5指纹识别"></a>1.5指纹识别</h2><p>Cms又称为整站系统或者文章系统，只有识别出web容器或者cms才可以查找与其相关的漏洞<br>在线的指纹识别有 云悉指纹 <a href="http://www.yunsee.cn/finger.html" target="_blank" rel="noopener">http://www.yunsee.cn/finger.html</a></p>
 <h2 id="1-6-查找真实的IP"><a href="#1-6-查找真实的IP" class="headerlink" title="1.6 查找真实的IP"></a>1.6 查找真实的IP</h2><pre><code>nslookup 域名 //查看域名的解析情况
-</code></pre><p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820213629.png" alt><br>这种基本就是上了云waf的<br>针对这类域名查找真实IP有下面一些常规方法</p>
+</code></pre><p><img src="http://picture.mzxh.xyz/picture/20190820213629.png" alt><br>这种基本就是上了云waf的<br>针对这类域名查找真实IP有下面一些常规方法</p>
 <ul>
 <li>内部邮箱源（必须是自己的邮件服务器，第三方或公共的没有用处）</li>
 <li>Phpinfo等测试文件泄露。</li>
@@ -443,7 +443,7 @@
         <p><span>本文标题:</span><a href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2019年01月01日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年08月20日 - 21时36分</p>
+        <p><span>最后更新:</span>2020年02月08日 - 11时24分</p>
         <p>
         </p>
         <p>

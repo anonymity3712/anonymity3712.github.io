@@ -17,16 +17,16 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="前几天做了一个静态站，打算设置成让拥有登入凭证的人才可以查看">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211171407.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211171641.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211171854.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211172110.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211172026.png">
-<meta property="og:updated_time" content="2019-12-11T09:27:25.253Z">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191211171407.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191211171641.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191211171854.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191211172110.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191211172026.png">
+<meta property="og:updated_time" content="2020-02-08T03:24:20.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Apache设置用户访问web页面需要认证">
 <meta name="twitter:description" content="前几天做了一个静态站，打算设置成让拥有登入凭证的人才可以查看">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211171407.png">
+<meta name="twitter:image" content="http://picture.mzxh.xyz/picture/20191211171407.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -255,12 +255,12 @@
         <p>前几天做了一个静态站，打算设置成让拥有登入凭证的人才可以查看<br><a id="more"></a><br>首先要让Apache支持.htaccess才可使用认证控制（phpstudy是默认就开启的）<br>第一步，查看一下你的phpinfo()，如果在apache2handler的Loaded Modules 中找到了mod_rewrite 那么说 明你的rewrite module已经加载了。如果没有开启“mod_rewrite”，则打开您的apache安装目录“/apache/conf /”下的 httpd.conf 文件，通过Ctrl+F查找到“LoadModule rewrite_module”，将前面的”#”号删除即可；如 果没有查找到，则到“LoadModule”区域，在最后一行加入 “LoadModule rewrite_module modules/mod_rewrite.so”（独占一行）。</p>
 <p>第二步，httpd.conf 文件里 查找 FollowSymLinks 把里面的 AllowOverride None 改成 AllowOverride all 即可，改完后的代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory /&gt;</span><br><span class="line">Options FollowSymLinks</span><br><span class="line">AllowOverride all</span><br><span class="line">Order deny,allow</span><br><span class="line">allow from all</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure></p>
 <p>在需要认证目录下如 D:\phpstudy_pro\WWW 下建立 .htaccess 文件，在Windows下建立 .htaccess 文件有一个小技巧，正常情况下Windows文件命名规则是不允许建立“ .” 开头的文件，咱们可以编辑好之后另存为.htaccess文件，加入下列内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AuthName &quot;Login&quot;</span><br><span class="line">AuthType basic</span><br><span class="line">AuthUserFile &quot;D:\user.txt&quot;</span><br><span class="line">require valid-user</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211171407.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20191211171407.png" alt></p>
 <p>其中AuthUserFile后面的路径为登入用户凭证信息所存放的路径，可以自行设置，但不要将它放在网站目录，以防被下载。</p>
-<p>下面我们来用htpasswd.exe 来生成密码，（htpasswd.exe所在的位置为apache安装目录下的bin文件夹内）<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211171641.png" alt><br>在cmd命令行进入到bin文件夹内输入下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">htpasswd -bc D:\user.txt admin 123456</span><br></pre></td></tr></table></figure></p>
-<p>D:\user.txt为登入用户凭证信息所存放的路径，可以自行更改但一定要和.haccess文件中的路径一致<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211171854.png" alt></p>
-<p>D盘下会多出来一个user.txt文件<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211172110.png" alt></p>
-<p>至此，我们已经完成对网站根目录的密码认证设置，所有访问该目录的用户都要求输出用户名和密码<br><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20191211172026.png" alt></p>
+<p>下面我们来用htpasswd.exe 来生成密码，（htpasswd.exe所在的位置为apache安装目录下的bin文件夹内）<br><img src="http://picture.mzxh.xyz/picture/20191211171641.png" alt><br>在cmd命令行进入到bin文件夹内输入下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">htpasswd -bc D:\user.txt admin 123456</span><br></pre></td></tr></table></figure></p>
+<p>D:\user.txt为登入用户凭证信息所存放的路径，可以自行更改但一定要和.haccess文件中的路径一致<br><img src="http://picture.mzxh.xyz/picture/20191211171854.png" alt></p>
+<p>D盘下会多出来一个user.txt文件<br><img src="http://picture.mzxh.xyz/picture/20191211172110.png" alt></p>
+<p>至此，我们已经完成对网站根目录的密码认证设置，所有访问该目录的用户都要求输出用户名和密码<br><img src="http://picture.mzxh.xyz/picture/20191211172026.png" alt></p>
 
       
     </div>
@@ -272,7 +272,7 @@
         <p><span>本文标题:</span><a href="/2019/12/11/apache认证/">Apache设置用户访问web页面需要认证</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2019年12月11日 - 00时00分</p>
-        <p><span>最后更新:</span>2019年12月11日 - 17时27分</p>
+        <p><span>最后更新:</span>2020年02月08日 - 11时24分</p>
         <p>
         </p>
         <p>

@@ -17,14 +17,14 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="被动扫描主要指的是在目标无法察觉的情况下进行的信息收集，比如我们想了解一个远在天边的人，你会怎么做呢？显然我们可以选择在搜索引擎去搜索这个名字。其实这就是一次对目标的被动扫描。最经典的被动扫描技术其实要输“google hack”技术，这种技术在我们所处的大陆地区，需要翻墙使用，在这一节，我们来介绍一下被动扫描。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820210705.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820210717.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820210729.png">
-<meta property="og:updated_time" content="2019-08-20T13:08:02.628Z">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820210705.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820210717.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820210729.png">
+<meta property="og:updated_time" content="2020-02-08T03:24:21.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三节：kali的信息收集之被动扫描（一）">
 <meta name="twitter:description" content="被动扫描主要指的是在目标无法察觉的情况下进行的信息收集，比如我们想了解一个远在天边的人，你会怎么做呢？显然我们可以选择在搜索引擎去搜索这个名字。其实这就是一次对目标的被动扫描。最经典的被动扫描技术其实要输“google hack”技术，这种技术在我们所处的大陆地区，需要翻墙使用，在这一节，我们来介绍一下被动扫描。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820210705.png">
+<meta name="twitter:image" content="http://picture.mzxh.xyz/picture/20190820210705.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -264,12 +264,12 @@
 <p>MX（Mail Exchanger）：是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。</p>
 <p>PTR (Pointer Record)：指针记录，是电子邮件系统中的一种数据类型。</p>
 <p>比如 baidu.com 这是一个域名，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 则是完全限定域名。www是baidu.com下的一条主机记录。主机记录可以是一个A记录（直接指向到服务器IP地址） 也可以是一个cname记录（指向到另一个域名上，由另一个域名做A记录）每个域名都一个或者多个域名服务器，用来负责对该域名的解析，而域名服务器地址又是通过DNS里面的NS记录进行定义和注册的。此外每个域名或者也有自己的邮件服务器(MX记录)。而前面所有的解析记录都是将主机名解析成另外一个主机名或者IP地址，但是PTR则是一个反向解析记录的过程，即是将IP地址解析成主机名。</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820210705.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820210705.png" alt></p>
 <p>如用户访问 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 会先通过当地的缓存DNS服务器进行查询，当地DNS服务器不储存记录，只有缓存记录，当第一次查询时，DNS服务器会先询问 .根域名服务器，根域名会返回.com服务器信息.然后DNS服务器再去询问.com服务器..com服务器返给DNS服务器一个sina.com的服务器信息.再去询问sina服务器，返回得到IP地址 ，当地服务器会缓存一个该域名的IP地址，当再有其他人访问时，不在通过迭代查询，直接回复一个缓存的IP地址。</p>
 <h3 id="DNS信息收集工具-NSLOOKUP"><a href="#DNS信息收集工具-NSLOOKUP" class="headerlink" title="DNS信息收集工具-NSLOOKUP"></a>DNS信息收集工具-NSLOOKUP</h3><h4 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h4><p>在终端输入 <code>nslookup</code></p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820210717.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820210717.png" alt></p>
 <p>然后直接输入要查询的域名,如 <a href="http://www.sina.com" target="_blank" rel="noopener">www.sina.com</a><br>解析结果:</p>
-<p><img src="https://raw.githubusercontent.com/anonymity3712/githubpic/master/img/20190820210729.png" alt></p>
+<p><img src="http://picture.mzxh.xyz/picture/20190820210729.png" alt></p>
 <p>可以看到 <a href="http://www.sina.com" target="_blank" rel="noopener">www.sina.com</a> 并没有被直接解析为一个特定的IP地址，而是先解析为一个cname地址 us.sina.com.cn. 再有 us.sina.com.cn. 解析为 wwwus.sina.com. 最后再由wwwus.sina.com, 解析为一个IP地址。</p>
 <h4 id="查找新浪邮件服务器的IP"><a href="#查找新浪邮件服务器的IP" class="headerlink" title="查找新浪邮件服务器的IP"></a>查找新浪邮件服务器的IP</h4><p>先指定查询类型 <code>set type=mx</code><br>然后输入新浪的域名 <code>sina.com</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# nslookup</span><br><span class="line">&gt; set type=mx </span><br><span class="line">&gt; sina.com</span><br><span class="line">Server:		211.140.13.188</span><br><span class="line">Address:	211.140.13.188#53</span><br><span class="line"></span><br><span class="line">Non-authoritative answer:</span><br><span class="line">sina.com	mail exchanger = 5 freemx1.sinamail.sina.com.cn.</span><br><span class="line">sina.com	mail exchanger = 10 freemx2.sinamail.sina.com.cn.</span><br><span class="line">sina.com	mail exchanger = 10 freemx3.sinamail.sina.com.cn.</span><br><span class="line"></span><br><span class="line">Authoritative answers can be found from:</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></p>
 <p>再查询其A记录</p>
@@ -307,7 +307,7 @@
         <p><span>本文标题:</span><a href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2018年09月09日 - 21时33分</p>
-        <p><span>最后更新:</span>2019年08月20日 - 21时08分</p>
+        <p><span>最后更新:</span>2020年02月08日 - 11时24分</p>
         <p>
         </p>
         <p>
