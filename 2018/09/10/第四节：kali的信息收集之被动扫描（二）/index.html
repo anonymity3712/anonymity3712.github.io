@@ -17,24 +17,24 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="现在几乎所有联网的设备都成为了可能被攻击的目标，但是很多人都搞不懂，攻击者是如何在互联网上找到这些设备的呢？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820210903.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211004.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211020.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211052.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211110.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211128.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211156.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211208.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211221.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211232.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211248.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211300.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820211329.png">
-<meta property="og:updated_time" content="2020-02-08T03:24:21.273Z">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820210903.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211004.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211020.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211052.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211110.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211128.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211156.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211208.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211221.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211232.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211248.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211300.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820211329.png">
+<meta property="og:updated_time" content="2020-02-08T06:30:21.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第四节：kali的信息收集之被动扫描（二）">
 <meta name="twitter:description" content="现在几乎所有联网的设备都成为了可能被攻击的目标，但是很多人都搞不懂，攻击者是如何在互联网上找到这些设备的呢？">
-<meta name="twitter:image" content="http://picture.mzxh.xyz/picture/20190820210903.png">
+<meta name="twitter:image" content="https://www.mzxh.xyzpicture/20190820210903.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -263,51 +263,51 @@
         <p>现在几乎所有联网的设备都成为了可能被攻击的目标，但是很多人都搞不懂，攻击者是如何在互联网上找到这些设备的呢？<br><a id="more"></a></p>
 <h2 id="可怕的搜索引擎-——-shodan"><a href="#可怕的搜索引擎-——-shodan" class="headerlink" title="可怕的搜索引擎 —— shodan"></a>可怕的搜索引擎 —— shodan</h2><h3 id="关于shodan"><a href="#关于shodan" class="headerlink" title="关于shodan"></a>关于shodan</h3><p>与谷歌不同的是，Shodan不是在网上搜索网址，而是直接进入互联网的背后通道。Shodan可以说是一款“黑暗”谷歌，一刻不停的在寻找着所有和互联网关联的服务器、摄像头、打印机、路由器等等。每个月Shodan都会在大约5亿个服务器上日夜不停地搜集信息。</p>
 <h4 id="shodan的基本使用"><a href="#shodan的基本使用" class="headerlink" title="shodan的基本使用"></a>shodan的基本使用</h4><p>首先，我们访问shodan的在线网站，网址为 <a href="https://www.shodan.io" target="_blank" rel="noopener">https://www.shodan.io</a> 打开这个网址后的页面如下图：</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820210903.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820210903.png" alt></p>
 <p>如果想要正常使用shodan，需要注册一个账号。没有账号的话，使用上有很大的限制。点击右上角的login or register登入（可以直接用google登入）</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211004.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211004.png" alt></p>
 <h5 id="常用的搜索语句："><a href="#常用的搜索语句：" class="headerlink" title="常用的搜索语句："></a>常用的搜索语句：</h5><ul>
 <li>net对特定的IP进行互联网设备爬取<br><code>net:8.8.8.8</code></li>
 </ul>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211020.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211020.png" alt></p>
 <p>   点击Details可以看到详细的内容</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211052.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211052.png" alt></p>
 <p>扩展搜索整个IP地址段<br><code>net:220.191.232.0/24</code></p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211110.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211110.png" alt></p>
 <ul>
 <li>使用country参数爬取某一特定国家<br><code>country:CN</code></li>
 </ul>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211128.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211128.png" alt></p>
 <ul>
 <li>使用city参数爬去城市信息<br><code>city:beijing</code></li>
 </ul>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211156.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211156.png" alt></p>
 <ul>
 <li>使用port参数搜索开放了某端口的设备，例如，查询北京开放了22端口的设备<br><code>city:beijing port:22</code></li>
 </ul>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211208.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211208.png" alt></p>
 <ul>
 <li><p>使用os参数过滤操作系统，例如查询北京开放了22端口的linux设备</p>
 <p><code>city:beijing port:22 os:linux</code></p>
 </li>
 </ul>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211221.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211221.png" alt></p>
 <ul>
 <li><p>使用hostname指定主机名或域名，例如查询北京属于百度的设备</p>
 <p><code>city:beijing hostname:baidu.com</code></p>
 </li>
 </ul>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211232.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211232.png" alt></p>
 <ul>
 <li><p>用server参数指定服务器端运行的软件，例如查询北京的百度开放了22端口运行这Apache的linux设备</p>
 <p><code>city:beijing hostname:baidu.com server: Apache</code></p>
 </li>
 </ul>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211248.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211248.png" alt></p>
 <h5 id="自定义创造字符串搜索"><a href="#自定义创造字符串搜索" class="headerlink" title="自定义创造字符串搜索"></a>自定义创造字符串搜索</h5><p>cisco HTTP/1.1 200 server: IIS country:CN<br>查询中国的 cisco设备，页面返回值为200，运行了IIS的。</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211300.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211300.png" alt></p>
 <p>search linux upnp avtech<br>查询某在线摄像头</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820211329.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820211329.png" alt></p>
 <p><strong>shodan，会员是49美刀，每年的黑色星期五会打折出售，是5美刀，需要的可以留意一下。</strong></p>
 
       
@@ -320,7 +320,7 @@
         <p><span>本文标题:</span><a href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2018年09月10日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年02月08日 - 11时24分</p>
+        <p><span>最后更新:</span>2020年02月08日 - 14时30分</p>
         <p>
         </p>
         <p>

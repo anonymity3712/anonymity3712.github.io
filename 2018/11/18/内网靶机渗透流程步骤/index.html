@@ -17,28 +17,28 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="记一次内网靶机的渗透流程步骤，目测应该是tools论坛的靶场环境。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213006.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213026.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213444.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213059.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213304.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213118.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213129.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213141.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213152.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213205.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213225.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213240.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213415.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213401.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213350.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213340.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20190820213329.png">
-<meta property="og:updated_time" content="2020-02-08T03:24:21.125Z">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213006.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213026.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213444.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213059.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213304.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213118.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213129.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213141.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213152.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213205.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213225.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213240.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213415.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213401.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213350.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213340.png">
+<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820213329.png">
+<meta property="og:updated_time" content="2020-02-08T06:30:21.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内网靶机渗透流程步骤">
 <meta name="twitter:description" content="记一次内网靶机的渗透流程步骤，目测应该是tools论坛的靶场环境。">
-<meta name="twitter:image" content="http://picture.mzxh.xyz/picture/20190820213006.png">
+<meta name="twitter:image" content="https://www.mzxh.xyzpicture/20190820213006.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -266,40 +266,40 @@
           
         <p>记一次内网靶机的渗透流程步骤，目测应该是tools论坛的靶场环境。<br><a id="more"></a></p>
 <p>靶机地址：<a href="http://shop.aqlab.cn:8001" target="_blank" rel="noopener">http://shop.aqlab.cn:8001</a></p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213006.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213006.png" alt></p>
 <p> 扫描器扫了一下 有注入点 直接扔sqlmap里跑一下</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213026.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213026.png" alt></p>
 <p>是dba权限 尝试一下os-shell</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213444.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213444.png" alt></p>
 <p>访问 <a href="http://shop.aqlab.cn:8001/tmpuzlco.php" target="_blank" rel="noopener">http://shop.aqlab.cn:8001/tmpuzlco.php</a> 是sqlmap生成的一个上传点</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213059.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213059.png" alt></p>
 <p>上传小马 菜刀连接</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213304.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213304.png" alt></p>
 <p>目测靶场被老哥们日过很多次了</p>
 <p>Whoami权限 直接建立管理组用户</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213118.png" alt></p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213129.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213118.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213129.png" alt></p>
 <p>服务器开着3389 不过是内网IP地址</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213141.png" alt></p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213152.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213141.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213152.png" alt></p>
 <p>既然服务器是内网地址 那需要把内网端口映射出来才可以远程连接，这里用的reDuh是国外大牛的作品<br>直接把服务端用菜刀上传到服务器上</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213205.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213205.png" alt></p>
 <p>然后运行java客户端</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar reDuhClient.jar http://shop.aqlab.cn:8001/reDuh.php</span><br></pre></td></tr></table></figure>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213225.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213225.png" alt></p>
 <p>然后再在本地运行nc.exe（不知道这个是什么的请百度）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NC.exe -vv localhost 1010</span><br></pre></td></tr></table></figure>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213240.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213240.png" alt></p>
 <p>然后再输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[createTunnel]1234:192.168.0.51:3389</span><br></pre></td></tr></table></figure></p>
 <p>其中1234是本机未占用的端口 中间的IP为目标服务器IP 后面的端口为目标服务器的端口</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213415.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213415.png" alt></p>
 <p>这样就把服务器的3389连接到了本地的1234端口上 尝试远程连接（直接连本地的1234端口即可）</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213401.png" alt></p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213350.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213401.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213350.png" alt></p>
 <p>有时会出现身份验证错误 点确定重新连接一下就好</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213340.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213340.png" alt></p>
 <p>C盘下获取到flag</p>
-<p><img src="http://picture.mzxh.xyz/picture/20190820213329.png" alt></p>
+<p><img src="https://www.mzxh.xyzpicture/20190820213329.png" alt></p>
 
       
     </div>
@@ -311,7 +311,7 @@
         <p><span>本文标题:</span><a href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2018年11月18日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年02月08日 - 11时24分</p>
+        <p><span>最后更新:</span>2020年02月08日 - 14时30分</p>
         <p>
         </p>
         <p>
