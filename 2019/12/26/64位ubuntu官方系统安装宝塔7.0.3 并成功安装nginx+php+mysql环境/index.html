@@ -17,20 +17,20 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="终于成功的在64位树莓派环境下安装好了宝塔的lnmp环境，给大家填下坑">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191227104722.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191227105234.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191227105843.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191227110110.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191227110037.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191227110700.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191227110842.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191227111014.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/picture/20191227111234.png">
-<meta property="og:updated_time" content="2020-02-08T03:24:20.862Z">
+<meta property="og:image" content="http://www.mzxh.xyz/picture/20191227104722.png">
+<meta property="og:image" content="http://www.mzxh.xyz/picture/20191227105234.png">
+<meta property="og:image" content="http://www.mzxh.xyz/picture/20191227105843.png">
+<meta property="og:image" content="http://www.mzxh.xyz/picture/20191227110110.png">
+<meta property="og:image" content="http://www.mzxh.xyz/picture/20191227110037.png">
+<meta property="og:image" content="http://www.mzxh.xyz/picture/20191227110700.png">
+<meta property="og:image" content="http://www.mzxh.xyz/picture/20191227110842.png">
+<meta property="og:image" content="http://www.mzxh.xyz/picture/20191227111014.png">
+<meta property="og:image" content="http://www.mzxh.xyz/picture/20191227111234.png">
+<meta property="og:updated_time" content="2020-02-08T03:43:02.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="64位ubuntu官方系统安装宝塔7.0.3 并成功编译安装nginx+php+mysql环境">
 <meta name="twitter:description" content="终于成功的在64位树莓派环境下安装好了宝塔的lnmp环境，给大家填下坑">
-<meta name="twitter:image" content="http://picture.mzxh.xyz/picture/20191227104722.png">
+<meta name="twitter:image" content="http://www.mzxh.xyz/picture/20191227104722.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -259,7 +259,7 @@
         <p>终于成功的在64位树莓派环境下安装好了宝塔的lnmp环境，给大家填下坑<br><a id="more"></a></p>
 <h3 id="直接官方下载ubuntu-18-04-3-preinstalled-server-arm64-raspi3系统"><a href="#直接官方下载ubuntu-18-04-3-preinstalled-server-arm64-raspi3系统" class="headerlink" title="直接官方下载ubuntu-18.04.3-preinstalled-server-arm64+raspi3系统"></a>直接官方下载ubuntu-18.04.3-preinstalled-server-arm64+raspi3系统</h3><p>下载地址</p>
 <p><a href="https://wiki.ubuntu.com/ARM/RaspberryPi" target="_blank" rel="noopener">https://wiki.ubuntu.com/ARM/RaspberryPi</a></p>
-<p><img src="http://picture.mzxh.xyz/picture/20191227104722.png" alt></p>
+<p><img src="http://www.mzxh.xyz/picture/20191227104722.png" alt></p>
 <hr>
 <h3 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h3><p>直接用Win32DiskImager写入（百度一堆不多说，不会的自己百度）</p>
 <hr>
@@ -267,19 +267,19 @@
 <p>然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get dist-upgrade</span><br></pre></td></tr></table></figure></p>
 <hr>
 <h3 id="安装宝塔面板"><a href="#安装宝塔面板" class="headerlink" title="安装宝塔面板"></a>安装宝塔面板</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh &amp;&amp; sudo bash install.sh</span><br></pre></td></tr></table></figure>
-<p><img src="http://picture.mzxh.xyz/picture/20191227105234.png" alt></p>
+<p><img src="http://www.mzxh.xyz/picture/20191227105234.png" alt></p>
 <p>试了一下 普通的SD卡每次装完基本都在40分钟左右</p>
 <hr>
 <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>在面板中先安装nginx 然后等到/www/server/panel/install文件夹内生成nginx.sh文件时 关闭面板安装</p>
-<p><img src="http://picture.mzxh.xyz/picture/20191227105843.png" alt></p>
+<p><img src="http://www.mzxh.xyz/picture/20191227105843.png" alt></p>
 <p>然后删除nginx.sh文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm nginx.sh</span><br></pre></td></tr></table></figure>
 <p>重新下载编译好的nginx.sh文件内容</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.mzxh.xyz/tools/nginx.sh</span><br></pre></td></tr></table></figure>
 <p>然后直接在/www/server/panel/install文件夹下执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh nginx.sh install</span><br></pre></td></tr></table></figure></p>
-<p>Nginx安装并启动成功<br><img src="http://picture.mzxh.xyz/picture/20191227110110.png" alt></p>
+<p>Nginx安装并启动成功<br><img src="http://www.mzxh.xyz/picture/20191227110110.png" alt></p>
 <p>可能会遇见的报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure:  error: the HTTP image filter module requires the GD library.You can either do not enable  the  module or install the l ibraries</span><br><span class="line">make: *** NO rule to make target &apos; build&apos;, needed by&apos; default&apos;. Stop</span><br><span class="line">make: *** No rule to make target  install&apos;. Stop.</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://picture.mzxh.xyz/picture/20191227110037.png" alt></p>
+<p><img src="http://www.mzxh.xyz/picture/20191227110037.png" alt></p>
 <p>解决办法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgd-dev</span><br></pre></td></tr></table></figure></p>
 <p>然后再次执行安装</p>
 <hr>
@@ -287,15 +287,15 @@
 <hr>
 <h3 id="安装php"><a href="#安装php" class="headerlink" title="安装php"></a>安装php</h3><p>修改/www/server/panpel/install/lib.sh文件，删除掉最底部的这三条命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Install_Libmcrypt</span><br><span class="line">Install_Mcrypt</span><br><span class="line">Install_Mhash</span><br></pre></td></tr></table></figure></p>
 <p>删除后手动安装libmcrypt-dev<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install libmcrypt-dev</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://picture.mzxh.xyz/picture/20191227110700.png" alt></p>
+<p><img src="http://www.mzxh.xyz/picture/20191227110700.png" alt></p>
 <p>下载编译好的php.sh文件</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.mzxh.xyz/tools/php.sh</span><br></pre></td></tr></table></figure>
 <p>然后运行命令安装php7.1（根据你的需求安装php版本）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh php.sh install 7.1</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://picture.mzxh.xyz/picture/20191227110842.png" alt></p>
+<p><img src="http://www.mzxh.xyz/picture/20191227110842.png" alt></p>
 <p>安装成功</p>
 <hr>
-<p>成品截图<br><img src="http://picture.mzxh.xyz/picture/20191227111014.png" alt></p>
-<p><img src="http://picture.mzxh.xyz/picture/20191227111234.png" alt></p>
+<p>成品截图<br><img src="http://www.mzxh.xyz/picture/20191227111014.png" alt></p>
+<p><img src="http://www.mzxh.xyz/picture/20191227111234.png" alt></p>
 
       
     </div>
@@ -307,7 +307,7 @@
         <p><span>本文标题:</span><a href="/2019/12/26/64位ubuntu官方系统安装宝塔7.0.3 并成功安装nginx+php+mysql环境/">64位ubuntu官方系统安装宝塔7.0.3 并成功编译安装nginx+php+mysql环境</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2019年12月26日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年02月08日 - 11时24分</p>
+        <p><span>最后更新:</span>2020年02月08日 - 11时43分</p>
         <p>
         </p>
         <p>
