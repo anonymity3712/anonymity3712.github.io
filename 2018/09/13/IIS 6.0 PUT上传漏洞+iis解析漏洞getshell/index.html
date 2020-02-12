@@ -17,19 +17,19 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="IIS 6.0 PUT上传漏洞+iis解析漏洞getshell。环境为本地靶场环境。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204207.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204230.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204245.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204308.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204320.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204338.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204358.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204411.png">
-<meta property="og:updated_time" content="2020-02-08T06:30:21.571Z">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204207.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204230.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204245.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204308.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204320.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204338.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204358.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204411.png">
+<meta property="og:updated_time" content="2020-02-12T14:37:21.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IIS 6.0 PUT上传漏洞+iis解析漏洞getshell">
 <meta name="twitter:description" content="IIS 6.0 PUT上传漏洞+iis解析漏洞getshell。环境为本地靶场环境。">
-<meta name="twitter:image" content="https://www.mzxh.xyzpicture/20190820204207.png">
+<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20190820204207.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -256,7 +256,7 @@
       
           
         <p>IIS 6.0 PUT上传漏洞+iis解析漏洞getshell。环境为本地靶场环境。<br><a id="more"></a></p>
-<p>IIS 6.0 PUT上传漏洞。产生原因是IIS Server在Web服务扩展中开启了WebDAV。并且管理员在配置权限时，没有遵循最小原则。给IIS配置了可以写入的权限，包括网站根目录。<br><img src="https://www.mzxh.xyzpicture/20190820204207.png" alt></p>
+<p>IIS 6.0 PUT上传漏洞。产生原因是IIS Server在Web服务扩展中开启了WebDAV。并且管理员在配置权限时，没有遵循最小原则。给IIS配置了可以写入的权限，包括网站根目录。<br><img src="https://www.mzxh.xyz/picture/20190820204207.png" alt></p>
 <ul>
 <li><p>靶场环境 </p>
 <ul>
@@ -271,15 +271,15 @@
 <li><p>复现步骤</p>
 </li>
 </ul>
-<p>用iisputscaner查看一下目标网的IP，PUT显示为YES及代表目网站开启了WebDAV。<br><img src="https://www.mzxh.xyzpicture/20190820204230.png" alt></p>
-<p>然后运行桂林老兵的iiswrite工具，选中OPTTONS,然后提交数据包。有如下返回内容代表存在put上传漏洞<br><img src="https://www.mzxh.xyzpicture/20190820204245.png" alt></p>
-<p>选到PUT选项卡，请求文件名为你上传到服务器上的文件名（只能是TXT文件）把小马也改成TXT文件，然后提交数据包上传。<br>返回201代表上传成功<br><img src="https://www.mzxh.xyzpicture/20190820204308.png" alt></p>
+<p>用iisputscaner查看一下目标网的IP，PUT显示为YES及代表目网站开启了WebDAV。<br><img src="https://www.mzxh.xyz/picture/20190820204230.png" alt></p>
+<p>然后运行桂林老兵的iiswrite工具，选中OPTTONS,然后提交数据包。有如下返回内容代表存在put上传漏洞<br><img src="https://www.mzxh.xyz/picture/20190820204245.png" alt></p>
+<p>选到PUT选项卡，请求文件名为你上传到服务器上的文件名（只能是TXT文件）把小马也改成TXT文件，然后提交数据包上传。<br>返回201代表上传成功<br><img src="https://www.mzxh.xyz/picture/20190820204308.png" alt></p>
 <p>但是这个TXT文件是无法被iis解析的，所以要利用到的是copy，主要目的是为了将txt的文件修改为asp的，从而可以将文件变成可执行的脚本文件。</p>
-<p><img src="https://www.mzxh.xyzpicture/20190820204320.png" alt></p>
+<p><img src="https://www.mzxh.xyz/picture/20190820204320.png" alt></p>
 <p>然后发现直接改成asp文件，提交数据不成功，一直没有回显，想到IIS还有一个解析漏洞。于是把文件名改成 shell.asp;.jpg</p>
-<p><img src="https://www.mzxh.xyzpicture/20190820204338.png" alt></p>
+<p><img src="https://www.mzxh.xyz/picture/20190820204338.png" alt></p>
 <p>可以看到返回值201，上传成功了</p>
-<p>再次访问 <a href="http://192.168.1.102/shell.asp;.jpg" target="_blank" rel="noopener">http://192.168.1.102/shell.asp;.jpg</a><br><img src="https://www.mzxh.xyzpicture/20190820204358.png" alt><br>可以看到文件上传成功了<br>尝试用菜刀连接<br><img src="https://www.mzxh.xyzpicture/20190820204411.png" alt></p>
+<p>再次访问 <a href="http://192.168.1.102/shell.asp;.jpg" target="_blank" rel="noopener">http://192.168.1.102/shell.asp;.jpg</a><br><img src="https://www.mzxh.xyz/picture/20190820204358.png" alt><br>可以看到文件上传成功了<br>尝试用菜刀连接<br><img src="https://www.mzxh.xyz/picture/20190820204411.png" alt></p>
 
       
     </div>
@@ -291,7 +291,7 @@
         <p><span>本文标题:</span><a href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2018年09月13日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年02月08日 - 14时30分</p>
+        <p><span>最后更新:</span>2020年02月12日 - 22时37分</p>
         <p>
         </p>
         <p>

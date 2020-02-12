@@ -17,31 +17,31 @@
 <meta property="og:site_name" content="墨竹星海’s Bolg">
 <meta property="og:description" content="union注入攻击的原理及操作">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204601.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204609.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204655.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204706.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204719.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204732.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204742.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204751.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204809.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204901.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204914.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820204949.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820205004.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820205021.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820205038.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820205050.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820205101.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820205113.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820205129.png">
-<meta property="og:image" content="https://www.mzxh.xyzpicture/20190820205137.png">
-<meta property="og:updated_time" content="2020-02-08T06:30:21.602Z">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204601.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204609.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204655.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204706.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204719.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204732.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204742.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204751.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204809.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204901.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204914.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204949.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205004.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205021.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205038.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205050.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205101.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205113.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205129.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205137.png">
+<meta property="og:updated_time" content="2020-02-12T14:37:21.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="union注入攻击">
 <meta name="twitter:description" content="union注入攻击的原理及操作">
-<meta name="twitter:image" content="https://www.mzxh.xyzpicture/20190820204601.png">
+<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20190820204601.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -269,20 +269,20 @@
           
         <p>union注入攻击的原理及操作<br><a id="more"></a></p>
 <p>靶机网址 <a href="http://192.168.95.130/sqltest/4.1.6/union.php?id=1" target="_blank" rel="noopener">http://192.168.95.130/sqltest/4.1.6/union.php?id=1</a></p>
-<p>访问该网址，页面返回正常<br><img src="https://www.mzxh.xyzpicture/20190820204601.png" alt></p>
-<p>在url后添加一个单引号，再次访问 页面返回的结果与id=1的不同<br><img src="https://www.mzxh.xyzpicture/20190820204609.png" alt></p>
-<p>访问id=1 and 1=1，由于and1=1为真，所以页面返回与id=1相同的结果<br><img src="https://www.mzxh.xyzpicture/20190820204655.png" alt></p>
-<p>访问id=1 ane 1=2，由于and1=2为假，所以页面返回与id=1不同的结果<br><img src="https://www.mzxh.xyzpicture/20190820204706.png" alt></p>
+<p>访问该网址，页面返回正常<br><img src="https://www.mzxh.xyz/picture/20190820204601.png" alt></p>
+<p>在url后添加一个单引号，再次访问 页面返回的结果与id=1的不同<br><img src="https://www.mzxh.xyz/picture/20190820204609.png" alt></p>
+<p>访问id=1 and 1=1，由于and1=1为真，所以页面返回与id=1相同的结果<br><img src="https://www.mzxh.xyz/picture/20190820204655.png" alt></p>
+<p>访问id=1 ane 1=2，由于and1=2为假，所以页面返回与id=1不同的结果<br><img src="https://www.mzxh.xyz/picture/20190820204706.png" alt></p>
 <p>可以得出该网站可能存在SQL注入漏洞的结论.</p>
-<p>接着使用 order by1-99 语句查询该数据表的字段数量。可以理解为order by =1 order by =2 order by =3  …… order by =99如访问id=1 order by 5，页面返回与id=1相同的内容<br><img src="https://www.mzxh.xyzpicture/20190820204719.png" alt></p>
-<p>访问id=1 order by 6，页面返回与id=1不同的内容<br><img src="https://www.mzxh.xyzpicture/20190820204732.png" alt></p>
-<p>代表该表单只有5个字段内容，可以上数据库里对比一下。<br><img src="https://www.mzxh.xyzpicture/20190820204742.png" alt></p>
+<p>接着使用 order by1-99 语句查询该数据表的字段数量。可以理解为order by =1 order by =2 order by =3  …… order by =99如访问id=1 order by 5，页面返回与id=1相同的内容<br><img src="https://www.mzxh.xyz/picture/20190820204719.png" alt></p>
+<p>访问id=1 order by 6，页面返回与id=1不同的内容<br><img src="https://www.mzxh.xyz/picture/20190820204732.png" alt></p>
+<p>代表该表单只有5个字段内容，可以上数据库里对比一下。<br><img src="https://www.mzxh.xyz/picture/20190820204742.png" alt></p>
 <p>在数据库查询参数ID对应的内容，然后将数据库的内容输出到页面。由于是将数据输出到页面上，所以可以使用union注入。起通过ordey by 查询的结果，得到字段数为5，所以Union注入的语句如下所示</p>
 <p>Union select 1,2,3,4,5</p>
-<p><img src="https://www.mzxh.xyzpicture/20190820204751.png" alt><br>可以看到页面执行成功，但是没有返回union select的结果，这是由于代码只返回第一条结果，所以union select获取的内容没有输出到页面。可以通过设置ID参数值，让服务器返回union select的结果，例如ID的值设置为-1 这样数据库中没有id=-1的数据，所以会返回union select的结果。<br><img src="https://www.mzxh.xyzpicture/20190820204809.png" alt><br>返回结果为2:3 意味着在union select 1,2,3,4,5中，2和3的位置可以输入MySQL语句。我们尝试在2的位置查询当前数据库名（使用database()函数）访问id=-1 union select 1,database(),3,4,5页面成功返回了当前数据库信息。<br><img src="https://www.mzxh.xyzpicture/20190820204901.png" alt><br>得知了数据库名后，输入以下命令来查询表名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select table_name from information_schema.tables where table_schema=&apos;test&apos; limit 0,1</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://www.mzxh.xyzpicture/20190820204914.png" alt><br>页面返回了数据库的第一个表名，如果需要查看第二个表名，则修改limit中的第一位数字，例如limit 1,1 就可以获取数据库的第二个表名<br><img src="https://www.mzxh.xyzpicture/20190820204949.png" alt><br><img src="https://www.mzxh.xyzpicture/20190820205004.png" alt><br>已知库名和表名，查询字段名，这里用users表名做示范。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select column_name from information_schema.columns where table_schema=&apos;test&apos; and table_name=&apos;users&apos; limit 0,1</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://www.mzxh.xyzpicture/20190820205021.png" alt><br>通过修改limit中的第一位数据获取全部字段名<br><img src="https://www.mzxh.xyzpicture/20190820205038.png" alt><br><img src="https://www.mzxh.xyzpicture/20190820205050.png" alt><br><img src="https://www.mzxh.xyzpicture/20190820205101.png" alt><br><img src="https://www.mzxh.xyzpicture/20190820205113.png" alt><br>当获取了库名，表名和字段名时，就可以构造SQL语句查询数据库的数据，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select password from test.user limit 0,1</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://www.mzxh.xyzpicture/20190820205129.png" alt><br>对比一下，可以看到和数据库里的值相同<br><img src="https://www.mzxh.xyzpicture/20190820205137.png" alt></p>
+<p><img src="https://www.mzxh.xyz/picture/20190820204751.png" alt><br>可以看到页面执行成功，但是没有返回union select的结果，这是由于代码只返回第一条结果，所以union select获取的内容没有输出到页面。可以通过设置ID参数值，让服务器返回union select的结果，例如ID的值设置为-1 这样数据库中没有id=-1的数据，所以会返回union select的结果。<br><img src="https://www.mzxh.xyz/picture/20190820204809.png" alt><br>返回结果为2:3 意味着在union select 1,2,3,4,5中，2和3的位置可以输入MySQL语句。我们尝试在2的位置查询当前数据库名（使用database()函数）访问id=-1 union select 1,database(),3,4,5页面成功返回了当前数据库信息。<br><img src="https://www.mzxh.xyz/picture/20190820204901.png" alt><br>得知了数据库名后，输入以下命令来查询表名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select table_name from information_schema.tables where table_schema=&apos;test&apos; limit 0,1</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://www.mzxh.xyz/picture/20190820204914.png" alt><br>页面返回了数据库的第一个表名，如果需要查看第二个表名，则修改limit中的第一位数字，例如limit 1,1 就可以获取数据库的第二个表名<br><img src="https://www.mzxh.xyz/picture/20190820204949.png" alt><br><img src="https://www.mzxh.xyz/picture/20190820205004.png" alt><br>已知库名和表名，查询字段名，这里用users表名做示范。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select column_name from information_schema.columns where table_schema=&apos;test&apos; and table_name=&apos;users&apos; limit 0,1</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://www.mzxh.xyz/picture/20190820205021.png" alt><br>通过修改limit中的第一位数据获取全部字段名<br><img src="https://www.mzxh.xyz/picture/20190820205038.png" alt><br><img src="https://www.mzxh.xyz/picture/20190820205050.png" alt><br><img src="https://www.mzxh.xyz/picture/20190820205101.png" alt><br><img src="https://www.mzxh.xyz/picture/20190820205113.png" alt><br>当获取了库名，表名和字段名时，就可以构造SQL语句查询数据库的数据，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select password from test.user limit 0,1</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://www.mzxh.xyz/picture/20190820205129.png" alt><br>对比一下，可以看到和数据库里的值相同<br><img src="https://www.mzxh.xyz/picture/20190820205137.png" alt></p>
 <h2 id="Union注入代码分析"><a href="#Union注入代码分析" class="headerlink" title="Union注入代码分析"></a>Union注入代码分析</h2><p>在Union注入页面中，程序获取GET参数ID，将ID拼接到SQL语句中，在数据库中查询参数ID对应的内容，然后将第一条查询结果中的username和address输出到页面，由于是将数据输出到页面上，所以可以利用union语句查询其他数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$con=mysqli_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;test&quot;);</span><br><span class="line">// 检测连接</span><br><span class="line">if (mysqli_connect_errno())</span><br><span class="line">&#123;</span><br><span class="line">	echo &quot;连接失败: &quot; . mysqli_connect_error();</span><br><span class="line">&#125;</span><br><span class="line">$id = $_GET[&apos;id&apos;];</span><br><span class="line">$result = mysqli_query($con,&quot;select * from users where `id`=&quot;.$id);</span><br><span class="line">$row = mysqli_fetch_array($result);</span><br><span class="line">echo $row[&apos;username&apos;] . &quot; : &quot; . $row[&apos;address&apos;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
 <p>当访问id=-1 union select 1,2,3,4,5 时执行的SQL语句为；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where ‘id’ =-1 union select 1,2,3,4,5</span><br></pre></td></tr></table></figure></p>
 <p>此时SQL语句可以分为select * from users where ‘id’ =-1和union select 1,2,3,4,5两条，利用第二条语句（Union查询）就可以获取数据库中的数据</p>
@@ -297,7 +297,7 @@
         <p><span>本文标题:</span><a href="/2018/09/26/union注入攻击/">union注入攻击</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2018年09月26日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年02月08日 - 14时30分</p>
+        <p><span>最后更新:</span>2020年02月12日 - 22时37分</p>
         <p>
         </p>
         <p>
