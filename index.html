@@ -242,60 +242,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="hexo-blog-encrypt"><a href="#hexo-blog-encrypt" class="headerlink" title="hexo-blog-encrypt"></a>hexo-blog-encrypt</h1><p>项目地址：<a href="https://github.com/MikeCoder/hexo-blog-encrypt" target="_blank" rel="noopener">https://github.com/MikeCoder/hexo-blog-encrypt</a></p>
-<h2 id="这是个啥"><a href="#这是个啥" class="headerlink" title="这是个啥"></a>这是个啥</h2><ul>
-<li><p>你可能需要写一些私密的博客, 通过密码验证的方式让人不能随意浏览.</p>
-</li>
-<li><p>这在 wordpress, emlog 或是其他博客系统中都很容易实现, 然而 hexo 除外. :(</p>
-</li>
-<li><p>为了解决这个问题, 让我们有请 “hexo-blog-encrypt”.</p>
-</li>
-</ul>
-<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
-<li><p>一旦你输入了正确的密码, 它将会被存储在本地浏览器的 localStorage中. 按个按钮, 密码将会被清空. 若博客中又脚本, 它将会被正确地执行.</p>
-</li>
-<li><p>支持按标签加密.</p>
-</li>
-<li><p>所有的核心功能都是由原生的 API 所提供的. 在 Node.js中, 我们使用 <a href="https://nodejs.org/dist/latest-v12.x/docs/api/crypto.html" target="_blank" rel="noopener">Crypto</a>. 在浏览器中, 我们使用 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API" target="_blank" rel="noopener">Web Crypto API</a>.</p>
-</li>
-<li><p><a href="https://tools.ietf.org/html/rfc2898" target="_blank" rel="noopener">PBKDF2</a>, <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf" target="_blank" rel="noopener">SHA256</a> 被用于分发密钥, <a href="https://csrc.nist.gov/publications/detail/sp/800-38a/final" target="_blank" rel="noopener">AES256-CBC</a> 被用于加解密, 我们还使用 <a href="https://csrc.nist.gov/csrc/media/publications/fips/198/1/final/documents/fips-198-1_final.pdf" target="_blank" rel="noopener">HMAC</a> 来验证密文的来源, 并确保其未被篡改.</p>
-</li>
-<li><p>我们广泛地使用 Promise 来进行异步操作, 以此确保线程不被杜塞.</p>
-</li>
-<li><p>过时的浏览器将不能正常显示, 因此, 请升级您的浏览器.</p>
-</li>
-</ul>
-<h2 id="在线演示"><a href="#在线演示" class="headerlink" title="在线演示"></a>在线演示</h2><ul>
-<li>点击 <a href="https://mhexo.github.io/" target="_blank" rel="noopener">Demo Page</a>, <strong>所有的密码都是 <code>hello</code></strong>.</li>
-</ul>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
-<li><p><code>npm install --save hexo-blog-encrypt</code></p>
-</li>
-<li><p>或 <code>yarn add hexo-blog-encrypt</code> (需要) <a href="https://yarnpkg.com/en/" target="_blank" rel="noopener">Yarn</a>)</p>
-</li>
-</ul>
-<h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h2><ul>
-<li>将 “password” 字段添加到您文章信息头就像这样.</li>
-</ul>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">date: 2016-03-30 21:18:02</span><br><span class="line">password: mikemessi</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<ul>
-<li>再使用 <code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code> 在本地预览加密的文章.</li>
-</ul>
-<h2 id="设置优先级"><a href="#设置优先级" class="headerlink" title="设置优先级"></a>设置优先级</h2><p>文章信息头 &gt; 按标签加密</p>
-<h2 id="高级设置"><a href="#高级设置" class="headerlink" title="高级设置"></a>高级设置</h2><h3 id="文章信息头"><a href="#文章信息头" class="headerlink" title="文章信息头"></a>文章信息头</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line">title: Hello World</span><br><span class="line">tags:</span><br><span class="line"><span class="bullet">- </span>作为日记加密</span><br><span class="line">date: 2016-03-30 21:12:21</span><br><span class="line">password: mikemessi</span><br><span class="line">abstract: 有东西被加密了, 请输入密码查看.</span><br><span class="line">message: 您好, 这里需要密码.</span><br><span class="line">wrong<span class="emphasis">_pass_</span>message: 抱歉, 这个密码看着不太对, 请再试试.</span><br><span class="line">wrong<span class="emphasis">_hash_</span>message: 抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-<h3 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a><code>_config.yml</code></h3><h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Security</span></span><br><span class="line"><span class="attr">encrypt:</span> <span class="comment"># hexo-blog-encrypt</span></span><br><span class="line"><span class="attr">  abstract:</span> <span class="string">有东西被加密了,</span> <span class="string">请输入密码查看.</span></span><br><span class="line"><span class="attr">  message:</span> <span class="string">您好,</span> <span class="string">这里需要密码.</span></span><br><span class="line"><span class="attr">  tags:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">&#123;name:</span> <span class="string">tagName,</span> <span class="attr">password:</span> <span class="string">密码A&#125;</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">&#123;name:</span> <span class="string">tagName,</span> <span class="attr">password:</span> <span class="string">密码B&#125;</span></span><br><span class="line"><span class="attr">  template:</span> <span class="string">&lt;div</span> <span class="string">id="hexo-blog-encrypt"</span> <span class="string">data-wpm="&#123;&#123;hbeWrongPassMessage&#125;&#125;"</span> <span class="string">data-whm="&#123;&#123;hbeWrongHashMessage&#125;&#125;"&gt;&lt;div</span> <span class="string">class="hbe-input-container"&gt;&lt;input</span> <span class="string">type="password"</span> <span class="string">id="hbePass"</span> <span class="string">placeholder="&#123;&#123;hbeMessage&#125;&#125;"</span> <span class="string">/&gt;&lt;label&gt;&#123;&#123;hbeMessage&#125;&#125;&lt;/label&gt;&lt;div</span> <span class="string">class="bottom-line"&gt;&lt;/div&gt;&lt;/div&gt;&lt;script</span> <span class="string">id="hbeData"</span> <span class="string">type="hbeData"</span> <span class="string">data-hmacdigest="&#123;&#123;hbeHmacDigest&#125;&#125;"&gt;&#123;&#123;hbeEncryptedData&#125;&#125;&lt;/script&gt;&lt;/div&gt;</span></span><br><span class="line"><span class="attr">  wrong_pass_message:</span> <span class="string">抱歉,</span> <span class="string">这个密码看着不太对,</span> <span class="string">请再试试.</span></span><br><span class="line"><span class="attr">  wrong_hash_message:</span> <span class="string">抱歉,</span> <span class="string">这个文章不能被校验,</span> <span class="string">不过您还是能看看解密后的内容.</span></span><br></pre></td></tr></table></figure>
-<h3 id="配置优先级"><a href="#配置优先级" class="headerlink" title="配置优先级"></a>配置优先级</h3><p>文章信息头 &gt; <code>_config.yml</code> (站点根目录下的) &gt; 默认配置</p>
-<h3 id="关于-Callback-函数"><a href="#关于-Callback-函数" class="headerlink" title="关于 Callback 函数"></a>关于 Callback 函数</h3><p>在部分博客中, 解密后部分元素可能无法正常显示或者表现, 这属于已知问题. 目前的解决办法是通过自行查阅自己的博客中的代码, 了解到在 onload 事件发生时调用了哪些函数, 并将这些函数挑选后写入到博客内容中. 如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Callback Test</span><br><span class="line">date: 2019-12-21 11:54:07</span><br><span class="line">tags:</span><br><span class="line">    - Encrypted</span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">This is a blog to test Callback functions. You just need to add code at the last of your post like following:</span><br><span class="line"></span><br><span class="line">It will be called after the blog decrypted.</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    // 添加一个 script tag 与代码在文章末尾.</span><br><span class="line">    alert(&quot;Hello World&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>例子在: <a href="https://mhexo.github.io/2019/12/21/CallbackTest/" target="_blank" rel="noopener">Callback 例子</a>.</p>
-<h3 id="对-TOC-进行加密"><a href="#对-TOC-进行加密" class="headerlink" title="对 TOC 进行加密"></a>对 TOC 进行加密</h3><p>如果你有一篇文章使用了 TOC，你需要修改模板的部分代码。这里用 landscape 作为例子：</p>
-<ul>
-<li>你可以在 hexo/themes/landscape/layout/_partial/article.ejs 找到 article.ejs。</li>
-<li>然后找到 &lt;% post.content %&gt; 这段代码，通常在30行左右。</li>
-<li>使用如下的代码来替代它:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;% if(post.toc == true)&#123; %&gt;</span><br><span class="line">  &lt;div id=&quot;toc-div&quot; class=&quot;toc-article&quot; &lt;% if (post.encrypt == true) &#123; %&gt;style=&quot;display:none&quot; &lt;% &#125; %&gt;&gt;</span><br><span class="line">    &lt;strong class=&quot;toc-title&quot;&gt;Index&lt;/strong&gt;</span><br><span class="line">      &lt;% if (post.encrypt == true) &#123; %&gt;</span><br><span class="line">        &lt;%- toc(post.origin, &#123;list_number: true&#125;) %&gt;</span><br><span class="line">      &lt;% &#125; else &#123; %&gt;</span><br><span class="line">        &lt;%- toc(post.content, &#123;list_number: true&#125;) %&gt;</span><br><span class="line">      &lt;% &#125; %&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line">&lt;%- post.content %&gt;</span><br></pre></td></tr></table></figure>
-
+              <h1 id="hexo-blog-encrypt"><a href="#hexo-blog-encrypt" class="headerlink" title="hexo-blog-encrypt"></a>hexo-blog-encrypt</h1><p>项目地址：<a href="https://github.com/MikeCoder/hexo-blog-encrypt" target="_blank" rel="noopener">https://github.com/MikeCoder/hexo-blog-encrypt</a></p>
+          
       
     </div>
     
@@ -312,6 +260,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2020/04/09/Hexo下的加密插件/#more">查看全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
