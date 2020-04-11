@@ -7,30 +7,20 @@
   
   
   
-  <title>64位ubuntu官方系统安装宝塔7.0.3 并成功编译安装nginx+php+mysql环境 | 墨竹星海’s Bolg</title>
+  <title>Docker 配置国内镜像源 | 墨竹星海’s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="终于成功的在64位树莓派环境下安装好了宝塔的lnmp环境，给大家填下坑">
-<meta name="keywords" content="树莓派">
+  <meta name="description" content="在 Docker 中有一个由官方提供的中央镜像仓库，不过，由于众所周知的原因，有时它除了慢的可怜以外，还经常莫名其妙的完全无法访问。">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="64位ubuntu官方系统安装宝塔7.0.3 并成功编译安装nginx+php+mysql环境">
-<meta property="og:url" content="http://yoursite.com/2019/12/26/64位ubuntu官方系统安装宝塔7.0.3 并成功安装nginx+php+mysql环境/index.html">
+<meta property="og:title" content="Docker 配置国内镜像源">
+<meta property="og:url" content="http://yoursite.com/2020/04/11/Docker 配置国内镜像源/index.html">
 <meta property="og:site_name" content="墨竹星海’s Bolg">
-<meta property="og:description" content="终于成功的在64位树莓派环境下安装好了宝塔的lnmp环境，给大家填下坑">
+<meta property="og:description" content="在 Docker 中有一个由官方提供的中央镜像仓库，不过，由于众所周知的原因，有时它除了慢的可怜以外，还经常莫名其妙的完全无法访问。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191227104722.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191227105234.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191227105843.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191227110110.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191227110037.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191227110700.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191227110842.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191227111014.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191227111234.png">
-<meta property="og:updated_time" content="2020-02-08T03:46:21.935Z">
+<meta property="og:updated_time" content="2020-04-11T11:13:00.905Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="64位ubuntu官方系统安装宝塔7.0.3 并成功编译安装nginx+php+mysql环境">
-<meta name="twitter:description" content="终于成功的在64位树莓派环境下安装好了宝塔的lnmp环境，给大家填下坑">
-<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20191227104722.png">
+<meta name="twitter:title" content="Docker 配置国内镜像源">
+<meta name="twitter:description" content="在 Docker 中有一个由官方提供的中央镜像仓库，不过，由于众所周知的原因，有时它除了慢的可怜以外，还经常莫名其妙的完全无法访问。">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -223,11 +213,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-64位ubuntu官方系统安装宝塔7.0.3 并成功安装nginx+php+mysql环境" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Docker 配置国内镜像源" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/26/64位ubuntu官方系统安装宝塔7.0.3 并成功安装nginx+php+mysql环境/" class="article-date">
-      <time datetime="2019-12-25T16:00:00.000Z" itemprop="datePublished">2019-12-26</time>
+      <a href="/2020/04/11/Docker 配置国内镜像源/" class="article-date">
+      <time datetime="2020-04-10T16:00:00.000Z" itemprop="datePublished">2020-04-11</time>
 </a>
 
     </div>
@@ -241,7 +231,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      64位ubuntu官方系统安装宝塔7.0.3 并成功编译安装nginx+php+mysql环境
+      Docker 配置国内镜像源
     </h1>
   
 
@@ -257,7 +247,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树莓派/">树莓派</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -267,46 +257,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>终于成功的在64位树莓派环境下安装好了宝塔的lnmp环境，给大家填下坑<br><a id="more"></a></p>
-<h3 id="直接官方下载ubuntu-18-04-3-preinstalled-server-arm64-raspi3系统"><a href="#直接官方下载ubuntu-18-04-3-preinstalled-server-arm64-raspi3系统" class="headerlink" title="直接官方下载ubuntu-18.04.3-preinstalled-server-arm64+raspi3系统"></a>直接官方下载ubuntu-18.04.3-preinstalled-server-arm64+raspi3系统</h3><p>下载地址</p>
-<p><a href="https://wiki.ubuntu.com/ARM/RaspberryPi" target="_blank" rel="noopener">https://wiki.ubuntu.com/ARM/RaspberryPi</a></p>
-<p><img src="https://www.mzxh.xyz/picture/20191227104722.png" alt></p>
-<hr>
-<h3 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h3><p>直接用Win32DiskImager写入（百度一堆不多说，不会的自己百度）</p>
-<hr>
-<h3 id="开机后修改软件源"><a href="#开机后修改软件源" class="headerlink" title="开机后修改软件源"></a>开机后修改软件源</h3><p>把/etc/apt/sources.list内的文件内容换为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#清华大学源</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-security main restricted universe multiverse</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure></p>
-<p>然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get dist-upgrade</span><br></pre></td></tr></table></figure></p>
-<hr>
-<h3 id="安装宝塔面板"><a href="#安装宝塔面板" class="headerlink" title="安装宝塔面板"></a>安装宝塔面板</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O install.sh http://download.bt.cn/install/install-ubuntu_6.0.sh &amp;&amp; sudo bash install.sh</span><br></pre></td></tr></table></figure>
-<p><img src="https://www.mzxh.xyz/picture/20191227105234.png" alt></p>
-<p>试了一下 普通的SD卡每次装完基本都在40分钟左右</p>
-<hr>
-<h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><p>在面板中先安装nginx 然后等到/www/server/panel/install文件夹内生成nginx.sh文件时 关闭面板安装</p>
-<p><img src="https://www.mzxh.xyz/picture/20191227105843.png" alt></p>
-<p>然后删除nginx.sh文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm nginx.sh</span><br></pre></td></tr></table></figure>
-<p>重新下载编译好的nginx.sh文件内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.mzxh.xyz/tools/nginx.sh</span><br></pre></td></tr></table></figure>
-<p>然后直接在/www/server/panel/install文件夹下执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh nginx.sh install</span><br></pre></td></tr></table></figure></p>
-<p>Nginx安装并启动成功<br><img src="https://www.mzxh.xyz/picture/20191227110110.png" alt></p>
-<p>可能会遇见的报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure:  error: the HTTP image filter module requires the GD library.You can either do not enable  the  module or install the l ibraries</span><br><span class="line">make: *** NO rule to make target &apos; build&apos;, needed by&apos; default&apos;. Stop</span><br><span class="line">make: *** No rule to make target  install&apos;. Stop.</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://www.mzxh.xyz/picture/20191227110037.png" alt></p>
-<p>解决办法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libgd-dev</span><br></pre></td></tr></table></figure></p>
-<p>然后再次执行安装</p>
-<hr>
-<h3 id="安装Mysql"><a href="#安装Mysql" class="headerlink" title="安装Mysql"></a>安装Mysql</h3><p>Mysql5.5 测试面板可以直接安装成功</p>
-<hr>
-<h3 id="安装php"><a href="#安装php" class="headerlink" title="安装php"></a>安装php</h3><p>修改/www/server/panpel/install/lib.sh文件，删除掉最底部的这三条命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Install_Libmcrypt</span><br><span class="line">Install_Mcrypt</span><br><span class="line">Install_Mhash</span><br></pre></td></tr></table></figure></p>
-<p>删除后手动安装libmcrypt-dev<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install libmcrypt-dev</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://www.mzxh.xyz/picture/20191227110700.png" alt></p>
-<p>下载编译好的php.sh文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.mzxh.xyz/tools/php.sh</span><br></pre></td></tr></table></figure>
-<p>然后运行命令安装php7.1（根据你的需求安装php版本）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh php.sh install 7.1</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://www.mzxh.xyz/picture/20191227110842.png" alt></p>
-<p>安装成功</p>
-<hr>
-<p>成品截图<br><img src="https://www.mzxh.xyz/picture/20191227111014.png" alt></p>
-<p><img src="https://www.mzxh.xyz/picture/20191227111234.png" alt></p>
+        <p>在 Docker 中有一个由官方提供的中央镜像仓库，不过，由于众所周知的原因，有时它除了慢的可怜以外，还经常莫名其妙的完全无法访问。<a id="more"></a></p>
+<p>创建或修改 /etc/docker/daemon.json 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+<p>添加一个国内的源地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;registry-mirrors&quot;: [&quot;http://hub-mirror.c.163.com&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后重启docker服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker.service</span><br></pre></td></tr></table></figure>
+<p>国内加速地址有：</p>
+<p>Docker中国区官方镜像<br><a href="https://registry.docker-cn.com" target="_blank" rel="noopener">https://registry.docker-cn.com</a></p>
+<p>网易<br><a href="http://hub-mirror.c.163.com" target="_blank" rel="noopener">http://hub-mirror.c.163.com</a></p>
+<p>ustc<br><a href="https://docker.mirrors.ustc.edu.cn" target="_blank" rel="noopener">https://docker.mirrors.ustc.edu.cn</a></p>
+<p>中国科技大学<br><a href="https://docker.mirrors.ustc.edu.cn" target="_blank" rel="noopener">https://docker.mirrors.ustc.edu.cn</a></p>
 
       
     </div>
@@ -315,10 +277,10 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/12/26/64位ubuntu官方系统安装宝塔7.0.3 并成功安装nginx+php+mysql环境/">64位ubuntu官方系统安装宝塔7.0.3 并成功编译安装nginx+php+mysql环境</a></p>
+        <p><span>本文标题:</span><a href="/2020/04/11/Docker 配置国内镜像源/">Docker 配置国内镜像源</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
-        <p><span>发布时间:</span>2019年12月26日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年02月08日 - 11时46分</p>
+        <p><span>发布时间:</span>2020年04月11日 - 00时00分</p>
+        <p><span>最后更新:</span>2020年04月11日 - 19时13分</p>
         <p>
         </p>
         <p>
@@ -330,18 +292,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2020/02/08/把github上的hexo博客同步到国内的coding上/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          把github上的hexo博客同步到国内的新版本coding上
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/25/SSH登录IP白名单/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SSH登录IP白名单</div>
+    <a href="/2020/04/09/Hexo下的加密插件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo下的加密插件</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -353,7 +306,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#直接官方下载ubuntu-18-04-3-preinstalled-server-arm64-raspi3系统"><span class="toc-number">1.</span> <span class="toc-text">直接官方下载ubuntu-18.04.3-preinstalled-server-arm64+raspi3系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#烧录系统"><span class="toc-number">2.</span> <span class="toc-text">烧录系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开机后修改软件源"><span class="toc-number">3.</span> <span class="toc-text">开机后修改软件源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装宝塔面板"><span class="toc-number">4.</span> <span class="toc-text">安装宝塔面板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装nginx"><span class="toc-number">5.</span> <span class="toc-text">安装nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Mysql"><span class="toc-number">6.</span> <span class="toc-text">安装Mysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装php"><span class="toc-number">7.</span> <span class="toc-text">安装php</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -402,13 +355,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2020/02/08/把github上的hexo博客同步到国内的coding上/" title="上一篇: 把github上的hexo博客同步到国内的新版本coding上">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/12/25/SSH登录IP白名单/" title="下一篇: SSH登录IP白名单">
+            <a href="/2020/04/09/Hexo下的加密插件/" title="下一篇: Hexo下的加密插件">
                 <i class="fa fa-angle-right"></i>
             </a>
         
