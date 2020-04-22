@@ -9,13 +9,13 @@
   
   <title>通达OA任意用户登录漏洞复现 | 墨竹星海’s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="复现环境window2008 软件版本11.3 11.3版本下载地址：链接：https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg提取码：ousi 漏洞分析：通过官网发布的补丁对比确认新版本修改了如下文件：  审计logincheck_code.php文件源码  代码第14行从redis里取标识id，判断是否存在，不存在则退出。 代码第28行存在严重逻辑错">
+  <meta name="description" content="通达OA官网发布了最新11.5版本。修复了未经授权的攻击者可以通过构造参数进行任意用户登录（包括admin）">
 <meta name="keywords" content="漏洞复现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通达OA任意用户登录漏洞复现">
 <meta property="og:url" content="http://yoursite.com/2020/04/22/通达OA任意用户登录漏洞复现/index.html">
 <meta property="og:site_name" content="墨竹星海’s Bolg">
-<meta property="og:description" content="复现环境window2008 软件版本11.3 11.3版本下载地址：链接：https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg提取码：ousi 漏洞分析：通过官网发布的补丁对比确认新版本修改了如下文件：  审计logincheck_code.php文件源码  代码第14行从redis里取标识id，判断是否存在，不存在则退出。 代码第28行存在严重逻辑错">
+<meta property="og:description" content="通达OA官网发布了最新11.5版本。修复了未经授权的攻击者可以通过构造参数进行任意用户登录（包括admin）">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://picture.mzxh.xyz/20200422162918.png">
 <meta property="og:image" content="http://picture.mzxh.xyz/20200422162932.png">
@@ -24,10 +24,10 @@
 <meta property="og:image" content="http://picture.mzxh.xyz/20200422163858.png">
 <meta property="og:image" content="http://picture.mzxh.xyz/20200422163919.png">
 <meta property="og:image" content="http://picture.mzxh.xyz/20200422164045.png">
-<meta property="og:updated_time" content="2020-04-22T08:48:21.363Z">
+<meta property="og:updated_time" content="2020-04-22T09:19:08.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通达OA任意用户登录漏洞复现">
-<meta name="twitter:description" content="复现环境window2008 软件版本11.3 11.3版本下载地址：链接：https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg提取码：ousi 漏洞分析：通过官网发布的补丁对比确认新版本修改了如下文件：  审计logincheck_code.php文件源码  代码第14行从redis里取标识id，判断是否存在，不存在则退出。 代码第28行存在严重逻辑错">
+<meta name="twitter:description" content="通达OA官网发布了最新11.5版本。修复了未经授权的攻击者可以通过构造参数进行任意用户登录（包括admin）">
 <meta name="twitter:image" content="http://picture.mzxh.xyz/20200422162918.png">
   
   
@@ -265,8 +265,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <a id="more"></a>
-<p>复现环境window2008 软件版本11.3</p>
+        <p>通达OA官网发布了最新11.5版本。修复了未经授权的攻击者可以通过构造参数进行任意用户登录（包括admin）<br><a id="more"></a><br>复现环境window2008 软件版本11.3</p>
 <p>11.3版本下载地址：<br>链接：<a href="https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg" target="_blank" rel="noopener">https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg</a><br>提取码：ousi</p>
 <h2 id="漏洞分析："><a href="#漏洞分析：" class="headerlink" title="漏洞分析："></a>漏洞分析：</h2><p>通过官网发布的补丁对比确认新版本修改了如下文件：</p>
 <p><img src="http://picture.mzxh.xyz/20200422162918.png" alt></p>
@@ -302,7 +301,7 @@
         <p><span>本文标题:</span><a href="/2020/04/22/通达OA任意用户登录漏洞复现/">通达OA任意用户登录漏洞复现</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2020年04月22日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年04月22日 - 16时48分</p>
+        <p><span>最后更新:</span>2020年04月22日 - 17时19分</p>
         <p>
         </p>
         <p>
