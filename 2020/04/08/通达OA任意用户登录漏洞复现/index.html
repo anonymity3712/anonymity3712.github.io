@@ -7,34 +7,28 @@
   
   
   
-  <title>第四节：kali的信息收集之被动扫描（二） | 墨竹星海’s Bolg</title>
+  <title>通达OA任意用户登录漏洞复现 | 墨竹星海’s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现在几乎所有联网的设备都成为了可能被攻击的目标，但是很多人都搞不懂，攻击者是如何在互联网上找到这些设备的呢？">
-<meta name="keywords" content="kali">
+  <meta name="description" content="复现环境window2008 软件版本11.3 11.3版本下载地址：链接：https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg提取码：ousi 漏洞分析：通过官网发布的补丁对比确认新版本修改了如下文件：  审计logincheck_code.php文件源码  代码第14行从redis里取标识id，判断是否存在，不存在则退出。 代码第28行存在严重逻辑错">
+<meta name="keywords" content="漏洞复现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第四节：kali的信息收集之被动扫描（二）">
-<meta property="og:url" content="http://yoursite.com/2018/09/10/第四节：kali的信息收集之被动扫描（二）/index.html">
+<meta property="og:title" content="通达OA任意用户登录漏洞复现">
+<meta property="og:url" content="http://yoursite.com/2020/04/08/通达OA任意用户登录漏洞复现/index.html">
 <meta property="og:site_name" content="墨竹星海’s Bolg">
-<meta property="og:description" content="现在几乎所有联网的设备都成为了可能被攻击的目标，但是很多人都搞不懂，攻击者是如何在互联网上找到这些设备的呢？">
+<meta property="og:description" content="复现环境window2008 软件版本11.3 11.3版本下载地址：链接：https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg提取码：ousi 漏洞分析：通过官网发布的补丁对比确认新版本修改了如下文件：  审计logincheck_code.php文件源码  代码第14行从redis里取标识id，判断是否存在，不存在则退出。 代码第28行存在严重逻辑错">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820210903.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211004.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211020.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211052.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211110.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211128.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211156.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211208.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211221.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211232.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211248.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211300.png">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820211329.png">
-<meta property="og:updated_time" content="2020-02-12T14:37:21.562Z">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200422162918.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200422162932.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200422162950.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200422163011.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200422163858.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200422163919.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200422164045.png">
+<meta property="og:updated_time" content="2020-04-22T08:46:41.039Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第四节：kali的信息收集之被动扫描（二）">
-<meta name="twitter:description" content="现在几乎所有联网的设备都成为了可能被攻击的目标，但是很多人都搞不懂，攻击者是如何在互联网上找到这些设备的呢？">
-<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20190820210903.png">
+<meta name="twitter:title" content="通达OA任意用户登录漏洞复现">
+<meta name="twitter:description" content="复现环境window2008 软件版本11.3 11.3版本下载地址：链接：https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg提取码：ousi 漏洞分析：通过官网发布的补丁对比确认新版本修改了如下文件：  审计logincheck_code.php文件源码  代码第14行从redis里取标识id，判断是否存在，不存在则退出。 代码第28行存在严重逻辑错">
+<meta name="twitter:image" content="http://picture.mzxh.xyz/20200422162918.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -227,11 +221,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-第四节：kali的信息收集之被动扫描（二）" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-通达OA任意用户登录漏洞复现" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/" class="article-date">
-      <time datetime="2018-09-09T16:00:00.000Z" itemprop="datePublished">2018-09-10</time>
+      <a href="/2020/04/08/通达OA任意用户登录漏洞复现/" class="article-date">
+      <time datetime="2020-04-07T16:00:00.000Z" itemprop="datePublished">2020-04-08</time>
 </a>
 
     </div>
@@ -245,7 +239,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      第四节：kali的信息收集之被动扫描（二）
+      通达OA任意用户登录漏洞复现
     </h1>
   
 
@@ -255,13 +249,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/kali/">kali</a>
+    <a class="article-category-link" href="/categories/漏洞复现/">漏洞复现</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/">kali</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/漏洞复现/">漏洞复现</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -271,55 +265,32 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>现在几乎所有联网的设备都成为了可能被攻击的目标，但是很多人都搞不懂，攻击者是如何在互联网上找到这些设备的呢？<br><a id="more"></a></p>
-<h2 id="可怕的搜索引擎-——-shodan"><a href="#可怕的搜索引擎-——-shodan" class="headerlink" title="可怕的搜索引擎 —— shodan"></a>可怕的搜索引擎 —— shodan</h2><h3 id="关于shodan"><a href="#关于shodan" class="headerlink" title="关于shodan"></a>关于shodan</h3><p>与谷歌不同的是，Shodan不是在网上搜索网址，而是直接进入互联网的背后通道。Shodan可以说是一款“黑暗”谷歌，一刻不停的在寻找着所有和互联网关联的服务器、摄像头、打印机、路由器等等。每个月Shodan都会在大约5亿个服务器上日夜不停地搜集信息。</p>
-<h4 id="shodan的基本使用"><a href="#shodan的基本使用" class="headerlink" title="shodan的基本使用"></a>shodan的基本使用</h4><p>首先，我们访问shodan的在线网站，网址为 <a href="https://www.shodan.io" target="_blank" rel="noopener">https://www.shodan.io</a> 打开这个网址后的页面如下图：</p>
-<p><img src="https://www.mzxh.xyz/picture/20190820210903.png" alt></p>
-<p>如果想要正常使用shodan，需要注册一个账号。没有账号的话，使用上有很大的限制。点击右上角的login or register登入（可以直接用google登入）</p>
-<p><img src="https://www.mzxh.xyz/picture/20190820211004.png" alt></p>
-<h5 id="常用的搜索语句："><a href="#常用的搜索语句：" class="headerlink" title="常用的搜索语句："></a>常用的搜索语句：</h5><ul>
-<li>net对特定的IP进行互联网设备爬取<br><code>net:8.8.8.8</code></li>
-</ul>
-<p><img src="https://www.mzxh.xyz/picture/20190820211020.png" alt></p>
-<p>   点击Details可以看到详细的内容</p>
-<p><img src="https://www.mzxh.xyz/picture/20190820211052.png" alt></p>
-<p>扩展搜索整个IP地址段<br><code>net:220.191.232.0/24</code></p>
-<p><img src="https://www.mzxh.xyz/picture/20190820211110.png" alt></p>
-<ul>
-<li>使用country参数爬取某一特定国家<br><code>country:CN</code></li>
-</ul>
-<p><img src="https://www.mzxh.xyz/picture/20190820211128.png" alt></p>
-<ul>
-<li>使用city参数爬去城市信息<br><code>city:beijing</code></li>
-</ul>
-<p><img src="https://www.mzxh.xyz/picture/20190820211156.png" alt></p>
-<ul>
-<li>使用port参数搜索开放了某端口的设备，例如，查询北京开放了22端口的设备<br><code>city:beijing port:22</code></li>
-</ul>
-<p><img src="https://www.mzxh.xyz/picture/20190820211208.png" alt></p>
-<ul>
-<li><p>使用os参数过滤操作系统，例如查询北京开放了22端口的linux设备</p>
-<p><code>city:beijing port:22 os:linux</code></p>
-</li>
-</ul>
-<p><img src="https://www.mzxh.xyz/picture/20190820211221.png" alt></p>
-<ul>
-<li><p>使用hostname指定主机名或域名，例如查询北京属于百度的设备</p>
-<p><code>city:beijing hostname:baidu.com</code></p>
-</li>
-</ul>
-<p><img src="https://www.mzxh.xyz/picture/20190820211232.png" alt></p>
-<ul>
-<li><p>用server参数指定服务器端运行的软件，例如查询北京的百度开放了22端口运行这Apache的linux设备</p>
-<p><code>city:beijing hostname:baidu.com server: Apache</code></p>
-</li>
-</ul>
-<p><img src="https://www.mzxh.xyz/picture/20190820211248.png" alt></p>
-<h5 id="自定义创造字符串搜索"><a href="#自定义创造字符串搜索" class="headerlink" title="自定义创造字符串搜索"></a>自定义创造字符串搜索</h5><p>cisco HTTP/1.1 200 server: IIS country:CN<br>查询中国的 cisco设备，页面返回值为200，运行了IIS的。</p>
-<p><img src="https://www.mzxh.xyz/picture/20190820211300.png" alt></p>
-<p>search linux upnp avtech<br>查询某在线摄像头</p>
-<p><img src="https://www.mzxh.xyz/picture/20190820211329.png" alt></p>
-<p><strong>shodan，会员是49美刀，每年的黑色星期五会打折出售，是5美刀，需要的可以留意一下。</strong></p>
+        <a id="more"></a>
+<p>复现环境window2008 软件版本11.3</p>
+<p>11.3版本下载地址：<br>链接：<a href="https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg" target="_blank" rel="noopener">https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg</a><br>提取码：ousi</p>
+<h2 id="漏洞分析："><a href="#漏洞分析：" class="headerlink" title="漏洞分析："></a>漏洞分析：</h2><p>通过官网发布的补丁对比确认新版本修改了如下文件：</p>
+<p><img src="http://picture.mzxh.xyz/20200422162918.png" alt></p>
+<p>审计logincheck_code.php文件源码</p>
+<p><img src="http://picture.mzxh.xyz/20200422162932.png" alt></p>
+<p>代码第14行从redis里取标识id，判断是否存在，不存在则退出。</p>
+<p>代码第28行存在严重逻辑错误，因为变量UID为攻击者可控，攻击者可赋值变量UID为1，从而控制该SQL语句返回的结果为USER表中UID为1的用户信息（默认UID为1的用户是管理员admin）。</p>
+<p><img src="http://picture.mzxh.xyz/20200422162950.png" alt></p>
+<p>代码第180行将查询到的用户信息进行相应的session赋值，因此攻击者只需要绕过代码第14行的redis验证，便可通过伪造UID的值来达到登录任意用户的目的。</p>
+<p>跟进另一个文件： /general/login_code.php </p>
+<p><img src="http://picture.mzxh.xyz/20200422163011.png" alt></p>
+<p>代码第12行随机生成了一串登录的标识id，并在第35行通过set_cache方法将该标识id插入到redis缓存中，最重要的是在第37行将该标识id进行了输出。</p>
+<h2 id="复现过程："><a href="#复现过程：" class="headerlink" title="复现过程："></a>复现过程：</h2><p>首先访问<a href="http://192.168.1.113/general/login_code.php" target="_blank" rel="noopener">http://192.168.1.113/general/login_code.php</a></p>
+<p><img src="http://picture.mzxh.xyz/20200422163858.png" alt></p>
+<p>获取到 code_uid </p>
+<p>再访问<a href="http://192.168.1.113/logincheck_code.php" target="_blank" rel="noopener">http://192.168.1.113/logincheck_code.php</a></p>
+<p>用post请求提交code_uid 参数进行伪造</p>
+<p><img src="http://picture.mzxh.xyz/20200422163919.png" alt></p>
+<p>获取到PHPSESSID参数</p>
+<p>最后访问登入后页面</p>
+<p><a href="http://192.168.1.113/general/index.php" target="_blank" rel="noopener">http://192.168.1.113/general/index.php</a></p>
+<p><img src="http://picture.mzxh.xyz/20200422164045.png" alt></p>
+<p>把cookie改成伪造的参数即可登入成功</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>官方已发布最新修正版本，请及时更新补丁：<a href="https://www.tongda2000.com/download/sp2019.php" target="_blank" rel="noopener">https://www.tongda2000.com/download/sp2019.php</a></p>
 
       
     </div>
@@ -328,10 +299,10 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></p>
+        <p><span>本文标题:</span><a href="/2020/04/08/通达OA任意用户登录漏洞复现/">通达OA任意用户登录漏洞复现</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
-        <p><span>发布时间:</span>2018年09月10日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年02月12日 - 22时37分</p>
+        <p><span>发布时间:</span>2020年04月08日 - 00时00分</p>
+        <p><span>最后更新:</span>2020年04月22日 - 16时46分</p>
         <p>
         </p>
         <p>
@@ -343,18 +314,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/04/09/Hexo下的加密插件/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          一元购买云主机 （ 星外虚拟主机提权 ）
+          Hexo下的加密插件
         
       </div>
     </a>
   
   
-    <a href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">第三节：kali的信息收集之被动扫描（一）</div>
+    <a href="/2020/04/08/360众测靶场复盘/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">360众测靶场复盘</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -366,7 +337,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#可怕的搜索引擎-——-shodan"><span class="toc-number">1.</span> <span class="toc-text">可怕的搜索引擎 —— shodan</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于shodan"><span class="toc-number">1.1.</span> <span class="toc-text">关于shodan</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#shodan的基本使用"><span class="toc-number">1.1.1.</span> <span class="toc-text">shodan的基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#常用的搜索语句："><span class="toc-number">1.1.1.1.</span> <span class="toc-text">常用的搜索语句：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自定义创造字符串搜索"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">自定义创造字符串搜索</span></a></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞分析："><span class="toc-number">1.</span> <span class="toc-text">漏洞分析：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复现过程："><span class="toc-number">2.</span> <span class="toc-text">复现过程：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修复建议"><span class="toc-number">3.</span> <span class="toc-text">修复建议</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -415,13 +386,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/" title="上一篇: 一元购买云主机 （ 星外虚拟主机提权 ）">
+            <a href="/2020/04/09/Hexo下的加密插件/" title="上一篇: Hexo下的加密插件">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/" title="下一篇: 第三节：kali的信息收集之被动扫描（一）">
+            <a href="/2020/04/08/360众测靶场复盘/" title="下一篇: 360众测靶场复盘">
                 <i class="fa fa-angle-right"></i>
             </a>
         
