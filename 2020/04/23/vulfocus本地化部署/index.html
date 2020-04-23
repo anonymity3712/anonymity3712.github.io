@@ -7,22 +7,37 @@
   
   
   
-  <title>添加或修改ssh服务的端口 | 墨竹星海’s Bolg</title>
+  <title>vulfocus���ػ����� | 墨竹星海’s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ssh远程登录的默认端口是22，建议修改默认端口防止被恶意爆破登入">
-<meta name="keywords" content="安全">
+  <meta name="description" content="Vulfocus ��һ��©������ƽ̨����©������ docker ���񣬷��뼴��ʹ�ã����伴�á�">
+<meta name="keywords" content="Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="添加或修改ssh服务的端口">
-<meta property="og:url" content="http://yoursite.com/2019/12/22/修改ssh端口/index.html">
+<meta property="og:title" content="vulfocus���ػ�����">
+<meta property="og:url" content="http://yoursite.com/2020/04/23/vulfocus本地化部署/index.html">
 <meta property="og:site_name" content="墨竹星海’s Bolg">
-<meta property="og:description" content="ssh远程登录的默认端口是22，建议修改默认端口防止被恶意爆破登入">
+<meta property="og:description" content="Vulfocus ��һ��©������ƽ̨����©������ docker ���񣬷��뼴��ʹ�ã����伴�á�">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223115607.png">
-<meta property="og:updated_time" content="2020-02-12T14:37:21.343Z">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423193414.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423193507.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423193704.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423193917.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423194050.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423194203.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423194255.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423194639.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423194946.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423195214.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423195503.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423195722.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423200846.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423201239.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423201328.png">
+<meta property="og:image" content="http://picture.mzxh.xyz/20200423202245.png">
+<meta property="og:updated_time" content="2020-04-23T13:28:04.907Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="添加或修改ssh服务的端口">
-<meta name="twitter:description" content="ssh远程登录的默认端口是22，建议修改默认端口防止被恶意爆破登入">
-<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20191223115607.png">
+<meta name="twitter:title" content="vulfocus���ػ�����">
+<meta name="twitter:description" content="Vulfocus ��һ��©������ƽ̨����©������ docker ���񣬷��뼴��ʹ�ã����伴�á�">
+<meta name="twitter:image" content="http://picture.mzxh.xyz/20200423193414.png">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -215,11 +230,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-修改ssh端口" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-vulfocus本地化部署" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/12/22/修改ssh端口/" class="article-date">
-      <time datetime="2019-12-21T16:00:00.000Z" itemprop="datePublished">2019-12-22</time>
+      <a href="/2020/04/23/vulfocus本地化部署/" class="article-date">
+      <time datetime="2020-04-22T16:00:00.000Z" itemprop="datePublished">2020-04-23</time>
 </a>
 
     </div>
@@ -233,7 +248,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      添加或修改ssh服务的端口
+      vulfocus���ػ�����
     </h1>
   
 
@@ -243,13 +258,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
+    <a class="article-category-link" href="/categories/�����/">�����</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -259,10 +274,74 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>ssh远程登录的默认端口是22，建议修改默认端口防止被恶意爆破登入<br><a id="more"></a><br>通过编辑/etc/ssh/sshd_config文件可以修改sshd服务的相关配置</p>
-<p><img src="https://www.mzxh.xyz/picture/20191223115607.png" alt></p>
-<p>把默认的注释符去掉，然后把端口改为自己想要的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd.service</span><br></pre></td></tr></table></figure></p>
-<p>重启ssh服务即可</p>
+        <p>Vulfocus ��һ��©������ƽ̨����©������ docker ���񣬷��뼴��ʹ�ã����伴�á�<a id="more"></a></p>
+<h3 id="���u�����"><a href="#���u�����" class="headerlink" title="���û�����"></a>���û�����</h3><hr>
+<p>ubuntu19.10 service �������ص�ַ��<a href="https://releases.ubuntu.com/19.10/ubuntu-19.10-live-server-amd64.iso" target="_blank" rel="noopener">������</a></p>
+<h5 id="�޸�ԴΪ����Դ"><a href="#�޸�ԴΪ����Դ" class="headerlink" title="�޸�ԴΪ����Դ"></a>�޸�ԴΪ����Դ</h5><p>����/etc/aptĿ¼�£�����һ��sources.list�ļ����Ȱ�������һ��sudo cp sources.list sources.list.old Ȼ���sources.list<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim sources.list</span><br></pre></td></tr></table></figure></p>
+<p>�滻Ϊ��������<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.aliyun.com/ubuntu/ eoan main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ eoan main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ eoan-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ eoan-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ eoan-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ eoan-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ eoan-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ eoan-backports main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ eoan-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ eoan-proposed main restricted universe multiverse</span><br></pre></td></tr></table></figure></p>
+<p>ִ������<code>sudo apt-get update</code>��<code>sudo apt-get upgrade</code></p>
+<h5 id="��װdocker"><a href="#��װdocker" class="headerlink" title="��װdocker"></a>��װdocker</h5><p>�ٷ���װ����</p>
+<p><a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank" rel="noopener">https://docs.docker.com/engine/install/ubuntu/</a></p>
+<p>��Install using the repository����ʼ��װ����</p>
+<h5 id="��װpip3"><a href="#��װpip3" class="headerlink" title="��װpip3"></a>��װpip3</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install python3-pip</span><br></pre></td></tr></table></figure>
+<h5 id="��װnginx"><a href="#��װnginx" class="headerlink" title="��װnginx"></a>��װnginx</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install nginx</span><br></pre></td></tr></table></figure>
+<h5 id="��װnpm"><a href="#��װnpm" class="headerlink" title="��װnpm"></a>��װnpm</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install npm</span><br></pre></td></tr></table></figure>
+<h3 id="��������L-vulfocus-api"><a href="#��������L-vulfocus-api" class="headerlink" title="��������Ŀ vulfocus-api"></a>��������Ŀ vulfocus-api</h3><hr>
+<h4 id="������"><a href="#������" class="headerlink" title="������"></a>������</h4><ul>
+<li>���ԣ�python3</li>
+<li>���ݿ⣺sqlite3</li>
+<li>��ܣ�Django</li>
+<li>API��djangorestframework</li>
+</ul>
+<p>��Ŀ��ַ��<a href="https://github.com/fofapro/vulfocus" target="_blank" rel="noopener">https://github.com/fofapro/vulfocus</a></p>
+<p>ֱ����ק����������</p>
+<p><img src="http://picture.mzxh.xyz/20200423193414.png" alt></p>
+<p>����vulfocus-api�ļ���</p>
+<p><img src="http://picture.mzxh.xyz/20200423193507.png" alt></p>
+<p>��װ����</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install -r requirements.txt</span><br></pre></td></tr></table></figure>
+<p><img src="http://picture.mzxh.xyz/20200423193704.png" alt></p>
+<p>�޸�<code>vulfocus/settings.py</code>�ļ�</p>
+<p>���� Docker URL��Ĭ��Ϊ��tcp://127.0.0.1:2375���޸�Ϊ Docker �������� IP��</p>
+<p>���� VUL_IP���޸�Ϊ Docker �������� IP��</p>
+<p><img src="http://picture.mzxh.xyz/20200423193917.png" alt></p>
+<p>��Ϊ</p>
+<p><img src="http://picture.mzxh.xyz/20200423194050.png" alt></p>
+<p>�������ݿ⣺<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py migrate</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://picture.mzxh.xyz/20200423194203.png" alt></p>
+<p>��������Ա�û���<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py createsuperuser</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://picture.mzxh.xyz/20200423194255.png" alt></p>
+<p>�˴��������ǰг�����Ĺ���Ա�˺ţ����������趨��</p>
+<p>�޸�<code>/usr/lib/systemd/system/docker.service</code></p>
+<p><img src="http://picture.mzxh.xyz/20200423194639.png" alt></p>
+<p>��[Service]���¼�һ��<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/dockerd -H tcp://127.0.0.1:2375 -H unix://var/run/docker.sock \</span><br></pre></td></tr></table></figure></p>
+<p>�����ϴ��ļ���С���޸�<code>/etc/nginx/nginx.conf</code>�ļ����� http �м��룺<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client_max_body_size 2048M;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://picture.mzxh.xyz/20200423194946.png" alt></p>
+<p>���� 2048M��2GB�� Ϊ�ϴ��ļ�������ƣ��ɸ���ʵ�ʽ����޸ģ���С����Ϊ 200M ��</p>
+<p>�޸� nginx ����Ŀ¼ sites-available �� default �ļ�<code>��/etc/nginx/sites-available/default��</code> ��server �ڵ�������´��룺</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location /api/ &#123;</span><br><span class="line">		proxy_pass http://127.0.0.1:8000/;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://picture.mzxh.xyz/20200423195214.png" alt></p>
+<h3 id="����j����L-Vulfocus-Frontend"><a href="#����j����L-Vulfocus-Frontend" class="headerlink" title="����ǰ����Ŀ Vulfocus Frontend"></a>����ǰ����Ŀ Vulfocus Frontend</h3><p>vulfocus ǰ����Ŀ��ͨ�� Element-ui + VUE ������</p>
+<h5 id="������-1"><a href="#������-1" class="headerlink" title="������"></a>������</h5><ul>
+<li>UI��Element UI</li>
+<li>��ܣ�vue</li>
+<li>node��v12.16.2</li>
+<li>npm��6.14.4</li>
+</ul>
+<h5 id="����"><a href="#����" class="headerlink" title="����"></a>����</h5><p>��Ŀ����������vulfocus-frontend�ļ���</p>
+<p><img src="http://picture.mzxh.xyz/20200423195503.png" alt></p>
+<h5 id="��װ������"><a href="#��װ������" class="headerlink" title="��װ������"></a>��װ������</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p><img src="http://picture.mzxh.xyz/20200423195722.png" alt></p>
+<h5 id="������L��"><a href="#������L��" class="headerlink" title="������Ŀ��"></a>������Ŀ��</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build:prod</span><br></pre></td></tr></table></figure>
+<p><img src="http://picture.mzxh.xyz/20200423200846.png" alt></p>
+<p>�� dist �ļ����µ����ݸ��Ƶ� nginx ��̬Ŀ¼�� /var/www/html</p>
+<h5 id="����nginx����"><a href="#����nginx����" class="headerlink" title="����nginx����"></a>����nginx����</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nginx restart</span><br></pre></td></tr></table></figure>
+<p><img src="http://picture.mzxh.xyz/20200423201239.png" alt></p>
+<h5 id="��-API-��ˣ�"><a href="#��-API-��ˣ�" class="headerlink" title="�� API ��ˣ�"></a>�� API ��ˣ�</h5><p>����vulfocus-api�ļ���<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 manage.py runserver 0.0.0.0:8000</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://picture.mzxh.xyz/20200423201328.png" alt></p>
+<h5 id="���ʰл�IP��80�˿�"><a href="#���ʰл�IP��80�˿�" class="headerlink" title="���ʰл�IP��80�˿�"></a>���ʰл�IP��80�˿�</h5><p><img src="http://picture.mzxh.xyz/20200423202245.png" alt></p>
+<p>���ΰ�װ��û��©���������Ҫ�� <a href="https://hub.docker.com/" target="_blank" rel="noopener">https://hub.docker.com/</a> ��վ��ȡ����</p>
+<p>����������ٷ��ֲ᣺<a href="https://github.com/fofapro/vulfocus/blob/master/README.md" target="_blank" rel="noopener">������</a></p>
 
       
     </div>
@@ -271,10 +350,10 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/12/22/修改ssh端口/">添加或修改ssh服务的端口</a></p>
+        <p><span>本文标题:</span><a href="/2020/04/23/vulfocus本地化部署/">vulfocus���ػ�����</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
-        <p><span>发布时间:</span>2019年12月22日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年02月12日 - 22时37分</p>
+        <p><span>发布时间:</span>2020年04月23日 - 00时00分</p>
+        <p><span>最后更新:</span>2020年04月23日 - 21时28分</p>
         <p>
         </p>
         <p>
@@ -286,18 +365,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2019/12/22/安装防爆破/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          安装denyhosts防止爆破ssh登入
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/11/apache认证/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Apache设置用户访问web页面需要认证</div>
+    <a href="/2020/04/22/通达OA任意用户登录漏洞复现/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">通达OA任意用户登录漏洞复现</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -309,7 +379,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#���u�����"><span class="toc-number">1.</span> <span class="toc-text">���û�����</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#�޸�ԴΪ����Դ"><span class="toc-number">1.0.1.</span> <span class="toc-text">�޸�ԴΪ����Դ</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#��װdocker"><span class="toc-number">1.0.2.</span> <span class="toc-text">��װdocker</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#��װpip3"><span class="toc-number">1.0.3.</span> <span class="toc-text">��װpip3</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#��װnginx"><span class="toc-number">1.0.4.</span> <span class="toc-text">��װnginx</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#��װnpm"><span class="toc-number">1.0.5.</span> <span class="toc-text">��װnpm</span></a></li></ol></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#��������L-vulfocus-api"><span class="toc-number">2.</span> <span class="toc-text">��������Ŀ vulfocus-api</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#������"><span class="toc-number">2.1.</span> <span class="toc-text">������</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#����j����L-Vulfocus-Frontend"><span class="toc-number">3.</span> <span class="toc-text">����ǰ����Ŀ Vulfocus Frontend</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#������-1"><span class="toc-number">3.0.1.</span> <span class="toc-text">������</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#����"><span class="toc-number">3.0.2.</span> <span class="toc-text">����</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#��װ������"><span class="toc-number">3.0.3.</span> <span class="toc-text">��װ������</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#������L��"><span class="toc-number">3.0.4.</span> <span class="toc-text">������Ŀ��</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#����nginx����"><span class="toc-number">3.0.5.</span> <span class="toc-text">����nginx����</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#��-API-��ˣ�"><span class="toc-number">3.0.6.</span> <span class="toc-text">�� API ��ˣ�</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#���ʰл�IP��80�˿�"><span class="toc-number">3.0.7.</span> <span class="toc-text">���ʰл�IP��80�˿�</span></a></li></ol></li>
 </div>
 <style>
     .left-col .switch-btn {
@@ -358,13 +428,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/12/22/安装防爆破/" title="上一篇: 安装denyhosts防止爆破ssh登入">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2019/12/11/apache认证/" title="下一篇: Apache设置用户访问web页面需要认证">
+            <a href="/2020/04/22/通达OA任意用户登录漏洞复现/" title="下一篇: 通达OA任意用户登录漏洞复现">
                 <i class="fa fa-angle-right"></i>
             </a>
         
