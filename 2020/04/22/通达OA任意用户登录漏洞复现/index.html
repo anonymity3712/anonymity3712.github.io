@@ -9,26 +9,18 @@
   
   <title>通达OA任意用户登录漏洞复现 | 墨竹星海’s Bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通达OA官网发布了最新11.5版本。修复了未经授权的攻击者可以通过构造参数进行任意用户登录（包括admin）">
+  <meta name="description" content="有东西被加密了, 请输入密码查看.">
 <meta name="keywords" content="漏洞复现">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通达OA任意用户登录漏洞复现">
 <meta property="og:url" content="http://yoursite.com/2020/04/22/通达OA任意用户登录漏洞复现/index.html">
 <meta property="og:site_name" content="墨竹星海’s Bolg">
-<meta property="og:description" content="通达OA官网发布了最新11.5版本。修复了未经授权的攻击者可以通过构造参数进行任意用户登录（包括admin）">
+<meta property="og:description" content="有东西被加密了, 请输入密码查看.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://picture.mzxh.xyz/20200422162918.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/20200422162932.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/20200422162950.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/20200422163011.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/20200422163858.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/20200422163919.png">
-<meta property="og:image" content="http://picture.mzxh.xyz/20200422164045.png">
-<meta property="og:updated_time" content="2020-04-22T09:19:08.125Z">
+<meta property="og:updated_time" content="2020-04-23T13:29:52.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通达OA任意用户登录漏洞复现">
-<meta name="twitter:description" content="通达OA官网发布了最新11.5版本。修复了未经授权的攻击者可以通过构造参数进行任意用户登录（包括admin）">
-<meta name="twitter:image" content="http://picture.mzxh.xyz/20200422162918.png">
+<meta name="twitter:description" content="有东西被加密了, 请输入密码查看.">
   
   
     <link rel="icon" href="/img/favicon.png">
@@ -265,32 +257,15 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>通达OA官网发布了最新11.5版本。修复了未经授权的攻击者可以通过构造参数进行任意用户登录（包括admin）<br><a id="more"></a><br>复现环境window2008 软件版本11.3</p>
-<p>11.3版本下载地址：<br>链接：<a href="https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg" target="_blank" rel="noopener">https://pan.baidu.com/s/1QFAoLxj9pD1bnnq3f4I8lg</a><br>提取码：ousi</p>
-<h2 id="漏洞分析："><a href="#漏洞分析：" class="headerlink" title="漏洞分析："></a>漏洞分析：</h2><p>通过官网发布的补丁对比确认新版本修改了如下文件：</p>
-<p><img src="http://picture.mzxh.xyz/20200422162918.png" alt></p>
-<p>审计logincheck_code.php文件源码</p>
-<p><img src="http://picture.mzxh.xyz/20200422162932.png" alt></p>
-<p>代码第14行从redis里取标识id，判断是否存在，不存在则退出。</p>
-<p>代码第28行存在严重逻辑错误，因为变量UID为攻击者可控，攻击者可赋值变量UID为1，从而控制该SQL语句返回的结果为USER表中UID为1的用户信息（默认UID为1的用户是管理员admin）。</p>
-<p><img src="http://picture.mzxh.xyz/20200422162950.png" alt></p>
-<p>代码第180行将查询到的用户信息进行相应的session赋值，因此攻击者只需要绕过代码第14行的redis验证，便可通过伪造UID的值来达到登录任意用户的目的。</p>
-<p>跟进另一个文件： /general/login_code.php </p>
-<p><img src="http://picture.mzxh.xyz/20200422163011.png" alt></p>
-<p>代码第12行随机生成了一串登录的标识id，并在第35行通过set_cache方法将该标识id插入到redis缓存中，最重要的是在第37行将该标识id进行了输出。</p>
-<h2 id="复现过程："><a href="#复现过程：" class="headerlink" title="复现过程："></a>复现过程：</h2><p>首先访问<a href="http://192.168.1.113/general/login_code.php" target="_blank" rel="noopener">http://192.168.1.113/general/login_code.php</a></p>
-<p><img src="http://picture.mzxh.xyz/20200422163858.png" alt></p>
-<p>获取到 code_uid </p>
-<p>再访问<a href="http://192.168.1.113/logincheck_code.php" target="_blank" rel="noopener">http://192.168.1.113/logincheck_code.php</a></p>
-<p>用post请求提交code_uid 参数进行伪造</p>
-<p><img src="http://picture.mzxh.xyz/20200422163919.png" alt></p>
-<p>获取到PHPSESSID参数</p>
-<p>最后访问登入后页面</p>
-<p><a href="http://192.168.1.113/general/index.php" target="_blank" rel="noopener">http://192.168.1.113/general/index.php</a></p>
-<p><img src="http://picture.mzxh.xyz/20200422164045.png" alt></p>
-<p>把cookie改成伪造的参数即可登入成功</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>官方已发布最新修正版本，请及时更新补丁：<a href="https://www.tongda2000.com/download/sp2019.php" target="_blank" rel="noopener">https://www.tongda2000.com/download/sp2019.php</a></p>
-
+        <div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder>
+    <label for="hbePass">您好, 这里需要密码.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="e0b72a4e4c2f64790cb80152344e4135c4e339a088dbbcabea4cc484d33548f4">28da6addbfa8ef47ceec286faebf49d8d95affa001b57bd9fe34ad1bd23212766b4e0214ab88c825e5ff96b2662770d32953893d242c77c518e4f5984abc032dbd3ee3cfde2ce62ab8ca2e25f51aaeddacf83a10e9c4620336ffca8e4bdd91028e858dc240c8783f6f9148c31ad840c79b8158d830d42843b6ab3f54ca960c9163dc6d8b07e28132bb9afa2ef03f95ba65148d6b22990caf7b7144cb4b6ac72bd7786620f26f819ff87b0df8ca54c76aaad8d029d97fc198d204b86b34ba409c45c7e929ececd176780c01a1b3a9dfc20ed07649a7912ee7a68dd99f235be49d4272899fe65086445fc5af17475d0bdef635b29657b02b75c482f45c5b7cf2a333fea43cf8f274bf106403aee0e1550fa9e0fbde3e812b2d0cfc7790bbc5c65563a4070a391e35aec42d45f5723f5afd735bf82e053b0b368b6e7e0bb3bd04bbc5fb4bacbb07cf7b0c24eedc3b8460a7a5e731a5b4d0942cb4e8864a697fde813753509a31e6c1dd0c36bff66a432b376b954254ad83a852a6eb0d545190ddcad9c0ca28ff4270b5dc22ce4208c6a4e9f4abb4bdc8a280bdfcf838f1b740e968a690603d001d101cbad6578c91f9bc60f1ae5d76d394ce4682cab3e9e15b4ca2da633141ead2435915a1a49afc032a4c4ca5dbd9bb470df4fab9f003ac0939db9d2a0168afa096d019a0fca7cdb30cad5af9b21ceeec6e69893fa6265296e14bb9dc9b8dc4280a53d6c9f2505bf01e16d62a2c37cf378f5dffd4b2c83d82e712d032b877b5344857046733c11c7efbe692dfbe8a90071f05b56ce809f756f1bc7a0e7cf6683c8f9c072f75a96942e89066a6b6231758ffa956de321ff6d1d5e4ea1b4a52625cefd8fcaf16c9d91891be67a230768d9a191401166ca64941250971c3cb35b4c091e907c13bab0df616c315756cdb3911fcd52ccc64f9ebe1c02e3b9d69748d1c28be586ccea3d1770d50ad4d4fbfa69a7e26c02b123925a91362ce0985cc0542323fd0cfb865dd6e31964224f7fadf7018ff970735ff8b12a0474b4cf362f5cf2524e9d8ec34bf292fad0ae6cfdb68ecba65f753ead742a32ca8b195564bff5d8029e29c0dc872374d7f4cd5fa657f94030ad8a988a971699d0606a789165c0ec2f0138613293fda964d8cb3dc13690a6b8d1d3b212f6e41e65799528191da17fd45d625f2e0a8685e33a57b27ee665ccedc2724d59e0501da62a82b2a91076f4df9ef3eef3608295fe5b8ff69fd3028f001a4c33234dc629c7986b85f79531c4d1815c2c8d5f091a9cd5acddecea79f1ecef29bf80a072dff11393ab2ff126b6009c0aee00f668ecb1c0e0fc80d22bf15bbdf81a9ed7239dc81f9c591e90cf04cea39107dcc8f20d4d9a468cb72d93e798b1a98c3d6691a17db8e6da1ca3de80a8f028b7aca3e4ffd8719e62f6320358bb2444f0142f2df3b7414b6b62c9d6090ef74995085b965711b8e54d4db4c555738c2d5de4a53cb76d24bf9a1498f634b950d9e86e4fe9d724ed232d5090e93d6c64e7db98093e95121f99ed379bb89635cf4df689133e8f6b59260c0ce18a357e8e4f02721ecb45dc1cc809f4d1c2c7bac9d361399e476cb8fb01904f2f635579a43cc5233baac3511538019909c8f08be42f6f0c2a9e2d9c38f242982068e6f757b4803d52852a33553c6d9d2fd5ed3db406bbdd991d0d47d65c06a2eddf7f8faee423860ff478c355dedfef64a2f74e15bf46e09816a683fd3f25e159f0140d47ceabcfbe5d987fff171dfea4767a4f4048b1c786f06eea7df4f67f1e95dafbb10c0ec95d083084354aa91234b7c7d456686e4a9bc76679ba77b8dbe7fad48b81e2e6883e70b42d3a692820db4993b920fc67268f3c921ad5371f7c18aacbc58c2806bad24545eddc80a5a1c62aabf28acdc5a720451bafc04a64ec34b227dc47dc92c1bef5fb0671cd53fd5c2cca6e69883f731d5ece7a4334c9898de1c517fde869b8e64e68a893b4ec3ef95716141695b261e56619f811560b53888598b3245fcb91b2eddc0cedc70fa94c076b36dec5424fdbbab78db4a3f99390d1e705286477ab2327d356791eba84227c6b948e860c19692cbc3d576d7af5d229a5af9ed931c11601a6516fdff32fbd26552a3a14ca3fae77697c9a52d4e5010ffc14aefbee673f0b84eec10b3a33064f9f7e9bb46613d2b146d108969d11aa9415796364cd70687298185a676330cdaabc5a112cb234b4a12364a23dcf6620e0e7c3b79f24667f65478f831ee62d7c23ad292dacd24bed9f982835f009d9599dc66473fb0032a150d22b1047e52c63e1da907195651cc65002e7d7d46f2d58ac99728051696baae6f749df081b287ed588efbe72572a8a71d95bd5e9a97c0263e50f47918cc5a87fa764b6e5050720f886b553cf7a6a7078283d99c8de1e7272bb0e5c9bf52e9b71df09d3bf7c5bd4761045547d80dedb840bc679274fbfecbb75cba5f8d111c1d77ae7bf112f8cc8c8c8ad01fd32b6f6d6d7be2203c82adefcb28430d31c4bb4e9de0e15befecb2fb5dee212072e0a4cc704ba56bda5b151f987ac9065ca5a33f754ce66b636d88b9d3f78316cdbe40aca6028ad8ae84d8b878ea478cf62387763469f66b521909ce1ab764644e967838ecff7ed7899ef37665996941f0076484a3990bae215d76eb2680fd0e00de12aea268cc71bb009de60fa64a656fd052221a5042c33c2f87468c375388e6b2fe23aa71c608ad2549a3eba2592b53f168fd0a3c2c5ca072407b67c94ca81dc52656ea416a1176573c08e8ea1f20a6047cb85a34afbb3c5952f355bff05cab2a01c0d2b16fb98393d07b9b5217e10b57cc4388436670326e93ffc7a8addf72d35d722abcdd7ea8641124032a94dc25383689d732b7227ffb6c0021f3c0c0cf22ca57e4c6891995ab165c01382b319171f5c74309ed3e3310d342fda94fef89fe671d7c89fb70d3ffdfb764ffddc5b56f04545436d9288e5ac3e841272a1cf240de7f97fa27fd44e1c4ef56d0937d54b5749ae695081815a2472f045d9823f149f8a7ed2bb3758304a956a172c0277cf1333ff76f62522e2432751b8315fbd8b5d1b8f7bb27731b965dee97fcb243c3bef96c3eec9c42c4f88ad915292de20114314a0cb47f8bb680bf20ae2c5bb53ef48dc508cf80eff498ea3a97489d28f010f24ae0d0a7b1a3dc953fe1355758ea151405ae2880b159e6a74a6cee5d208d9cff2e148f30ab292e484c219d9640d463130f9ca843061d73108f3b6d4e36a8d00c176daa56092fd017abe37480426346b6881ddd17d3ad0782b5b75a70b38aaa9250bd863bf3c724dad3fe50a9e3ad03cb3f371bafeeaca081ee3c005b6cfbbfc02d3f79b05dfc717658062817762b31b52437ac8fa74236d6aa69703525ca6c6ae5d51fb43384159cb74ccbf39397f36dc01102577ae24d40ceb5922c4d3c6b4dc3b43a9b120cc33a8fff1b723075d1e15e579ac4882b3106fbecedd7571687f1b32d2ce33ae5ce8ea116ff5358cff31e3e9c9a9b956ff30c41e7ba061202e6886f1231fa6e650af4756374bb711a0ff68a14b7ac74446ac95c3212e69435db962fda6f66b56aa724e2906b7d691730aa4c3a17c6c6777af87c97e15e931a3186adf802cfb826c08608cfb226cd34eedc355b5ad57c7a9b57caab8ac6730767fc1b749697f71e3a5a8c8718270d6591a9c205e304cf15b31ca2823a377b82383776230e88be1e6e77119b39c2babab850e3a7f61fa6b9d6f1a357d9c240a71c92c7f25e9138a757080e7f72d0ac9b5d6e868e5ddf120b4ef954c564eed05603c45f794805e956972a5eb470ea9de49a081f7287dd2e73f1cab1862b47d90c28107d46b4c5060eaf70407bb84aa9279b93de57b1e223f36523935eaa86c7e0376815bcff4a5fb3f2e0dfa8a3a331330105a17920fe583bf90c881701bc0c85af5a4c13da5b48a84664e14c9ee26df83363db862ac7bb11bc19ea235929989f068e9e5584665ffabc09241f74a3cfe76378f49ae2aa56b8a3f5ecac73493bbb2329fac6fa5edb5b8f72ef548cc307b1d936be671ed989824da929e8ead34fc6a7bd4273d9e5a7a1dd04e7d19e67faa9cd29b7f0af8550866311e7a17c0a24cb85403317d876951b02384f23bf726362a2e1b0cba7486f35c6375f84eedadc46d18d48b20855ba16ad2162d19ba7925dd2873b3154dc</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
     </div>
     
@@ -301,7 +276,7 @@
         <p><span>本文标题:</span><a href="/2020/04/22/通达OA任意用户登录漏洞复现/">通达OA任意用户登录漏洞复现</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 墨竹星海 的个人博客">墨竹星海</a></p>
         <p><span>发布时间:</span>2020年04月22日 - 00时00分</p>
-        <p><span>最后更新:</span>2020年04月22日 - 17时19分</p>
+        <p><span>最后更新:</span>2020年04月23日 - 21时29分</p>
         <p>
         </p>
         <p>
@@ -317,7 +292,7 @@
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          vulfocus���ػ�����
+          vulfocus本地化部署
         
       </div>
     </a>
@@ -336,7 +311,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#漏洞分析："><span class="toc-number">1.</span> <span class="toc-text">漏洞分析：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复现过程："><span class="toc-number">2.</span> <span class="toc-text">复现过程：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修复建议"><span class="toc-number">3.</span> <span class="toc-text">修复建议</span></a></li></ol>
+    
 </div>
 <style>
     .left-col .switch-btn {
@@ -385,7 +360,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2020/04/23/vulfocus本地化部署/" title="上一篇: vulfocus���ػ�����">
+            <a href="/2020/04/23/vulfocus本地化部署/" title="上一篇: vulfocus本地化部署">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -396,7 +371,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/23/vulfocus本地化部署/">vulfocus���ػ�����</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/22/通达OA任意用户登录漏洞复现/">通达OA任意用户登录漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/11/Docker 配置国内镜像源/">Docker 配置国内镜像源</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/09/Hexo下的加密插件/">Hexo下的加密插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/08/360众测靶场复盘/">360众测靶场复盘</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/04/Ruby On Rails漏洞复现第一题/">Ruby On Rails漏洞复现第一题</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/04/uWSGI 漏洞复现（CVE-2018-7490）/">uWSGI 漏洞复现（CVE-2018-7490）</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/15/免费获取V2ray节点/">免费获取V2ray节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/15/cve-2020-0796/">cve-2020-0796蓝屏复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/08/把github上的hexo博客同步到国内的coding上/">把github上的hexo博客同步到国内的新版本coding上</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/26/64位ubuntu官方系统安装宝塔7.0.3 并成功安装nginx+php+mysql环境/">64位ubuntu官方系统安装宝塔7.0.3 并成功编译安装nginx+php+mysql环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/25/SSH登录IP白名单/">SSH登录IP白名单</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/22/树莓派安装freekan影视解析站/">树莓派安装freekan影视解析站</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/22/安装防爆破/">安装denyhosts防止爆破ssh登入</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/22/修改ssh端口/">添加或修改ssh服务的端口</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/11/apache认证/">Apache设置用户访问web页面需要认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/解决kali2019.4 中文安装字体变为方块的方法/">解决kali2019.4 中文安装字体变为方块的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/27/浅谈信息泄露在网络安全中的危害/">浅谈信息泄露在网络安全中的危害</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/19/GitHub图床搭建与PicGo图片上传工具/">GitHub图床搭建与PicGo图片上传工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/14/论信息泄露在实际业务系统中的危害/">论信息泄露在实际业务系统中的危害</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/04/23/vulfocus本地化部署/">vulfocus本地化部署</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/22/通达OA任意用户登录漏洞复现/">通达OA任意用户登录漏洞复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/11/Docker 配置国内镜像源/">Docker 配置国内镜像源</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/09/Hexo下的加密插件/">Hexo下的加密插件</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/08/360众测靶场复盘/">360众测靶场复盘</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/04/Ruby On Rails漏洞复现第一题/">Ruby On Rails漏洞复现第一题</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/04/04/uWSGI 漏洞复现（CVE-2018-7490）/">uWSGI 漏洞复现（CVE-2018-7490）</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/15/免费获取V2ray节点/">免费获取V2ray节点</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/03/15/cve-2020-0796/">cve-2020-0796蓝屏复现</a></li><li class="post-list-item"><a class="post-list-link" href="/2020/02/08/把github上的hexo博客同步到国内的coding上/">把github上的hexo博客同步到国内的新版本coding上</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/26/64位ubuntu官方系统安装宝塔7.0.3 并成功安装nginx+php+mysql环境/">64位ubuntu官方系统安装宝塔7.0.3 并成功编译安装nginx+php+mysql环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/25/SSH登录IP白名单/">SSH登录IP白名单</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/22/树莓派安装freekan影视解析站/">树莓派安装freekan影视解析站</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/22/安装防爆破/">安装denyhosts防止爆破ssh登入</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/22/修改ssh端口/">添加或修改ssh服务的端口</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/11/apache认证/">Apache设置用户访问web页面需要认证</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/解决kali2019.4 中文安装字体变为方块的方法/">解决kali2019.4 中文安装字体变为方块的方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/27/浅谈信息泄露在网络安全中的危害/">浅谈信息泄露在网络安全中的危害</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/19/GitHub图床搭建与PicGo图片上传工具/">GitHub图床搭建与PicGo图片上传工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/08/14/论信息泄露在实际业务系统中的危害/">论信息泄露在实际业务系统中的危害</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/01/01/渗透测试之信息收集整理笔记/">渗透测试之信息收集整理笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/19/base64/">记一次base64编码解码绕过限制上传一句话木马</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/18/内网靶机渗透流程步骤/">内网靶机渗透流程步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/">记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/27/Boolean注入攻击/">Boolean注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/26/union注入攻击/">union注入攻击</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/25/新疆师范大学CTF隐写wp整理/">新疆师范大学CTF隐写wp整理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/24/SQL注入基础/">SQL注入基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/13/IIS 6.0 PUT上传漏洞+iis解析漏洞getshell/">IIS 6.0 PUT上传漏洞+iis解析漏洞getshell</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/第四节：kali的信息收集之被动扫描（二）/">第四节：kali的信息收集之被动扫描（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/10/一元购买云主机 （ 星外虚拟主机提权 ）/">一元购买云主机 （ 星外虚拟主机提权 ）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/第三节：kali的信息收集之被动扫描（一）/">第三节：kali的信息收集之被动扫描（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/04/第二节：kali的配置及常用软件安装/">第二节：kali的配置及常用软件安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/02/第一节：kali+win10双系统安装/">第一节：kali+win10双系统安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/使用 Github Pages + Hexo 搭建自己的博客/">使用 Github Pages + Hexo 搭建自己的博客</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/01/hello-world/">Hello World</a></li></ul>
     
 <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
