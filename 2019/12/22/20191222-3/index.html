@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="墨竹星海"><meta name="copyright" content="墨竹星海"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>安装denyhosts防止爆破ssh登入 | 墨竹星海’s Bolg</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_pem9yni52s.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.0","anonymous_image":"/imgs/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="Denyhosts 是一个以Python2.3编写的程序，它主要根据系统日志文件&#x2F;var&#x2F;log&#x2F;secure文件分析，当发现同一IP在进行多次SSH密码尝试时就会记录IP到&#x2F;etc&#x2F;hosts.deny文件，从而达到自动屏蔽该IP的目的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装denyhosts防止爆破ssh登入">
+<meta property="og:url" content="https://www.mzxh.xyz/2019/12/22/20191222-3/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="Denyhosts 是一个以Python2.3编写的程序，它主要根据系统日志文件&#x2F;var&#x2F;log&#x2F;secure文件分析，当发现同一IP在进行多次SSH密码尝试时就会记录IP到&#x2F;etc&#x2F;hosts.deny文件，从而达到自动屏蔽该IP的目的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223120024.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223120039.png">
+<meta property="article:published_time" content="2019-12-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-12T14:37:21.375Z">
+<meta property="article:author" content="墨竹星海">
+<meta property="article:tag" content="安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20191223120024.png"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button sidebar-nav-active" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel sidebar-panel-active" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/" title="墨竹星海"><img width="96" loading="lazy" src="/Yun.png" alt="墨竹星海"></a><div class="site-author-name"><a href="/">墨竹星海</a></div><a class="site-name" href="/">墨竹星海’s Bolg</a><sub class="site-subtitle">When you look long into an abyss,the abyss looks into you.</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">49</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">16</span></a></div><a class="site-state-item hty-icon-button" href="https://wpa.qq.com/msgrd?v=3&amp;uin=910426929&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="腾讯QQ"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"></div><div class="sidebar-panel" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content">此文章未包含目录</div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.mzxh.xyz/2019/12/22/20191222-3/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="墨竹星海"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="墨竹星海’s Bolg"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">安装denyhosts防止爆破ssh登入</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2019-12-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-22T00:00:00+08:00">2019-12-22</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-02-12 22:37:21" itemprop="dateModified" datetime="2020-02-12T22:37:21+08:00">2020-02-12</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/linux/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">linux</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E5%AE%89%E5%85%A8/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">安全</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><p>Denyhosts 是一个以Python2.3编写的程序，它主要根据系统日志文件/var/log/secure文件分析，当发现同一IP在进行多次SSH密码尝试时就会记录IP到/etc/hosts.deny文件，从而达到自动屏蔽该IP的目的</p>
+<a id="more"></a>
+<p>1.下载安装包</p>
+<p>wget <a href="http://mirror.pnl.gov/ubuntu//pool/universe/d/denyhosts/denyhosts_2.6-10_all.deb" target="_blank" rel="noopener">http://mirror.pnl.gov/ubuntu//pool/universe/d/denyhosts/denyhosts_2.6-10_all.deb</a></p>
+<p><img src="https://www.mzxh.xyz/picture/20191223120024.png" alt="" loading="lazy"></p>
+<p>2.清除SSH登录记录，防止装完屏蔽自己。</p>
+<p>echo “” &gt; /var/log/auth.log</p>
+<p>3.执行安装</p>
+<p>sudo dpkg -i denyhosts_2.6-10_all.deb</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223120039.png" alt="" loading="lazy"></p>
+<p>4.编辑Denyhosts配置文件vim /etc/denyhosts.conf</p>
+<pre><code>SECURE_LOG = /var/log/auth.log
+#SSH日志
+PURGE_DENY = 30m
+#过多久后清除已阻止IP
+HOSTS_DENY = /etc/hosts.deny
+#将阻止IP写入到hosts.deny
+BLOCK_SERVICE  = sshd
+#禁止的服务名
+
+DENY_THRESHOLD_INVALID = 1
+#允许无效用户登录失败的次数
+DENY_THRESHOLD_VALID = 3
+#允许普通用户登录失败的次数
+DENY_THRESHOLD_ROOT = 3
+#允许root登录失败的次数
+DENY_THRESHOLD_RESTRICTED = 1
+#设定 deny host 写入到该资料夹
+WORK_DIR = /var/lib/denyhosts
+#将deny的host或ip纪录到Work_dir中
+
+SUSPICIOUS_LOGIN_REPORT_ALLOWED_HOSTS=YES
+#如果为YES，所有在$WORK_DIR/allowed-host时面的IP地址将会被认为是可疑的，如果设置为NO,所有在allowd-hosts试图登陆的结果，将不会发送警告邮件！所有不在$WORK_DIR/allowed-host时面的IP地址将会发送警告！
+HOSTNAME_LOOKUP=NO
+#是否做域名反解,是否将IP地址解析为主机名。
+LOCK_FILE = /var/run/denyhosts.pid
+#定义PID文件的位置，确保同时只有一个Denyhost进程在运行
+
+ ############ THESE SETTINGS ARE OPTIONAL ############这里的设置是可选的
+
+ADMIN_EMAIL = root@localhost
+#当有人试图登录发送邮件。前提是，本机一定要可以发送邮件才行！
+SMTP_HOST = localhost
+#指定smtp服务器
+SMTP_PORT = 25
+#指定SMTP端口号
+SMTP_FROM = DenyHosts
+#指定发件人
+SMTP_SUBJECT = DenyHosts Report
+#指定邮件主题
+AGE_RESET_VALID=5d
+#多长时间后，用户登录失败的次数被置为0，这里是指在/etc/passwd里面定义的用户，如果不设置，永远都不会置0
+
+AGE_RESET_ROOT=25d
+#多长时间后，root用户登录失败的次数置为0，如果不设置，永远都不会置0
+AGE_RESET_RESTRICTED=25d
+#在$WORK_DIR/hosts-restricted时面定义的用户，多长时间失败次数计数器被置为0
+AGE_RESET_INVALID=10d
+#无效用户(不在/etc/passwd里面的用户)的失败次数计数器，多长时间被置为0
+RESET_ON_SUCCESS = yes
+#当某个IP使用某个用户登录成功后，该IP对应的用户失败次数将会被置为0
+
+DAEMON_LOG = /var/log/denyhosts
+#当denyhost运行在守护进程模式的时候，日志文件存储的位置
+DAEMON_SLEEP = 30s
+#轮询查看SSHD日志的间隔
+DAEMON_PURGE = 1h
+#多长时间清空$HOSTS_DENY中的IP地址，如果PURGE_DENY为空，这个设置将无效
+其实默认配置我觉得足够了，修改下root的失败次数，默认的是1，一般修改成3-5就行了，DENY_THRESHOLD_ROOT = 3
+HOSTNAME_LOOKUP=NO 关闭反向解析，PURGE_DENY = 30m
+#阻止30分钟！</code></pre><p>5.重启</p>
+<pre><code>/etc/init.d/denyhosts restart</code></pre><p>6.设置开机自启动</p>
+<pre><code>vim /etc/rc.local</code></pre><p>加入下面这条命令</p>
+<pre><code>/usr/share/denyhosts/daemon-control start</code></pre></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>墨竹星海</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://www.mzxh.xyz/2019/12/22/20191222-3/" title="安装denyhosts防止爆破ssh登入">https://www.mzxh.xyz/2019/12/22/20191222-3/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2019/12/22/20191222-2/" rel="prev" title="树莓派安装freekan影视解析站"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">树莓派安装freekan影视解析站</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2019/12/22/20191222/" rel="next" title="添加或修改ssh服务的端口"><span class="post-nav-text">添加或修改ssh服务的端口</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">浙ICP备19034345号</a></div><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"></span><span class="author"> 墨竹星海</span></div><div class="powered"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span><span class="footer-separator">| </span><span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>

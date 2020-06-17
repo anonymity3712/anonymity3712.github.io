@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="墨竹星海"><meta name="copyright" content="墨竹星海"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>论信息泄露在实际业务系统中的危害 | 墨竹星海’s Bolg</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_pem9yni52s.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.0","anonymous_image":"/imgs/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="上个月做了一次项目，是某系统的测试，简单做一次测试总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论信息泄露在实际业务系统中的危害">
+<meta property="og:url" content="https://www.mzxh.xyz/2019/08/14/20190814/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="上个月做了一次项目，是某系统的测试，简单做一次测试总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820215823.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820215839.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820215849.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820215902.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820215914.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820220911.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820221027.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820221239.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820221325.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820222056.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820220037.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820220047.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820220055.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820222209.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820222615.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820220146.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820220156.png">
+<meta property="article:published_time" content="2019-08-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-09T14:29:48.659Z">
+<meta property="article:author" content="墨竹星海">
+<meta property="article:tag" content="信息泄露">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20190820215823.png"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button sidebar-nav-active" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel sidebar-panel-active" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/" title="墨竹星海"><img width="96" loading="lazy" src="/Yun.png" alt="墨竹星海"></a><div class="site-author-name"><a href="/">墨竹星海</a></div><a class="site-name" href="/">墨竹星海’s Bolg</a><sub class="site-subtitle">When you look long into an abyss,the abyss looks into you.</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">49</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">16</span></a></div><a class="site-state-item hty-icon-button" href="https://wpa.qq.com/msgrd?v=3&amp;uin=910426929&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="腾讯QQ"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"></div><div class="sidebar-panel" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content">此文章未包含目录</div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.mzxh.xyz/2019/08/14/20190814/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="墨竹星海"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="墨竹星海’s Bolg"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">论信息泄露在实际业务系统中的危害</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2019-08-14 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-14T00:00:00+08:00">2019-08-14</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-04-09 22:29:48" itemprop="dateModified" datetime="2020-04-09T22:29:48+08:00">2020-04-09</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">渗透测试</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">信息泄露</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><p>上个月做了一次项目，是某系统的测试，简单做一次测试总结</p>
+<a id="more"></a>
+
+<p>首先拿到项目给的测试范围，几个域名打开发现都是需要登入的系统，首页只有一个登入框。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820215823.png" alt="" loading="lazy"></p>
+<p>第一眼。没啥思路，有验证码burp爆破路子是行不通了。测试也不让用扫描器，于是上搜索引擎搜一下这个系统。发现某一个页面有该系统的介绍和附件下载，大致介绍就是大家要熟练使用这个系统。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820215839.png" alt="" loading="lazy"></p>
+<p>下面跟着一个附件的下载链接，下载回来打开看看，发现是系统使用的说明书。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820215849.png" alt="" loading="lazy"></p>
+<p>而且运气很好，这个说明书的编写者，在编写说明书的时候截图了部分系统的使用界面，而界面中刚好就包含了一部分专家的账号。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820215902.png" alt="" loading="lazy"></p>
+<p>同时说明书里也写出了所有账号所使用的初始密码。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820215914.png" alt="" loading="lazy"></p>
+<p>观察了一下泄露的账号，fuzz一下账号的命名规则，结合初始密码。因为有验证码的关系，逐个去手动登入了一下。试了大概四五个就遇见了一个没改初始密码的账号。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820220911.png" alt="" loading="lazy"></p>
+<p>成功登入</p>
+<p>进入系统后 发现该系统是专家的评审系统，每个账号只可以看到10人信息并给与评审</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820221027.png" alt="" loading="lazy"></p>
+<p>直接F12一下查看页面元素。发现每一个姓名都有一个ID号。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820221239.png" alt="" loading="lazy"></p>
+<p>猜测应该是通过ID参数来显示可能存在ID遍历，于是用burp尝试抓包</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820221325.png" alt="" loading="lazy"></p>
+<p>和预想一样，有ID参数进行爆破</p>
+<p>可以看到ID遍历出了所有包含了姓名 编号 手机号 身份证号 照片路径 单位 等详细信息的用户信息</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820222056.png" alt="" loading="lazy"></p>
+<p>然后照片处发现了一个神奇的URL</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820220037.png" alt="" loading="lazy"></p>
+<p>照片的路径为URL=/图片路径/<br>尝试把URL后面的路径改为/etc/passwd</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820220047.png" alt="" loading="lazy"></p>
+<p>成功下载到passwd文件，一个任意文件读取的漏洞到手了。</p>
+<p>继续翻看系统发现一个没验证码的登入页面，随便试了一下，发现并没有提示登入成功还是失败，也没有返回任何信息</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820220055.png" alt="" loading="lazy"></p>
+<p>抓包分析一下，发现账号密码正确则返回ture，反之则返回flase</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820222209.png" alt="" loading="lazy"></p>
+<p>于是用刚刚ID遍历获取的身份证信息做字典 用户名为身份证 密码为身份证后八位（为啥后八位，之前泄露的说明书里有说明）</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820222615.png" alt="" loading="lazy"></p>
+<p>对可以成功登入的账号和密码进行整理，去尝试进行其他系统的撞库。刚好另一处登入系统的账号就是身份证。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820220146.png" alt="" loading="lazy"></p>
+<p>尝试撞库登入系统</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820220156.png" alt="" loading="lazy"></p>
+<p>成功登入另一处系统，</p>
+<p><strong>总结一下：<br>这次漏洞的主要起因就是客户习惯性的用公告的形式，同时用户去下载一个看似不起眼的使用说明书，而说明书的编写者没有对系统截图中的敏感截图部位进行打码处理，导致了部分用户登入账号信息泄露出去，而正是这几处微小的不起眼的细节给攻击者一个可乘之机。从而导致了后面一连锁的漏洞。如果没有这个附件给与登入系统的突破口，那么后续也无法登入系统，从而无法发现ID遍历和任意文件下载，进而也无法在无验证码的登入页面处制作字典撞库其他系统。</strong></p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>墨竹星海</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://www.mzxh.xyz/2019/08/14/20190814/" title="论信息泄露在实际业务系统中的危害">https://www.mzxh.xyz/2019/08/14/20190814/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2019/08/19/20190819/" rel="prev" title="GitHub图床搭建与PicGo图片上传工具"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">GitHub图床搭建与PicGo图片上传工具</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2019/01/01/20190101/" rel="next" title="渗透测试之信息收集整理笔记"><span class="post-nav-text">渗透测试之信息收集整理笔记</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">浙ICP备19034345号</a></div><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"></span><span class="author"> 墨竹星海</span></div><div class="powered"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span><span class="footer-separator">| </span><span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>

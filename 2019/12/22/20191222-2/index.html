@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="墨竹星海"><meta name="copyright" content="墨竹星海"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>树莓派安装freekan影视解析站 | 墨竹星海’s Bolg</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_pem9yni52s.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.0","anonymous_image":"/imgs/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="准备：树莓派3b+ 内存卡32G 树莓派64位debian系统 宝塔虚拟机 freekan源码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派安装freekan影视解析站">
+<meta property="og:url" content="https://www.mzxh.xyz/2019/12/22/20191222-2/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="准备：树莓派3b+ 内存卡32G 树莓派64位debian系统 宝塔虚拟机 freekan源码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223103031.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223103854.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223104125.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223104411.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223104450.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223104535.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223104735.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223104826.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223104946.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223105447.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223111051.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223114833.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223111515.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223111630.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223111823.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223111945.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223113405.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223113643.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223113918.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20191223114538.png">
+<meta property="article:published_time" content="2019-12-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-12T14:37:21.437Z">
+<meta property="article:author" content="墨竹星海">
+<meta property="article:tag" content="树莓派">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20191223103031.png"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/" title="墨竹星海"><img width="96" loading="lazy" src="/Yun.png" alt="墨竹星海"></a><div class="site-author-name"><a href="/">墨竹星海</a></div><a class="site-name" href="/">墨竹星海’s Bolg</a><sub class="site-subtitle">When you look long into an abyss,the abyss looks into you.</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">49</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">16</span></a></div><a class="site-state-item hty-icon-button" href="https://wpa.qq.com/msgrd?v=3&amp;uin=910426929&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="腾讯QQ"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一步：树莓派安装debian"><span class="toc-number">1.</span> <span class="toc-text">第一步：树莓派安装debian</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#准备镜像文件"><span class="toc-number">1.1.</span> <span class="toc-text">准备镜像文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#烧录系统"><span class="toc-number">1.2.</span> <span class="toc-text">烧录系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装配置宝塔虚拟机系统"><span class="toc-number">1.3.</span> <span class="toc-text">安装配置宝塔虚拟机系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装freekan"><span class="toc-number">1.4.</span> <span class="toc-text">安装freekan</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.mzxh.xyz/2019/12/22/20191222-2/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="墨竹星海"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="墨竹星海’s Bolg"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">树莓派安装freekan影视解析站</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2019-12-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-22T00:00:00+08:00">2019-12-22</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-02-12 22:37:21" itemprop="dateModified" datetime="2020-02-12T22:37:21+08:00">2020-02-12</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">环境搭建</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">树莓派</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><p>准备：树莓派3b+ 内存卡32G 树莓派64位debian系统 宝塔虚拟机 freekan源码</p>
+<a id="more"></a>
+<h3 id="第一步：树莓派安装debian"><a href="#第一步：树莓派安装debian" class="headerlink" title="第一步：树莓派安装debian"></a>第一步：树莓派安装debian</h3><h4 id="准备镜像文件"><a href="#准备镜像文件" class="headerlink" title="准备镜像文件"></a>准备镜像文件</h4><p>树莓派爱好者基地官方项目：<a href="https://github.com/openfans-community-offical/Debian-Pi-Aarch64" target="_blank" rel="noopener">https://github.com/openfans-community-offical/Debian-Pi-Aarch64</a></p>
+<p>下载镜像文件：<a href="https://pan.baidu.com/s/1Q4eBVLyV9plXrjVGmSrMSg" target="_blank" rel="noopener">https://pan.baidu.com/s/1Q4eBVLyV9plXrjVGmSrMSg</a></p>
+<p>文件位置在：树莓派爱好者基地64位系统2.0正式版/Debian-Pi-Aarch64-2.0-Release/系统镜像/2019-11-30-U1<br><img src="https://www.mzxh.xyz/picture/20191223103031.png" alt="" loading="lazy"></p>
+<p>因为是搭建服务器，我这里就选非图形化的镜像了</p>
+<h4 id="烧录系统"><a href="#烧录系统" class="headerlink" title="烧录系统"></a>烧录系统</h4><p>直接用WIN32 Disk Imager写入内存卡</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223103854.png" alt="" loading="lazy"></p>
+<p>烧录好后，插入树莓派通电开机，系统默认账户：pi ，默认密码：raspberry（系统已经默认开启了ssh，可以直接ssh链接）<br><img src="https://www.mzxh.xyz/picture/20191223104125.png" alt="" loading="lazy"></p>
+<h4 id="安装配置宝塔虚拟机系统"><a href="#安装配置宝塔虚拟机系统" class="headerlink" title="安装配置宝塔虚拟机系统"></a>安装配置宝塔虚拟机系统</h4><p>下载镜像文件：<a href="https://pan.baidu.com/s/1Q4eBVLyV9plXrjVGmSrMSg" target="_blank" rel="noopener">https://pan.baidu.com/s/1Q4eBVLyV9plXrjVGmSrMSg</a></p>
+<p>文件位置在：树莓派爱好者基地64位系统2.0正式版/Debian-Pi-Aarch64-2.0-Release/虚拟机镜像/宝塔虚拟机/2.0</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223104411.png" alt="" loading="lazy"></p>
+<p>把宝塔虚拟机复制到系统中</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223104450.png" alt="" loading="lazy"></p>
+<p>解压系统</p>
+<pre><code>tar xvf bt-panel_vm_5.9.1_pro_v2.tar</code></pre><p><img src="https://www.mzxh.xyz/picture/20191223104535.png" alt="" loading="lazy"></p>
+<p>在解压中会等待一段时间，因为比较大</p>
+<p>进入到虚拟机文件夹</p>
+<pre><code>cd ./bt-panel_vm_5.9.1_pro_v2</code></pre><p>修改install文件，默认安装web只开启了的80端口和其他服务端口</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223104735.png" alt="" loading="lazy"></p>
+<p>在此处添加web端口（如果你想默认80访问则跳过此步骤）</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223104826.png" alt="" loading="lazy"></p>
+<p>安装宝塔虚拟机</p>
+<pre><code>./install</code></pre><p><img src="https://www.mzxh.xyz/picture/20191223104946.png" alt="" loading="lazy"></p>
+<p>依旧要等好久</p>
+<p>启动宝塔虚拟机</p>
+<pre><code>./bt_run</code></pre><p><img src="https://www.mzxh.xyz/picture/20191223105447.png" alt="" loading="lazy"></p>
+<p>默认参数值:</p>
+<p>默认管理端口 28888<br>默认宝塔面板地址 http://你树莓派的IP地址:28888/<br>默认宝塔面板用户及密码 openfans/openfans<br>宝塔虚拟机ssh端口 2222<br>宝塔虚拟机root默认密码 raspberry<br>（默认已经开启了ssh，可以直接远程连接）</p>
+<p>启用开机自动启动</p>
+<pre><code>./install int</code></pre><p>取消开机自动启动</p>
+<pre><code>./install uint</code></pre><p><img src="https://www.mzxh.xyz/picture/20191223111051.png" alt="" loading="lazy"></p>
+<h4 id="安装freekan"><a href="#安装freekan" class="headerlink" title="安装freekan"></a>安装freekan</h4><p>源码下载</p>
+<p><a href="https://t00y.com/file/14165255-356802838" target="_blank" rel="noopener">https://t00y.com/file/14165255-356802838</a></p>
+<p>下载好后解压到网站根目录即可</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223114833.png" alt="" loading="lazy"></p>
+<p>因为虚拟机环境默认安装的是nginx+php7.3， 而freekan需要的环境是7.1，这里需要手动安装php7.1</p>
+<p>直接ssh进宝塔虚拟机</p>
+<p>进入/www/server/panel/install目录下 找到php.sh文件</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223111515.png" alt="" loading="lazy"></p>
+<pre><code>sh php.sh install 7.1</code></pre><p>漫长的等待 大概不到两个小时吧<br><img src="https://www.mzxh.xyz/picture/20191223111630.png" alt="" loading="lazy"><br>安装完毕</p>
+<p>创建网站 设置好域名（服务器IP地址） php版本选7.1<br><img src="https://www.mzxh.xyz/picture/20191223111823.png" alt="" loading="lazy"></p>
+<p>设置伪静态</p>
+<pre><code>if (!-d $request_filename){
+    set $rule_0 1$rule_0;
+}
+if (!-f $request_filename){
+    set $rule_0 2$rule_0;
+}
+if ($rule_0 = &quot;21&quot;){
+    rewrite ^/(.*)$ /index.php?s=/$1 last;
+}</code></pre><p><img src="https://www.mzxh.xyz/picture/20191223111945.png" alt="" loading="lazy"></p>
+<p>开启debug模式 （把config文件中的app.php文件里的   ‘debug’ =&gt; env(‘APP_DEBUG’, false),改为   ‘debug’ =&gt; env(‘APP_DEBUG’,true）.env文件里的APP_DEBUG=false改为true</p>
+<p>进入网站根目录，删除.env文件，并把.env.example文件重命名为.env，然后修改数据库配置信息</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223113405.png" alt="" loading="lazy"></p>
+<p>配置好自己的数据库名密码</p>
+<p>进入网站根目录 执行</p>
+<pre><code>php artisan key:generate</code></pre><p><img src="https://www.mzxh.xyz/picture/20191223113643.png" alt="" loading="lazy"></p>
+<p>访问 <a href="http://WEBIP/install/2" target="_blank" rel="noopener">http://WEBIP/install/2</a></p>
+<p><img src="https://www.mzxh.xyz/picture/20191223113918.png" alt="" loading="lazy"></p>
+<p>配置好账号密码后点击下一步即可安装成功</p>
+<p><img src="https://www.mzxh.xyz/picture/20191223114538.png" alt="" loading="lazy"></p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>墨竹星海</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://www.mzxh.xyz/2019/12/22/20191222-2/" title="树莓派安装freekan影视解析站">https://www.mzxh.xyz/2019/12/22/20191222-2/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2019/12/25/20191225/" rel="prev" title="SSH登录IP白名单"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">SSH登录IP白名单</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2019/12/22/20191222-3/" rel="next" title="安装denyhosts防止爆破ssh登入"><span class="post-nav-text">安装denyhosts防止爆破ssh登入</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">浙ICP备19034345号</a></div><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"></span><span class="author"> 墨竹星海</span></div><div class="powered"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span><span class="footer-separator">| </span><span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>

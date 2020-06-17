@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="墨竹星海"><meta name="copyright" content="墨竹星海"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>第三节：kali的信息收集之被动扫描（一） | 墨竹星海’s Bolg</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_pem9yni52s.js" async></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"云游君的小站","version":"0.9.0","anonymous_image":"/imgs/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="被动扫描主要指的是在目标无法察觉的情况下进行的信息收集，比如我们想了解一个远在天边的人，你会怎么做呢？显然我们可以选择在搜索引擎去搜索这个名字。其实这就是一次对目标的被动扫描。最经典的被动扫描技术其实要输“google hack”技术，这种技术在我们所处的大陆地区，需要翻墙使用，在这一节，我们来介绍一下被动扫描。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三节：kali的信息收集之被动扫描（一）">
+<meta property="og:url" content="https://www.mzxh.xyz/2018/09/09/20180909/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="被动扫描主要指的是在目标无法察觉的情况下进行的信息收集，比如我们想了解一个远在天边的人，你会怎么做呢？显然我们可以选择在搜索引擎去搜索这个名字。其实这就是一次对目标的被动扫描。最经典的被动扫描技术其实要输“google hack”技术，这种技术在我们所处的大陆地区，需要翻墙使用，在这一节，我们来介绍一下被动扫描。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820210705.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820210717.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820210729.png">
+<meta property="article:published_time" content="2018-09-09T13:33:54.000Z">
+<meta property="article:modified_time" content="2020-02-12T14:37:21.531Z">
+<meta property="article:author" content="墨竹星海">
+<meta property="article:tag" content="kali">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20190820210705.png"></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/" title="墨竹星海"><img width="96" loading="lazy" src="/Yun.png" alt="墨竹星海"></a><div class="site-author-name"><a href="/">墨竹星海</a></div><a class="site-name" href="/">墨竹星海’s Bolg</a><sub class="site-subtitle">When you look long into an abyss,the abyss looks into you.</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">49</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">10</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">16</span></a></div><a class="site-state-item hty-icon-button" href="https://wpa.qq.com/msgrd?v=3&amp;uin=910426929&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="腾讯QQ"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#被动信息收集"><span class="toc-number">1.</span> <span class="toc-text">被动信息收集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于OSINT"><span class="toc-number">1.1.</span> <span class="toc-text">关于OSINT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信息收集的过程"><span class="toc-number">1.2.</span> <span class="toc-text">信息收集的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信息收集的内容"><span class="toc-number">1.3.</span> <span class="toc-text">信息收集的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#信息用途"><span class="toc-number">1.4.</span> <span class="toc-text">信息用途</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信息收集-DNS"><span class="toc-number">2.</span> <span class="toc-text">信息收集 - DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS信息收集工具-NSLOOKUP"><span class="toc-number">2.1.</span> <span class="toc-text">DNS信息收集工具-NSLOOKUP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基础查询"><span class="toc-number">2.1.1.</span> <span class="toc-text">基础查询</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查找新浪邮件服务器的IP"><span class="toc-number">2.1.2.</span> <span class="toc-text">查找新浪邮件服务器的IP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询新浪的所有域名服务器"><span class="toc-number">2.1.3.</span> <span class="toc-text">查询新浪的所有域名服务器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS信息收集-DIG"><span class="toc-number">2.2.</span> <span class="toc-text">DNS信息收集-DIG</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DIG简单使用"><span class="toc-number">2.2.1.</span> <span class="toc-text">DIG简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#参数-any"><span class="toc-number">2.2.1.1.</span> <span class="toc-text">参数 any</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#参数noall-answer"><span class="toc-number">2.2.1.2.</span> <span class="toc-text">参数noall + answer</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#反向域名解析-PTR记录"><span class="toc-number">2.2.2.</span> <span class="toc-text">反向域名解析(PTR记录)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dig网站NS记录"><span class="toc-number">2.2.3.</span> <span class="toc-text">dig网站NS记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询dns的bind版本"><span class="toc-number">2.2.4.</span> <span class="toc-text">查询dns的bind版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dig网站NS记录-1"><span class="toc-number">2.2.5.</span> <span class="toc-text">dig网站NS记录</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.mzxh.xyz/2018/09/09/20180909/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="墨竹星海"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="墨竹星海’s Bolg"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">第三节：kali的信息收集之被动扫描（一）</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2018-09-09 21:33:54" itemprop="dateCreated datePublished" datetime="2018-09-09T21:33:54+08:00">2018-09-09</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-02-12 22:37:21" itemprop="dateModified" datetime="2020-02-12T22:37:21+08:00">2020-02-12</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/kali/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">kali</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/kali/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">kali</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><p>被动扫描主要指的是在目标无法察觉的情况下进行的信息收集，比如我们想了解一个远在天边的人，你会怎么做呢？显然我们可以选择在搜索引擎去搜索这个名字。其实这就是一次对目标的被动扫描。最经典的被动扫描技术其实要输“google hack”技术，这种技术在我们所处的大陆地区，需要翻墙使用，在这一节，我们来介绍一下被动扫描。</p>
+<a id="more"></a>
+
+<h2 id="被动信息收集"><a href="#被动信息收集" class="headerlink" title="被动信息收集"></a>被动信息收集</h2><h3 id="关于OSINT"><a href="#关于OSINT" class="headerlink" title="关于OSINT"></a>关于OSINT</h3><p>OSINT：公开资源情报计划（开源智能）是美国中央情报局（CIA）的一种情报搜集手段，从各种公开的信息资源中寻找和获取有价值的情报。关于开源智能信息收集可以参看一下两篇文章：<br>美国军方：<a href="http://www.fas.org/irp/dodair/army/atp2-22-2.pdf" target="_blank" rel="noopener">http://www.fas.org/irp/dodair/army/atp2-22-2.pdf</a><br>北大西洋公约组织：<a href="http://information-retireval.info/docs/NATO-OSINT.html" target="_blank" rel="noopener">http://information-retireval.info/docs/NATO-OSINT.html</a><br><img src="" alt="" loading="lazy"></p>
+<h3 id="信息收集的过程"><a href="#信息收集的过程" class="headerlink" title="信息收集的过程"></a>信息收集的过程</h3><p>Passive reconnaissance(no direct interaction) -&gt; Normal interaction -&gt; Active reconnaissance -&gt; More information greater chance of detection</p>
+<p>Passive reconnaissance(no direct interaction)  被动信息收集阶段，是不与目标发生交互的。<br>Normal interaction 正常交互<br>Active reconnaissance  主动信息收集<br>More information greater chance of detection 更多信息，发现机会更大</p>
+<h3 id="信息收集的内容"><a href="#信息收集的内容" class="headerlink" title="信息收集的内容"></a>信息收集的内容</h3><p>ip地址段，域名信息，邮件地址( __ 判断是个人搭建的邮件信息服务器还是使用的企业级邮件服务器粗体__ )，文档图片数据（<strong>图片中泄露一些敏感信息，如产品的型号，或被扫描引擎爬网导致内部信息泄露</strong>），公司地址（<strong>后续渗透阶段，在目标公司附近连接进wifi，或进入到公司内部进行渗透</strong>），公司组织架构（<strong>根据不同的部门进行社会工程学</strong>），联系电话/传真号码，人员姓名/职务，目标系统使用的技术架构，公开的商业信息</p>
+<h3 id="信息用途"><a href="#信息用途" class="headerlink" title="信息用途"></a>信息用途</h3><p>用收集到的信息来勾画出目标的框架结构，发现目标的物理系统，为社会工程学攻击奠定基础，以及发现一些可能的物理缺口</p>
+<h2 id="信息收集-DNS"><a href="#信息收集-DNS" class="headerlink" title="信息收集 - DNS"></a>信息收集 - DNS</h2><p>DNS：（Domain Name System，域名系统）</p>
+<p>FQDN：(Fully Qualified Domain Name) 全限定域名</p>
+<p>A (Address)： 记录是用来指定主机名（或域名）对应的IP地址记录</p>
+<p>CNAME（别名记录）：把一个域名指向到另一个域名上。</p>
+<p>NS（Name Server）记录是域名服务器记录，用来指定该域名由哪个DNS服务器来进行解析。</p>
+<p>MX（Mail Exchanger）：是邮件交换记录，它指向一个邮件服务器，用于电子邮件系统发邮件时根据收信人的地址后缀来定位邮件服务器。</p>
+<p>PTR (Pointer Record)：指针记录，是电子邮件系统中的一种数据类型。</p>
+<p>比如 baidu.com 这是一个域名，<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 则是完全限定域名。www是baidu.com下的一条主机记录。主机记录可以是一个A记录（直接指向到服务器IP地址） 也可以是一个cname记录（指向到另一个域名上，由另一个域名做A记录）每个域名都一个或者多个域名服务器，用来负责对该域名的解析，而域名服务器地址又是通过DNS里面的NS记录进行定义和注册的。此外每个域名或者也有自己的邮件服务器(MX记录)。而前面所有的解析记录都是将主机名解析成另外一个主机名或者IP地址，但是PTR则是一个反向解析记录的过程，即是将IP地址解析成主机名。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820210705.png" alt="" loading="lazy"></p>
+<p>如用户访问 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 会先通过当地的缓存DNS服务器进行查询，当地DNS服务器不储存记录，只有缓存记录，当第一次查询时，DNS服务器会先询问 .根域名服务器，根域名会返回.com服务器信息.然后DNS服务器再去询问.com服务器..com服务器返给DNS服务器一个sina.com的服务器信息.再去询问sina服务器，返回得到IP地址 ，当地服务器会缓存一个该域名的IP地址，当再有其他人访问时，不在通过迭代查询，直接回复一个缓存的IP地址。</p>
+<h3 id="DNS信息收集工具-NSLOOKUP"><a href="#DNS信息收集工具-NSLOOKUP" class="headerlink" title="DNS信息收集工具-NSLOOKUP"></a>DNS信息收集工具-NSLOOKUP</h3><h4 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h4><p>在终端输入 <code>nslookup</code></p>
+<p><img src="https://www.mzxh.xyz/picture/20190820210717.png" alt="" loading="lazy"></p>
+<p>然后直接输入要查询的域名,如 <a href="http://www.sina.com" target="_blank" rel="noopener">www.sina.com</a><br>解析结果:</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820210729.png" alt="" loading="lazy"></p>
+<p>可以看到 <a href="http://www.sina.com" target="_blank" rel="noopener">www.sina.com</a> 并没有被直接解析为一个特定的IP地址，而是先解析为一个cname地址 us.sina.com.cn. 再有 us.sina.com.cn. 解析为 wwwus.sina.com. 最后再由wwwus.sina.com, 解析为一个IP地址。</p>
+<h4 id="查找新浪邮件服务器的IP"><a href="#查找新浪邮件服务器的IP" class="headerlink" title="查找新浪邮件服务器的IP"></a>查找新浪邮件服务器的IP</h4><p>先指定查询类型 <code>set type=mx</code><br>然后输入新浪的域名 <code>sina.com</code></p>
+<pre><code>root@kali:~# nslookup
+&gt; set type=mx 
+&gt; sina.com
+Server:        211.140.13.188
+Address:    211.140.13.188#53
+
+Non-authoritative answer:
+sina.com    mail exchanger = 5 freemx1.sinamail.sina.com.cn.
+sina.com    mail exchanger = 10 freemx2.sinamail.sina.com.cn.
+sina.com    mail exchanger = 10 freemx3.sinamail.sina.com.cn.
+
+Authoritative answers can be found from:
+&gt; </code></pre><p>再查询其A记录</p>
+<pre><code>&gt; set type=a
+&gt; freemx1.sinamail.sina.com.cn.
+Server:        211.140.13.188
+Address:    211.140.13.188#53
+
+Non-authoritative answer:
+Name:    freemx1.sinamail.sina.com.cn
+Address: 39.156.6.104</code></pre><pre><code>&gt; freemx2.sinamail.sina.com.cn.
+Server:        211.140.13.188
+Address:    211.140.13.188#53
+
+Non-authoritative answer:
+Name:    freemx2.sinamail.sina.com.cn
+Address: 113.108.216.47</code></pre><pre><code>&gt; freemx3.sinamail.sina.com.cn.
+Server:        211.140.13.188
+Address:    211.140.13.188#53
+
+Non-authoritative answer:
+Name:    freemx3.sinamail.sina.com.cn
+Address: 39.156.6.104</code></pre><h4 id="查询新浪的所有域名服务器"><a href="#查询新浪的所有域名服务器" class="headerlink" title="查询新浪的所有域名服务器"></a>查询新浪的所有域名服务器</h4><pre><code>&gt; set type=ns
+&gt; sina.com
+Server:        211.140.13.188
+Address:    211.140.13.188#53
+
+Non-authoritative answer:
+sina.com    nameserver = ns4.sina.com.
+sina.com    nameserver = ns2.sina.com.cn.
+sina.com    nameserver = ns3.sina.com.cn.
+sina.com    nameserver = ns2.sina.com.
+sina.com    nameserver = ns1.sina.com.
+sina.com    nameserver = ns3.sina.com.
+sina.com    nameserver = ns4.sina.com.cn.
+sina.com    nameserver = ns1.sina.com.cn.
+
+Authoritative answers can be found from:
+&gt; </code></pre><p>解析sina.com nameserver = ns4.sina.com.对应的ip地址:</p>
+<pre><code>&gt; set type=a 
+&gt; ns4.sina.com.
+Server:        211.140.13.188
+Address:    211.140.13.188#53
+
+Non-authoritative answer:
+Name:    ns4.sina.com
+Address: 123.125.29.99
+&gt; </code></pre><p>以此类推我们可以将sina的所有ip地址全部解析出来!</p>
+<pre><code>&gt; 163.com
+Server:        211.140.13.188
+Address:    211.140.13.188#53
+
+Non-authoritative answer:
+163.com    mail exchanger = 10 163mx02.mxmail.netease.com.
+163.com    mail exchanger = 10 163mx03.mxmail.netease.com.
+163.com    mail exchanger = 10 163mx01.mxmail.netease.com.
+163.com    mail exchanger = 50 163mx00.mxmail.netease.com.
+163.com    text = &quot;v=spf1 include:spf.163.com -all&quot;
+163.com    nameserver = ns1.nease.net.
+163.com    nameserver = ns4.nease.net.
+163.com    nameserver = ns3.nease.net.
+163.com    nameserver = ns2.166.com.
+163.com    nameserver = ns8.166.com.
+163.com    nameserver = ns6.nease.net.
+163.com    nameserver = ns5.nease.net.
+
+Authoritative answers can be found from:
+163.com    nameserver = ns5.nease.net.
+163.com    nameserver = ns1.nease.net.
+163.com    nameserver = ns2.166.com.
+163.com    nameserver = ns3.nease.net.
+163.com    nameserver = ns6.nease.net.
+163.com    nameserver = ns8.166.com.
+163.com    nameserver = ns4.nease.net.
+163mx01.mxmail.netease.com    internet address = 220.181.14.136
+163mx01.mxmail.netease.com    internet address = 220.181.14.137
+163mx01.mxmail.netease.com    internet address = 220.181.14.138
+163mx01.mxmail.netease.com    internet address = 220.181.14.139
+163mx01.mxmail.netease.com    internet address = 220.181.14.140
+163mx01.mxmail.netease.com    internet address = 220.181.14.141
+163mx01.mxmail.netease.com    internet address = 220.181.14.142
+163mx01.mxmail.netease.com    internet address = 220.181.14.143
+163mx01.mxmail.netease.com    internet address = 220.181.14.135
+163mx02.mxmail.netease.com    internet address = 220.181.14.147
+163mx02.mxmail.netease.com    internet address = 220.181.14.148
+163mx02.mxmail.netease.com    internet address = 220.181.14.149
+163mx02.mxmail.netease.com    internet address = 220.181.14.150
+163mx02.mxmail.netease.com    internet address = 220.181.14.154
+163mx02.mxmail.netease.com    internet address = 220.181.14.155
+163mx02.mxmail.netease.com    internet address = 220.181.14.144
+163mx02.mxmail.netease.com    internet address = 220.181.14.145
+163mx02.mxmail.netease.com    internet address = 220.181.14.146
+163mx00.mxmail.netease.com    internet address = 123.125.50.140
+163mx00.mxmail.netease.com    internet address = 123.125.50.139
+ns1.nease.net    internet address = 123.58.173.177
+ns2.166.com    internet address = 123.58.173.178
+ns3.nease.net    internet address = 220.181.36.234
+ns4.nease.net    internet address = 123.125.48.245
+ns5.nease.net    internet address = 121.195.179.18
+ns6.nease.net    internet address = 52.215.24.44
+ns8.166.com    internet address = 52.69.168.90
+ns8.166.com    internet address = 52.27.107.218
+&gt; </code></pre><p>我们可以看到 any 查询出了 163.com 域名的所有记录，ns 记录，mail 邮件交换记录。除此以为我们可以看到有一条特殊的记录即” text” , SPF 记录，其作用就是反垃圾邮件的，在垃圾邮件的伎俩中，伪造发件人地址，使其看起来象一个合法的地址，是常见的一种方法。而 SPF，它用于登记某个域名拥有的用来外发邮件的所有IP地址。接收邮件方会根据你的SPF记录来确定连接过来的IP地址是否被包含在  SPF 记录里面，如果在，则认为是一封正确的邮件，否则则认为是一封伪造的邮件。<br>以上命令可以合并为一条命令</p>
+<pre><code>nslookup -q=any 163.com</code></pre><p>nslookup 一般默认使用自带的DNS服务器，我们也可以指定一个dns服务器</p>
+<pre><code>nslookup -q=any 163.com 114.114.114.114</code></pre><h3 id="DNS信息收集-DIG"><a href="#DNS信息收集-DIG" class="headerlink" title="DNS信息收集-DIG"></a>DNS信息收集-DIG</h3><h4 id="DIG简单使用"><a href="#DIG简单使用" class="headerlink" title="DIG简单使用"></a>DIG简单使用</h4><pre><code>root@kali:~# dig www.163.com
+
+; &lt;&lt;&gt;&gt; DiG 9.11.4-4-Debian &lt;&lt;&gt;&gt; www.163.com
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 64668
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.163.com.            IN    A
+
+;; ANSWER SECTION:
+www.163.com.        600    IN    CNAME    www.163.com.lxdns.com.
+www.163.com.lxdns.com.    600    IN    A    112.17.29.134
+www.163.com.lxdns.com.    600    IN    A    218.205.75.19
+
+;; Query time: 10 msec
+;; SERVER: 211.140.13.188#53(211.140.13.188)
+;; WHEN: 日 9月 09 20:41:02 CST 2018
+;; MSG SIZE  rcvd: 93</code></pre><h5 id="参数-any"><a href="#参数-any" class="headerlink" title="参数 any"></a>参数 any</h5><pre><code>root@kali:~# dig 163.com any
+
+; &lt;&lt;&gt;&gt; DiG 9.11.4-4-Debian &lt;&lt;&gt;&gt; 163.com any
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: NOERROR, id: 2594
+;; flags: qr rd ra; QUERY: 1, ANSWER: 13, AUTHORITY: 7, ADDITIONAL: 36
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;163.com.            IN    ANY
+
+;; ANSWER SECTION:
+163.com.        330    IN    A    123.58.180.7
+163.com.        330    IN    A    123.58.180.8
+163.com.        4351    IN    MX    10 163mx01.mxmail.netease.com.
+163.com.        4351    IN    MX    10 163mx02.mxmail.netease.com.
+163.com.        4351    IN    MX    50 163mx00.mxmail.netease.com.
+163.com.        4351    IN    MX    10 163mx03.mxmail.netease.com.
+163.com.        85999    IN    NS    ns8.166.com.
+163.com.        85999    IN    NS    ns4.nease.net.
+163.com.        85999    IN    NS    ns5.nease.net.
+163.com.        85999    IN    NS    ns6.nease.net.
+163.com.        85999    IN    NS    ns1.nease.net.
+163.com.        85999    IN    NS    ns2.166.com.
+163.com.        85999    IN    NS    ns3.nease.net.
+
+;; AUTHORITY SECTION:
+163.com.        85999    IN    NS    ns4.nease.net.
+163.com.        85999    IN    NS    ns8.166.com.
+163.com.        85999    IN    NS    ns5.nease.net.
+163.com.        85999    IN    NS    ns1.nease.net.
+163.com.        85999    IN    NS    ns3.nease.net.
+163.com.        85999    IN    NS    ns6.nease.net.
+163.com.        85999    IN    NS    ns2.166.com.
+
+;; ADDITIONAL SECTION:
+163mx01.mxmail.netease.com. 151    IN    A    220.181.14.142
+163mx01.mxmail.netease.com. 151    IN    A    220.181.14.143
+163mx01.mxmail.netease.com. 151    IN    A    220.181.14.135
+163mx01.mxmail.netease.com. 151    IN    A    220.181.14.136
+163mx01.mxmail.netease.com. 151    IN    A    220.181.14.137
+163mx01.mxmail.netease.com. 151    IN    A    220.181.14.138
+163mx01.mxmail.netease.com. 151    IN    A    220.181.14.139
+163mx01.mxmail.netease.com. 151    IN    A    220.181.14.140
+163mx01.mxmail.netease.com. 151    IN    A    220.181.14.141
+163mx02.mxmail.netease.com. 271    IN    A    220.181.14.148
+163mx02.mxmail.netease.com. 271    IN    A    220.181.14.149
+163mx02.mxmail.netease.com. 271    IN    A    220.181.14.150
+163mx02.mxmail.netease.com. 271    IN    A    220.181.14.154
+163mx02.mxmail.netease.com. 271    IN    A    220.181.14.155
+163mx02.mxmail.netease.com. 271    IN    A    220.181.14.144
+163mx02.mxmail.netease.com. 271    IN    A    220.181.14.145
+163mx02.mxmail.netease.com. 271    IN    A    220.181.14.146
+163mx02.mxmail.netease.com. 271    IN    A    220.181.14.147
+163mx03.mxmail.netease.com. 519    IN    A    220.181.14.159
+163mx03.mxmail.netease.com. 519    IN    A    220.181.14.160
+163mx03.mxmail.netease.com. 519    IN    A    220.181.14.161
+163mx03.mxmail.netease.com. 519    IN    A    220.181.14.162
+163mx03.mxmail.netease.com. 519    IN    A    220.181.14.163
+163mx03.mxmail.netease.com. 519    IN    A    220.181.14.164
+163mx03.mxmail.netease.com. 519    IN    A    220.181.14.156
+163mx03.mxmail.netease.com. 519    IN    A    220.181.14.157
+163mx03.mxmail.netease.com. 519    IN    A    220.181.14.158
+ns1.nease.net.        86000    IN    A    123.58.173.177
+ns2.166.com.        86000    IN    A    123.58.173.178
+ns3.nease.net.        85999    IN    A    220.181.36.234
+ns4.nease.net.        86000    IN    A    123.125.48.245
+ns5.nease.net.        86000    IN    A    121.195.179.18
+ns6.nease.net.        86000    IN    A    52.215.24.44
+ns8.166.com.        86000    IN    A    52.69.168.90
+ns8.166.com.        86000    IN    A    52.27.107.218
+
+;; Query time: 11 msec
+;; SERVER: 211.140.13.188#53(211.140.13.188)
+;; WHEN: 日 9月 09 20:55:12 CST 2018
+;; MSG SIZE  rcvd: 976</code></pre><h5 id="参数noall-answer"><a href="#参数noall-answer" class="headerlink" title="参数noall + answer"></a>参数noall + answer</h5><p>noall代表不输出任何内容  answer 代表只输出 answer的内容</p>
+<pre><code>root@kali:~# dig +noall +answer www.163.com
+www.163.com.        600    IN    CNAME    www.163.com.lxdns.com.
+www.163.com.lxdns.com.    600    IN    A    112.17.29.134
+www.163.com.lxdns.com.    600    IN    A    218.205.75.19</code></pre><h4 id="反向域名解析-PTR记录"><a href="#反向域名解析-PTR记录" class="headerlink" title="反向域名解析(PTR记录)"></a>反向域名解析(PTR记录)</h4><p>[dig参数-x的使用]：<br>首先dig 163的mx记录</p>
+<pre><code>root@kali:~# dig +noall +answer 163.com mx
+163.com.        1792    IN    MX    10 163mx02.mxmail.netease.com.
+163.com.        1792    IN    MX    10 163mx01.mxmail.netease.com.
+163.com.        1792    IN    MX    50 163mx00.mxmail.netease.com.
+163.com.        1792    IN    MX    10 163mx03.mxmail.netease.com.</code></pre><p>查找CNAME对应IP<br>选择第一个CNAME记录查询其对应的IP地址：</p>
+<pre><code>root@kali:~# dig +noall +answer 163mx02.mxmail.netease.com.
+163mx02.mxmail.netease.com. 600    IN    A    220.181.14.147
+163mx02.mxmail.netease.com. 600    IN    A    220.181.14.149
+163mx02.mxmail.netease.com. 600    IN    A    220.181.14.154
+163mx02.mxmail.netease.com. 600    IN    A    220.181.14.145
+163mx02.mxmail.netease.com. 600    IN    A    220.181.14.148
+163mx02.mxmail.netease.com. 600    IN    A    220.181.14.144
+163mx02.mxmail.netease.com. 600    IN    A    220.181.14.150
+163mx02.mxmail.netease.com. 600    IN    A    220.181.14.155
+163mx02.mxmail.netease.com. 600    IN    A    220.181.14.146</code></pre><p>对IP进行反向解析<br>对第一个ip进行反向解析：</p>
+<pre><code>root@kali:~# dig +noall +answer -x 220.181.14.147
+147.14.181.220.in-addr.arpa. 3600 IN    PTR    mr14147.mail.163.com.</code></pre><p>从最后的返回结果我们会发现，ptr解析记录和最初所查询的域名并不一致，这是很正常的，因为ip和域名之间通常的都是一对多的。</p>
+<h4 id="dig网站NS记录"><a href="#dig网站NS记录" class="headerlink" title="dig网站NS记录"></a>dig网站NS记录</h4><pre><code>root@kali:~# dig +noall +answer sina.com ns
+sina.com.        2297    IN    NS    ns2.sina.com.cn.
+sina.com.        2297    IN    NS    ns3.sina.com.cn.
+sina.com.        2297    IN    NS    ns2.sina.com.
+sina.com.        2297    IN    NS    ns1.sina.com.cn.
+sina.com.        2297    IN    NS    ns4.sina.com.cn.
+sina.com.        2297    IN    NS    ns1.sina.com.
+sina.com.        2297    IN    NS    ns4.sina.com.
+sina.com.        2297    IN    NS    ns3.sina.com.</code></pre><h4 id="查询dns的bind版本"><a href="#查询dns的bind版本" class="headerlink" title="查询dns的bind版本"></a>查询dns的bind版本</h4><pre><code>root@kali:~# dig +noall +answer txt chaos VERSION.BIND @ns2.sina.com.cn.
+VERSION.BIND.        0    CH    TXT    &quot;  &quot;</code></pre><p>我们可以看到返回的结果为空，这是因为sina DNS服务器设置了保护模式，我们不能通过此方式查询！bind信息对于黑客是很感兴趣的，所有现在绝大多数的互联网公司都会隐藏的的bind信息！</p>
+<pre><code>root@kali:~# dig +noall +answer txt chaos VERSION.BIND @ns2.cernet.com.
+VERSION.BIND.        0    CH    TXT    &quot;9.9.4&quot;</code></pre><p>通过DNS服务器的bind版本，通过利用已知漏洞，进而通过拿下该DNS服务器，然后获得全部信息。</p>
+<h4 id="dig网站NS记录-1"><a href="#dig网站NS记录-1" class="headerlink" title="dig网站NS记录"></a>dig网站NS记录</h4><p>直接运行命令</p>
+<pre><code>root@kali:~# dig +trace www.sina.com
+
+; &lt;&lt;&gt;&gt; DiG 9.11.4-4-Debian &lt;&lt;&gt;&gt; +trace www.sina.com
+;; global options: +cmd
+.            497654    IN    NS    a.root-servers.net.
+.            497654    IN    NS    l.root-servers.net.
+.            497654    IN    NS    h.root-servers.net.
+.            497654    IN    NS    c.root-servers.net.
+.            497654    IN    NS    e.root-servers.net.
+.            497654    IN    NS    f.root-servers.net.
+.            497654    IN    NS    g.root-servers.net.
+.            497654    IN    NS    m.root-servers.net.
+.            497654    IN    NS    k.root-servers.net.
+.            497654    IN    NS    j.root-servers.net.
+.            497654    IN    NS    b.root-servers.net.
+.            497654    IN    NS    i.root-servers.net.
+.            497654    IN    NS    d.root-servers.net.
+;; Received 811 bytes from 211.140.13.188#53(211.140.13.188) in 10 ms
+
+&gt;首先trace通过本机访问13个根（.）服务器,随机挑选一个查询.com域的NS记录
+
+com.            172800    IN    NS    l.gtld-servers.net.
+com.            172800    IN    NS    m.gtld-servers.net.
+com.            172800    IN    NS    g.gtld-servers.net.
+com.            172800    IN    NS    d.gtld-servers.net.
+com.            172800    IN    NS    i.gtld-servers.net.
+com.            172800    IN    NS    k.gtld-servers.net.
+com.            172800    IN    NS    f.gtld-servers.net.
+com.            172800    IN    NS    c.gtld-servers.net.
+com.            172800    IN    NS    h.gtld-servers.net.
+com.            172800    IN    NS    j.gtld-servers.net.
+com.            172800    IN    NS    a.gtld-servers.net.
+com.            172800    IN    NS    e.gtld-servers.net.
+com.            172800    IN    NS    b.gtld-servers.net.
+com.            86400    IN    DS    30909 8 2 E2D3C916F6DEEAC73294E8268FB5885044A833FC5459588F4A9184CF C41A5766
+com.            86400    IN    RRSIG    DS 8 1 86400 20180922050000 20180909040000 41656 . W12TPZL6F0/aHDsLl0K628YbHkbrcaewY0g+Zky0m0yGAeHDFQPk8G7J A0vHQnlxY3LYHDEd8Yr9Wu6W8kfHIsOicI/Fypc/eV5Va/4YO59vNkrg gytjCzBC8Ctl7IsPN4DujVIqAKYom4TjWi+llBPxkuUqeeTs9n8bn0r3 SHVRJ+rBwdGaJwZJQpe+V6+jcuW39zvcVTXK3YtKPEKX+ObG/MUQ2AuN ckQ3kFUFp1oi+guHTXZPsa4SCcjqGzvlkMktglJPFFOX/l8E0atPR2RU vO/J5u/7iXSHbMadD+4Nrum23lKLqzeEMf9yskC2JAp1E5KWBGvr6M89 p3aGWg==
+;; Received 1172 bytes from 192.36.148.17#53(i.root-servers.net) in 96 ms
+
+&gt;再从获得的从com域名中随机挑选一个查询sina.com的NS记录
+
+sina.com.        172800    IN    NS    ns1.sina.com.cn.
+sina.com.        172800    IN    NS    ns2.sina.com.cn.
+sina.com.        172800    IN    NS    ns3.sina.com.cn.
+sina.com.        172800    IN    NS    ns1.sina.com.
+sina.com.        172800    IN    NS    ns2.sina.com.
+sina.com.        172800    IN    NS    ns4.sina.com.
+sina.com.        172800    IN    NS    ns3.sina.com.
+CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN NSEC3 1 1 0 - CK0Q1GIN43N1ARRC9OSM6QPQR81H5M9A NS SOA RRSIG DNSKEY NSEC3PARAM
+CK0POJMG874LJREF7EFN8430QVIT8BSM.com. 86400 IN RRSIG NSEC3 8 2 86400 20180913044412 20180906033412 46475 com. fIYO7slc/eSvGWcnDI+y2TLrKdtw9gh6YqU9wiZJGTJ9Dn/5Iiv1MgUo NUgphonp2p6LPEKLs6S1GokL3N/qMv66VqDi02jINntemVeSG4Gmd0Ni 62aJA8p2Ch5eGkBq3yPjg92pHhdhNbKOfDZhENiU/Bdu25jCkVNOWtzA zS4=
+TGAFVRK18C1EQNPDR7K209HSQCEKG568.com. 86400 IN NSEC3 1 1 0 - TGAIRTCVTGTP7ROGE19TF24AOUKSPT4J NS DS RRSIG
+TGAFVRK18C1EQNPDR7K209HSQCEKG568.com. 86400 IN RRSIG NSEC3 8 2 86400 20180915044249 20180908033249 46475 com. RHsv+9LupvVqcqiLvevUEW74FBLHWcbygeZWIZ9i3XgbMeUIbHobBSkd fNrAvdMNZs5JlPz7hRx5ZuVRbJ0cIBXwvkadCPhc2sIQ1gmozOnqJMCB 7un3sPEAg9u9As+DN4rzQFVE0Z+xQHXCkT4BWrHcFdJjJzDhR0iRMf74 NfU=
+;; Received 727 bytes from 192.48.79.30#53(j.gtld-servers.net) in 310 ms
+
+&gt;再从获得的sina.com域名中随机挑选一个查询www.sina.com的NS记录，此后将会一次逐级解析下去，知道全部记录解析完毕！
+
+www.sina.com.        60    IN    CNAME    us.sina.com.cn.
+us.sina.com.cn.        60    IN    CNAME    wwwus.sina.com.
+wwwus.sina.com.        60    IN    A    66.102.251.33
+sina.com.        86400    IN    NS    ns4.sina.com.
+sina.com.        86400    IN    NS    ns3.sina.com.cn.
+sina.com.        86400    IN    NS    ns2.sina.com.cn.
+sina.com.        86400    IN    NS    ns2.sina.com.
+sina.com.        86400    IN    NS    ns4.sina.com.cn.
+sina.com.        86400    IN    NS    ns1.sina.com.cn.
+sina.com.        86400    IN    NS    ns1.sina.com.
+sina.com.        86400    IN    NS    ns3.sina.com.
+;; Received 377 bytes from 123.125.29.99#53(ns4.sina.com) in 33 ms</code></pre><p>从上的追踪过程其实就是所谓的迭代查询过程！</p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>墨竹星海</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://www.mzxh.xyz/2018/09/09/20180909/" title="第三节：kali的信息收集之被动扫描（一）">https://www.mzxh.xyz/2018/09/09/20180909/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2018/09/10/20180910/" rel="prev" title="一元购买云主机 （ 星外虚拟主机提权 ）"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">一元购买云主机 （ 星外虚拟主机提权 ）</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2018/09/04/20180904/" rel="next" title="第二节：kali的配置及常用软件安装"><span class="post-nav-text">第二节：kali的配置及常用软件安装</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div></main><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">浙ICP备19034345号</a></div><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"></span><span class="author"> 墨竹星海</span></div><div class="powered"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span><span class="footer-separator">| </span><span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>
