@@ -486,7 +486,10 @@ body::before {
   }
 }
 #footer {
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight:normal;
+  font-weight:bold;
+  font-weight:900;
   color: var(--hty-secondary-text-color);
   text-align: center;
   padding-top: 1rem;
@@ -1910,3 +1913,4 @@ td {
 #say #say-from {
   display: block;
 }
+# 2020617
