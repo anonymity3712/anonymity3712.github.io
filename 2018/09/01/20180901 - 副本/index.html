@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#0078E7"><meta name="author" content="墨竹星海"><meta name="copyright" content="墨竹星海"><meta name="generator" content="Hexo 4.2.1"><meta name="theme" content="hexo-theme-yun"><title>使用 Github Pages + Hexo 搭建自己的博客 | 墨竹星海’s Bolg</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_pem9yni52s.js" async></script><script src="/js/scrollreveal.min.js" defer></script><script>document.addEventListener("DOMContentLoaded", () => {
+  [".post-card",".post-content img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+});
+</script><link rel="shortcut icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#0078E7"><link rel="alternate icon" href="/yun.ico"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/utils.js" as="script"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    const Yun = window.Yun || {};
+    window.CONFIG = {"root":"/","title":"墨竹星海的小站","version":"0.9.0","anonymous_image":"/imgs/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true},"fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]}};
+  </script><meta name="description" content="Github Pages 可以被认为是用户编写的、托管在 github 上的静态网页。使用Github Pages 可以为你提供一个免费的服务器，免去了自己搭建服务器和写数据库的麻烦。此外还可以绑定自己的域名。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Github Pages + Hexo 搭建自己的博客">
+<meta property="og:url" content="https://www.mzxh.xyz/2018/09/01/20180901%20-%20%E5%89%AF%E6%9C%AC/index.html">
+<meta property="og:site_name" content="墨竹星海’s Bolg">
+<meta property="og:description" content="Github Pages 可以被认为是用户编写的、托管在 github 上的静态网页。使用Github Pages 可以为你提供一个免费的服务器，免去了自己搭建服务器和写数据库的麻烦。此外还可以绑定自己的域名。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213702.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213716.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213727.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213738.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213752.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213807.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213822.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213834.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213846.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213900.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213930.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213945.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820213957.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214011.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214024.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214034.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214044.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214055.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214106.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214118.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214128.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214140.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214153.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214206.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214220.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214231.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214244.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214258.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214311.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214327.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214342.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214358.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214424.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214438.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214448.png">
+<meta property="og:image" content="https://www.mzxh.xyz/picture/20190820214500.png">
+<meta property="article:published_time" content="2018-08-31T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-02-12T14:37:21.343Z">
+<meta property="article:author" content="墨竹星海">
+<meta property="article:tag" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.mzxh.xyz/picture/20190820213702.png"></head><body><script defer src="/js/anime.min.js"></script><script defer src="/js/ui/fireworks.js"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/" title="墨竹星海"><img width="96" loading="lazy" src="/Yun.png" alt="墨竹星海"></a><div class="site-author-name"><a href="/">墨竹星海</a></div><a class="site-name" href="/">墨竹星海’s Bolg</a><sub class="site-subtitle">When you look long into an abyss,the abyss looks into you.</sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">62</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">13</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">21</span></a></div><a class="site-state-item hty-icon-button" href="https://wpa.qq.com/msgrd?v=3&amp;uin=371299225&amp;site=qq&amp;menu=yes" target="_blank" rel="noopener" title="腾讯QQ"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-安装-Node-js"><span class="toc-number">1.</span> <span class="toc-text">一.安装 Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-安装-Git"><span class="toc-number">2.</span> <span class="toc-text">二.安装 Git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-Hexo-安装"><span class="toc-number">3.</span> <span class="toc-text">三.Hexo 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-Hexo-初始化配置"><span class="toc-number">4.</span> <span class="toc-text">四. Hexo 初始化配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-本地查看效果"><span class="toc-number">5.</span> <span class="toc-text">五.本地查看效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六-将博客部署到-Github-Pages-上"><span class="toc-number">6.</span> <span class="toc-text">六. 将博客部署到 Github Pages 上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七-将本地的-Hexo-文件更新到-Github-的库中"><span class="toc-number">7.</span> <span class="toc-text">七. 将本地的 Hexo 文件更新到 Github 的库中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八-如何在博客上发表文章"><span class="toc-number">8.</span> <span class="toc-text">八.如何在博客上发表文章</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九-更换自己喜欢的主题"><span class="toc-number">9.</span> <span class="toc-text">九.更换自己喜欢的主题</span></a></li></ol></div></div></div><div class="tag-cloud"><div class="tag-cloud-tags"><a href="/tags/CobaltStrike/" style="font-size: 24px; color: #3383cd">CobaltStrike</a> <a href="/tags/Docker/" style="font-size: 18px; color: #668eb3">Docker</a> <a href="/tags/Hexo/" style="font-size: 27px; color: #1a7eda">Hexo</a> <a href="/tags/IIS/" style="font-size: 12px; color: #999">IIS</a> <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" style="font-size: 18px; color: #668eb3">SQL注入</a> <a href="/tags/apache/" style="font-size: 12px; color: #999">apache</a> <a href="/tags/kali/" style="font-size: 21px; color: #4d89c0">kali</a> <a href="/tags/mysql/" style="font-size: 12px; color: #999">mysql</a> <a href="/tags/python/" style="font-size: 12px; color: #999">python</a> <a href="/tags/ssr/" style="font-size: 12px; color: #999">ssr</a> <a href="/tags/web/" style="font-size: 12px; color: #999">web</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 12px; color: #999">代理</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" style="font-size: 15px; color: #8094a6">信息收集</a> <a href="/tags/%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2/" style="font-size: 15px; color: #8094a6">信息泄露</a> <a href="/tags/%E5%86%85%E7%BD%91/" style="font-size: 12px; color: #999">内网</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 18px; color: #668eb3">安全</a> <a href="/tags/%E5%B7%A5%E4%BD%9C/" style="font-size: 12px; color: #999">工作</a> <a href="/tags/%E6%8F%90%E6%9D%83/" style="font-size: 12px; color: #999">提权</a> <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 15px; color: #8094a6">树莓派</a> <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" style="font-size: 30px; color: #0078e7">漏洞复现</a></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="https://www.mzxh.xyz/2018/09/01/20180901%20-%20%E5%89%AF%E6%9C%AC/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="墨竹星海"><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="墨竹星海’s Bolg"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">使用 Github Pages + Hexo 搭建自己的博客</h1><div class="post-meta"><div class="post-time" style="display:inline-block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2018-09-01 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-01T00:00:00+08:00">2018-09-01</time></div><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/Hexo/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">Hexo</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/Hexo/" style="--text-color:#0E83CD"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Hexo</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><p>Github Pages 可以被认为是用户编写的、托管在 github 上的静态网页。使用Github Pages 可以为你提供一个免费的服务器，免去了自己搭建服务器和写数据库的麻烦。此外还可以绑定自己的域名。</p>
+<a id="more"></a>
+<h2 id="一-安装-Node-js"><a href="#一-安装-Node-js" class="headerlink" title="一.安装 Node.js"></a>一.安装 Node.js</h2><p><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">点击此处</a>访问官网，按需下载相应版本，默认安装可以了<br><img src="https://www.mzxh.xyz/picture/20190820213702.png" alt="" loading="lazy"><br>安装好后需要配置环境变量</p>
+<ul>
+<li>配置环境变量：（我的node.js的安装路径是 D:\nodejs，各位修改环境变量时，按照自己的安装目录进行修改）<ul>
+<li>新建变量<br>NODE_PATH<br>D:\Program Files\nodejs;<br><img src="https://www.mzxh.xyz/picture/20190820213716.png" alt="" loading="lazy"></li>
+<li>修改PATH<br>加上%NODE_PATH%<br><img src="https://www.mzxh.xyz/picture/20190820213727.png" alt="" loading="lazy"></li>
+</ul>
+</li>
+</ul>
+<p>配置成功后，运行 <code>node -v</code>、<code>npm -v</code> 都成功了。<br><img src="https://www.mzxh.xyz/picture/20190820213738.png" alt="" loading="lazy"></p>
+<h2 id="二-安装-Git"><a href="#二-安装-Git" class="headerlink" title="二.安装 Git"></a>二.安装 Git</h2><p><a href="https://git-scm.com/download/win" target="_blank" rel="noopener">点击此处</a>访问官网，按需下载相应版本，默认安装即可<br>安装结束后，运行<code>git --version</code>来查看是否成功</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820213752.png" alt="" loading="lazy"></p>
+<p><img src="https://www.mzxh.xyz/picture/20190820213807.png" alt="" loading="lazy"></p>
+<h2 id="三-Hexo-安装"><a href="#三-Hexo-安装" class="headerlink" title="三.Hexo 安装"></a>三.Hexo 安装</h2><p>选择一个磁盘，新建一个文件夹，自己重命名文件夹（如：我的文件夹为：E:\博客\），博客相关文件将储存在此文件夹下，在该文件夹下右键鼠标，点击 Git Bash Here，输入以下 npm 命令即可安装，第一个命令表示安装 hexo，第二个命令表示安装 hexo 部署到 git page 的 deployer，如图所示即为安装成功</p>
+<pre><code> $ npm install hexo-cli -g  
+ $ npm install hexo-deployer-git --save  </code></pre><p><img src="https://www.mzxh.xyz/picture/20190820213822.png" alt="" loading="lazy"></p>
+<h2 id="四-Hexo-初始化配置"><a href="#四-Hexo-初始化配置" class="headerlink" title="四. Hexo 初始化配置"></a>四. Hexo 初始化配置</h2><p>在刚才新建的文件夹里面再次新建一个 Hexo 文件夹（如：我的文件夹为：E:\博客\Hexo）,进入该 Hexo 文件夹右键鼠标，点击 Git Bash Here，输入以下命令，如图所示则安装成功</p>
+<pre><code> $ hexo init</code></pre><p><img src="https://www.mzxh.xyz/picture/20190820213834.png" alt="" loading="lazy"></p>
+<p>Hexo 安装完成后，将会在指定文件夹中新建所需要的文件，Hexo 文件夹下的目录如下：</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820213846.png" alt="" loading="lazy"></p>
+<h2 id="五-本地查看效果"><a href="#五-本地查看效果" class="headerlink" title="五.本地查看效果"></a>五.本地查看效果</h2><p>执行以下命令，执行完即可登录 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 查看效果</p>
+<pre><code> $ hexo generate  
+ $ hexo server  </code></pre><p><img src="https://www.mzxh.xyz/picture/20190820213900.png" alt="" loading="lazy"><br>显示以下信息说明操作成功：</p>
+<pre><code> INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</code></pre><p>登录 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 查看效果：</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820213930.png" alt="" loading="lazy"></p>
+<h2 id="六-将博客部署到-Github-Pages-上"><a href="#六-将博客部署到-Github-Pages-上" class="headerlink" title="六. 将博客部署到 Github Pages 上"></a>六. 将博客部署到 Github Pages 上</h2><p>到目前为止，我们的本地博客就成功搭建了，但是现在我们只能通过本地连接查看博客，我们要做的是让其他人也能够访问我们的博客，这就需要我们将博客部署到Github Pages上</p>
+<p>1.注册 Github 账户：点击此处访问 Github 官网，点击 Sign Up 注册账户</p>
+<p>2.创建项目代码库：点击 New repository 开始创建，步骤及注意事项见图：</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820213945.png" alt="" loading="lazy"></p>
+<p><img src="https://www.mzxh.xyz/picture/20190820213957.png" alt="" loading="lazy"></p>
+<p>3.配置 SSH 密钥：只有配置好 SSH 密钥后，我们才可以通过 git 操作实现本地代码库与 Github 代码库同步，在你第一次新建的文件夹里面（如：我的文件夹为：Ｅ\TRHX_Blog） Git Bash Here 输入以下命令：</p>
+<pre><code> $ ssh-keygen -t rsa -C &quot;your email@example.com&quot; 
+ //引号里面填写你的邮箱地址，比如我的是371299225@qq.com</code></pre><p><img src="https://www.mzxh.xyz/picture/20190820214011.png" alt="" loading="lazy"></p>
+<p>之后会出现：</p>
+<pre><code> Generating public/private rsa key pair.  
+ Enter file in which to save the key (/c/Users/you/.ssh/id_rsa):  
+ //到这里可以直接回车将密钥按默认文件进行存储</code></pre><p>然后会出现：</p>
+<pre><code> Enter passphrase (empty for no passphrase):  
+ //这里是要你输入密码，其实不需要输什么密码，直接回车就行 
+ Enter same passphrase again:  </code></pre><p>接下来屏幕会显示：</p>
+<pre><code> Your identification has been saved in /c/Users/you/.ssh/id_rsa.  
+ Your public key has been saved in /c/Users/you/.ssh/id_rsa.pub.  
+ The key fingerprint is:  
+ 这里是各种字母数字组成的字符串，结尾是你的邮箱  
+ The key&#39;s randomart image is:  
+ 这里也是各种字母数字符号组成的字符串  </code></pre><p><img src="https://www.mzxh.xyz/picture/20190820214024.png" alt="" loading="lazy"></p>
+<p>运行以下命令，将公钥的内容复制到系统粘贴板上</p>
+<pre><code> $ clip &lt; ~/.ssh/id_rsa.pub</code></pre><p>4.GitHub 账户中添加你的公钥</p>
+<ul>
+<li><p>登陆 GitHub，进入 Settings：<br><img src="https://www.mzxh.xyz/picture/20190820214034.png" alt="" loading="lazy"></p>
+</li>
+<li><p>点击 SSH and GPG Keys：<br><img src="https://www.mzxh.xyz/picture/20190820214044.png" alt="" loading="lazy"></p>
+</li>
+<li><p>选择 New SSH key：<br><img src="https://www.mzxh.xyz/picture/20190820214055.png" alt="" loading="lazy"></p>
+</li>
+<li><p>粘贴密钥：<br><img src="https://www.mzxh.xyz/picture/20190820214106.png" alt="" loading="lazy"></p>
+</li>
+</ul>
+<p>5.测试</p>
+<p>输入以下命令：注意：<a href="mailto:git@github.com">git@github.com</a>不要做任何更改！</p>
+<pre><code> $ ssh -T git@github.com</code></pre><p>之后会显示：</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820214118.png" alt="" loading="lazy"></p>
+<p>输入 yes 后会显示：</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820214128.png" alt="" loading="lazy"></p>
+<p>此时表示设置正确</p>
+<p>6.配置 Git 个人信息</p>
+<p>Git 会根据用户的名字和邮箱来记录提交，GitHub 也是用这些信息来做权限的处理，输入以下命令进行个人信息的设置，把名称和邮箱替换成你自己的，名字可以不是 GitHub 的昵称，但为了方便记忆，建议与 GitHub 一致</p>
+<pre><code> $ git config --global user.name &quot;此处填你的用户名&quot;  
+ $ git config --global user.email  &quot;此处填你的邮箱&quot;</code></pre><p><img src="https://www.mzxh.xyz/picture/20190820214140.png" alt="" loading="lazy"></p>
+<p>到此为止 SSH Key 配置成功，本机已成功连接到 Github</p>
+<h2 id="七-将本地的-Hexo-文件更新到-Github-的库中"><a href="#七-将本地的-Hexo-文件更新到-Github-的库中" class="headerlink" title="七. 将本地的 Hexo 文件更新到 Github 的库中"></a>七. 将本地的 Hexo 文件更新到 Github 的库中</h2><ul>
+<li>登录 Github 打开自己的项目 your name.github.io</li>
+</ul>
+<p><img src="https://www.mzxh.xyz/picture/20190820214153.png" alt="" loading="lazy"></p>
+<ul>
+<li>鼠标移到 Clone or download 按钮，选择 Use SSH</li>
+</ul>
+<p><img src="https://www.mzxh.xyz/picture/20190820214206.png" alt="" loading="lazy"></p>
+<ul>
+<li>一键复制地址</li>
+</ul>
+<p><img src="https://www.mzxh.xyz/picture/20190820214220.png" alt="" loading="lazy"></p>
+<ul>
+<li>打开你创建的 Hexo 文件夹（如：E:\TRHX_Blog\Hexo），右键用记事本（或者Notepad++）打开该文件夹下的 _config.yml 文件</li>
+</ul>
+<p><img src="https://www.mzxh.xyz/picture/20190820214231.png" alt="" loading="lazy"></p>
+<ul>
+<li>按下图修改 _config.yml 文件并保存</li>
+</ul>
+<p><img src="https://www.mzxh.xyz/picture/20190820214244.png" alt="" loading="lazy"></p>
+<ul>
+<li>在 Hexo 文件夹下分别执行以下命令</li>
+</ul>
+<pre><code> $ hexo g -d</code></pre><p>执行完之后会让你输入你的 Github 的账号和密码。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820214258.png" alt="" loading="lazy"></p>
+<p>如果此时报以下错误，说明你的 deployer 没有安装成功</p>
+<pre><code> ERROR Deployer not found: git</code></pre><p><img src="https://www.mzxh.xyz/picture/20190820214311.png" alt="" loading="lazy"></p>
+<p>需要执行以下命令再安装一次：</p>
+<pre><code> npm install hexo-deployer-git --save</code></pre><p><img src="https://www.mzxh.xyz/picture/20190820214327.png" alt="" loading="lazy"></p>
+<p>再执行 hexo g -d，你的博客就会部署到 Github 上了</p>
+<ul>
+<li>访问博客</li>
+</ul>
+<p>你的博客地址：https://你的用户名.github.io，比如我的是：<a href="https://anonymity3712.github.io" target="_blank" rel="noopener">https://anonymity3712.github.io</a> ,现在每个人都可以通过此链接访问你的博客了</p>
+<h2 id="八-如何在博客上发表文章"><a href="#八-如何在博客上发表文章" class="headerlink" title="八.如何在博客上发表文章"></a>八.如何在博客上发表文章</h2><ul>
+<li>1.直接在 \Hexo\source_posts 目录下右键鼠标新建文本文档，改后缀为 .md 即可，这种方法比较方便</li>
+<li>2.<a href="http://www.mdeditor.com" target="_blank" rel="noopener">http://www.mdeditor.com</a> 一个在线的Markdown编辑软件。<br><img src="https://www.mzxh.xyz/picture/20190820214342.png" alt="" loading="lazy"><br>可以在页面上编辑完成后，复制到刚刚新建的.md文件里</li>
+<li>3.当我们用编辑器写好文章后，可以使用以下命令将其推送到服务器上<pre><code>$ hexo d -g </code></pre>现在访问你的博客就可以看见写好的文章啦！</li>
+</ul>
+<h2 id="九-更换自己喜欢的主题"><a href="#九-更换自己喜欢的主题" class="headerlink" title="九.更换自己喜欢的主题"></a>九.更换自己喜欢的主题</h2><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">点击此处</a>进入 Hexo 官网的主题专栏，我们可以看见有许多的主题供我们选择</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820214358.png" alt="" loading="lazy"></p>
+<p>点击蓝色的主题名称，即可跳转到该主题的 Github 的地址<br><img src="https://www.mzxh.xyz/picture/20190820214424.png" alt="" loading="lazy"></p>
+<p>下方有主题的安装方式</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820214438.png" alt="" loading="lazy"></p>
+<p>在 Hexo 文件夹下（如：E:\博客\Hexo），右键 Git Bash Here，输入主题的安装命令：<br><img src="https://www.mzxh.xyz/picture/20190820214448.png" alt="" loading="lazy"></p>
+<p>然后打开 Hexo 文件夹下的配置文件 _config.yml ，找到关键字 theme，修改参数为：theme：landfarz（其他主题修改成相应名称即可）。</p>
+<p><img src="https://www.mzxh.xyz/picture/20190820214500.png" alt="" loading="lazy"></p>
+<p>然后在 Hexo 文件夹下右键 Git Bash Here ，输入以下命令：</p>
+<pre><code> $ hexo d -g </code></pre><p>此时访问自己的博客即可看见更换后的主题，但我们仍然需要对主题的相关配置进行修改，比如网站标题，图标等等，Hexo 中有两份主要的配置文件，名称都是 _config.yml ，它们均是用于站点配置使用的。其中，一份位于站点根目录下（比如我的：E:\博客\Hexo_config.yml），主要包含 Hexo 本身整站的配置；另一份位于主题目录下（比如我的：E:\博客\Hexo\themes\landfarz_config.yml），这份配置由主题作者提供，主要用于配置主题相关的选项，一般 _config.yml 文件里都有相关注释，按需修改即可</p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>转载请注明来自：</strong>墨竹星海</li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2018/09/01/20180901%20-%20%E5%89%AF%E6%9C%AC%20(2)/" rel="prev" title="使用 Github Pages + Hexo 搭建自己的博客"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">使用 Github Pages + Hexo 搭建自己的博客</span></a></div><div class="post-nav-item"></div></div></div></main><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><footer class="sidebar-translate" id="footer"><div class="beian"><a rel="noopener" href="http://www.beian.miit.gov.cn" target="_blank">浙ICP备19034345号</a></div><div class="copyright"><span>&copy; 2018 – 2021 </span><span class="with-love" id="animate"></span><span class="author"> 墨竹星海</span></div><div class="powered"><span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_uv"></span>次</span><span class="footer-separator">| </span><span id="busuanzi_container_page_pv"> 本文总阅读量<span id="busuanzi_value_page_pv"></span>次</span></div><div class="live_time"><span>本博客已稳定运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2018-09-01T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/utils.js"></script><script defer src="/js/hexo-theme-yun.js"></script></body></html>
